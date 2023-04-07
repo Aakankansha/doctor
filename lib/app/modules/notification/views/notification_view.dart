@@ -1,8 +1,7 @@
+import 'package:clear_vikalp_app/app/modules/notification/controllers/notification_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:clear_vikalp_app/app/modules/notification/controllers/notification_controller.dart';
 
 import '../../../core/widgets/app_widgets.dart';
 
@@ -16,7 +15,7 @@ class NotificationView extends StatefulWidget {
 class _NotificationViewState extends State<NotificationView> {
   @override
   void initState() {
-    load();
+    // load();
     super.initState();
   }
 

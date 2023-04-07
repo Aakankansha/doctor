@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
 import 'package:clear_vikalp_app/gen/assets.gen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import '../../../../util/styles.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
@@ -92,20 +92,18 @@ class LoginView extends GetView<LoginController> {
                         )
                       : ButtonPrimary(
                           onPressed: () async {
-                            Get.toNamed(Routes.OTPVERIFY,
-                                arguments: Routes.MAIN);
-                            // if (formKey.currentState!.validate()) {
-                            //   isLoading.value = true;
-                            //   try {
-                            //     Get.toNamed(Routes.OTPVERIFY,
-                            //         arguments: Routes.MAIN);
-                            //     await controller.login(
-                            //       mobileNumber: mobileNumberController.text,
-                            //     );
-                            //   } finally {
-                            //     isLoading.value = false;
-                            //   }
-                            // }
+                            if (formKey.currentState!.validate()) {
+                              isLoading.value = true;
+                              try {
+                                // Get.toNamed(Routes.OTPVERIFY,
+                                //     arguments: Routes.MAIN);
+                                await controller.login(
+                                  mobileNumber: mobileNumberController.text,
+                                );
+                              } finally {
+                                isLoading.value = false;
+                              }
+                            }
                           },
                           title: "Login",
                         );

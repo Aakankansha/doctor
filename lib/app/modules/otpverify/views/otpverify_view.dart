@@ -1,14 +1,13 @@
 import 'dart:developer';
 
+import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
+import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
+import 'package:clear_vikalp_app/app/modules/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
-import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
-import 'package:clear_vikalp_app/app/modules/login/controllers/login_controller.dart';
 
 import '../../signup/views/signup_view.dart';
 import '../controllers/otpverify_controller.dart';
@@ -22,6 +21,7 @@ class OtpverifyView extends GetView<OtpverifyController> {
     final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
     final otpController = Get.put(LoginController());
     final otpPinController = TextEditingController();
+    final loginController = Get.put(LoginController());
     return Scaffold(
       appBar: buildAppBar("Verification"),
       body: Form(
@@ -29,10 +29,10 @@ class OtpverifyView extends GetView<OtpverifyController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            "A 5 digit code sent to your number".text.gray500.make(),
+            "A 4 digit code sent to your number".text.gray500.make(),
             Row(
               children: [
-                "123456798".text.gray500.make(),
+                loginController.mobile.text.gray500.make(),
                 10.widthBox,
                 InkWell(
                   onTap: () {
@@ -43,33 +43,12 @@ class OtpverifyView extends GetView<OtpverifyController> {
               ],
             ),
             20.heightBox,
-            // Text(
-            //   "OTP: ${otpController.otpModel!.otp}",
-            //   style: TextStyle(
-            //     fontSize: 14.sp,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
             20.heightBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: PinCodeTextField(
-                // validator: (value) {
-                //   if (value!.contains(RegExp(r'[a-z]')) ||
-                //       value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]')) ||
-                //       value.contains(RegExp(r'[A-Z]'))) {
-                //     return 'OTP can only be digits';
-                //   } else if (value.length == 5) {
-                //     return null;
-                //   } else if (value.isEmpty) {
-                //     return "Enter OTP";
-                //   } else if (value != otpController.otpModel!.otp) {
-                //     return 'Incorrect OTP';
-                //   }
-                //   return null;
-                // },
                 appContext: context,
-                length: 5,
+                length: 4,
                 obscureText: false,
                 keyboardType: TextInputType.number,
                 animationType: AnimationType.fade,
@@ -110,10 +89,10 @@ class OtpverifyView extends GetView<OtpverifyController> {
                           if (formKey.currentState!.validate()) {
                             isLoading.value = true;
                             try {
+                              // Get.to(() => const MainView());
                               Get.to(() => const SignupView());
                               // await controller.verifyOtp(
-                              //   mobileNumber:
-                              //       otpController.otpModel!.otpToSend!.mobile,
+                              //   mobileNumber: loginController.mobile,
                               //   otpCode: otpPinController.text,
                               // );
                             } on Exception catch (e) {

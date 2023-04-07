@@ -1,21 +1,19 @@
-import 'dart:convert';
 import 'dart:developer';
 
+import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:clear_vikalp_app/app/modules/login/model/otp_model.dart';
-import 'package:clear_vikalp_app/util/constant.dart';
 
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  OtpModel? otpModel;
+  var mobile = "";
   Future login({String? mobileNumber}) async {
     try {
       log("Loading...");
-      const String pageUrl = "api/users/sendOtp";
+      const String pageUrl = "Auth/login_user";
       final body = {
-        "mobile": "+91$mobileNumber",
+        "mobile": "$mobileNumber",
       };
       final response = await http.post(
         Uri.parse(baseUrl + pageUrl),
@@ -23,8 +21,7 @@ class LoginController extends GetxController {
       );
       log(response.body);
       if (response.statusCode == 200) {
-        otpModel = OtpModel.fromJson(jsonDecode(response.body));
-
+        mobile = mobileNumber.toString();
         Future.delayed(Duration.zero);
         Get.toNamed(Routes.OTPVERIFY, arguments: Routes.MAIN);
       }

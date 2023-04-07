@@ -1,7 +1,8 @@
-import 'package:clear_vikalp_app/app/modules/profile/views/add_family.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../../edit_profile/views/add_family_member.dart';
 
 class FamilyNemberList extends StatelessWidget {
   const FamilyNemberList({super.key});
@@ -15,7 +16,7 @@ class FamilyNemberList extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: () {
-                Get.to(() => const AddFamilyScreen());
+                Get.to(() => const AddFamilyMemberScreen());
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,

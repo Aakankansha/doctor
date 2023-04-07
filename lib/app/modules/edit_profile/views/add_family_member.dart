@@ -10,14 +10,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class EditProfileView extends StatefulWidget {
-  const EditProfileView({Key? key}) : super(key: key);
+class AddFamilyMemberScreen extends StatefulWidget {
+  const AddFamilyMemberScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditProfileView> createState() => _EditProfileViewState();
+  State<AddFamilyMemberScreen> createState() => _AddFamilyMemberScreenState();
 }
 
-class _EditProfileViewState extends State<EditProfileView> {
+class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
   bool isInsured = false;
   bool isMedical = false;
   @override
@@ -61,7 +61,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar("Edit profile"),
+      appBar: buildAppBar("Add Family profile"),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +106,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             ),
             buildField(
               title: "Phone no",
-              hint: "+91 97101224553",
+              hint: "Enter your phone no",
               controller: mobileController,
             ),
             Row(
@@ -222,27 +222,24 @@ class _EditProfileViewState extends State<EditProfileView> {
                 Expanded(
                   child: buildField(
                     title: "Height(cm)",
-                    hint: "55",
+                    hint: "Enter your height",
                     controller: mobileController,
                   ),
                 ),
                 Expanded(
                   child: buildField(
                     title: "Weight(kg)",
-                    hint: "68",
+                    hint: "Enter your weight",
                     controller: mobileController,
                   ),
                 ),
               ],
             ),
-
-            "Do you Have Health Insurance?".text.black.make().marginOnly(
-                  left: 10,
-                  right: 10,
-                ),
-            //yes no elevated button
             Row(
               children: [
+                "Are you insured?".text.black.make(),
+                //yes no elevated button
+                const SizedBox(width: 10), const Spacer(),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -332,15 +329,11 @@ class _EditProfileViewState extends State<EditProfileView> {
                     .marginOnly(left: 10, right: 10),
               ),
             10.heightBox,
-            "You Have Medical History?".text.black.make().marginOnly(
-                  left: 10,
-                  right: 10,
-                ),
-
             Row(
               children: [
+                "You Have Medical History?".text.black.make(),
                 //yes no elevated button
-
+                const SizedBox(width: 5), const Spacer(),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {

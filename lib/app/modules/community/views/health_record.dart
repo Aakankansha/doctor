@@ -10,7 +10,7 @@ class HealthRecord extends GetView<CommunityController> {
   const HealthRecord({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CommunityController());
+    // final controller = Get.put(CommunityController());
     return Scaffold(
         appBar: AppBar(
           title: const Text(

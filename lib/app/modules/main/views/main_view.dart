@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
-import 'package:clear_vikalp_app/app/modules/community/controllers/community_controller.dart';
 import 'package:clear_vikalp_app/app/modules/community/views/health_record.dart';
 import 'package:clear_vikalp_app/app/modules/notification/views/notification_view.dart';
 import 'package:clear_vikalp_app/app/modules/profile/views/profile_view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../home/views/home_view.dart';
-import '../../notification/controllers/notification_controller.dart';
 import '../controllers/main_controller.dart';
 
 // class MainView extends GetView<MainController> {
@@ -22,22 +19,9 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  final notificationController = Get.put(NotificationController());
-  final communityController = Get.put(CommunityController());
+  // final notificationController = Get.put(NotificationController());
+  // final communityController = Get.put(CommunityController());
   final controller = Get.put(MainController());
-
-  @override
-  void initState() {
-    super.initState();
-    loadingData();
-  }
-
-  Future loadingData() async {
-    await controller.getUserInfo();
-    await communityController.getCommunities();
-    await communityController.getCommunityMessages();
-    await notificationController.callNotifications();
-  }
 
   List<Widget> _buildScreen() {
     return [
@@ -93,7 +77,7 @@ class _MainViewState extends State<MainView> {
         ),
       ),
       body: FutureBuilder(
-        future: loadingData(),
+        //   future: loadingData(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
