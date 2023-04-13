@@ -328,13 +328,13 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                       padding: const EdgeInsets.only(left: 98.0),
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Enter your height in cm",
+                          hintText: "Enter your height in cm",
                           filled: true,
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
                           fillColor: Colors.grey[200],
+                          enabledBorder: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide: BorderSide.none),
                         ),
                         keyboardType: TextInputType.number,
                         onFieldSubmitted: (value) {
@@ -365,7 +365,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                       child: TextFormField(
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          labelText: "Enter your weight in kg",
+                          hintText: "Enter your weight in kg",
                           filled: true,
                           fillColor: Colors.grey[200],
                           enabledBorder: const OutlineInputBorder(

@@ -58,6 +58,8 @@ dependencies:
   carousel_slider: ^4.2.1
   animated_text_kit: ^4.2.2
   find_dropdown: ^1.0.0
+  chat_bubbles: ^1.4.0
+  chips_choice: ^3.0.0
   
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/imaging_nearby_view.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/know_your_diet.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/lab_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/offer_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/subscribtion.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
@@ -15,7 +16,9 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/home_controller.dart';
 import 'cart_screen.dart';
+import 'comparative_analysis.dart';
 import 'earned_cashback_screen.dart';
+import 'help_center_screen.dart';
 import 'home_health_care.dart';
 import 'hospital_nearby_view.dart';
 import 'my_order_screen.dart';
@@ -127,7 +130,7 @@ class HomeView extends GetView<HomeController> {
                           .withRounded(value: 4)
                           .make()
                           .onTap(() {
-                        Get.to(() => const MyOrderScreen());
+                        Get.to(() => MyOrderScreen());
                       }),
                       10.heightBox,
                       Row(
@@ -240,7 +243,10 @@ class HomeView extends GetView<HomeController> {
                             width: 1,
                           )
                           .withRounded(value: 4)
-                          .make(),
+                          .make()
+                          .onTap(() {
+                        Get.to(() => const ComparativeAnalysis());
+                      }),
                       10.heightBox,
                       Row(
                         children: [
@@ -260,7 +266,10 @@ class HomeView extends GetView<HomeController> {
                             width: 1,
                           )
                           .withRounded(value: 4)
-                          .make(),
+                          .make()
+                          .onTap(() {
+                        Get.to(() => const OfferScreen());
+                      }),
                       10.heightBox,
                       Row(
                         children: [
@@ -280,7 +289,10 @@ class HomeView extends GetView<HomeController> {
                             width: 1,
                           )
                           .withRounded(value: 4)
-                          .make(),
+                          .make()
+                          .onTap(() {
+                        Get.to(() => const HelpCenterScreen());
+                      }),
                       10.heightBox,
                       Row(
                         children: [

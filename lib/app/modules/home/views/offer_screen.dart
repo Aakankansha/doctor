@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
 
-class RefundStatusScreen extends StatelessWidget {
-  const RefundStatusScreen({super.key});
+class OfferScreen extends StatelessWidget {
+  const OfferScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class RefundStatusScreen extends StatelessWidget {
           ),
         ),
         title: const Text(
-          'Refund Status',
+          'Offers',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,
@@ -36,18 +37,21 @@ class RefundStatusScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return const Card(
-              child: ListTile(
-                title: Text('Order ID: 123456789'),
-                subtitle: Text('Refund ID: 123456789'),
-                trailing: Text('Refund Status: Success'),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/offer.jpg',
+                fit: BoxFit.cover,
               ),
-            );
-          },
+            ),
+            20.heightBox,
+            Image.asset(
+              'assets/images/offer.jpeg',
+              fit: BoxFit.cover,
+            ),
+          ],
         ),
       ),
     );

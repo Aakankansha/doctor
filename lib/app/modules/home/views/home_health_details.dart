@@ -46,17 +46,17 @@ class _HomeHealthDetailsScreenState extends State<HomeHealthDetailsScreen> {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            SingleChildScrollView(
-              child: Image.asset(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset(
                 "assets/images/Group 11100.png",
                 fit: BoxFit.cover,
               ).onTap(() {
                 // Get.to(() => const HomeHealthDetailsScreen());
               }),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }

@@ -340,7 +340,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             Row(
               children: [
                 //yes no elevated button
-
+ 
                 ElevatedButton(
                   onPressed: () {
                     setState(() {

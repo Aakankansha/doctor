@@ -278,6 +278,15 @@ class LabDetailsScreen extends StatelessWidget {
                           fontSize: 15,
                         ),
                       ),
+                      5.widthBox,
+                      const Text(
+                        '₹630',
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 15,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
                       15.widthBox,
                       "add"
                           .text
@@ -293,19 +302,6 @@ class LabDetailsScreen extends StatelessWidget {
                           .onTap(() {
                         Get.to(() => const LabDescriptionScreen());
                       }),
-                      5.widthBox,
-                      "remove"
-                          .text
-                          .color(Colors.white)
-                          .bold
-                          .makeCentered()
-                          .box
-                          .width(79)
-                          .height(25)
-                          .withRounded()
-                          .color(themeColor)
-                          .make()
-                          .onTap(() {}),
                     ],
                   ),
                 )
