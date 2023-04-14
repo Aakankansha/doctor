@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/get_surgery_done.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/imaging_nearby_view.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/know_your_diet.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/lab_nearby_view.dart';
@@ -810,7 +811,9 @@ class HomeView extends GetView<HomeController> {
                   Image.asset(
                     'assets/images/Group 11083.png',
                     width: 100.w,
-                  ),
+                  ).onTap(() {
+                    Get.to(() => const GetSurgeryDoneScreen());
+                  }),
                   10.heightBox,
                   Padding(
                     padding: const EdgeInsets.all(10.0),

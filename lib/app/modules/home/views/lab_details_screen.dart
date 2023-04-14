@@ -45,6 +45,69 @@ class LabDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomSheet: Material(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: themeColor2,
+            ),
+            width: double.infinity,
+            child: Center(
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    '1 Test Selected',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  const Text(
+                    '₹ 500',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: themeColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'Proceed',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -252,56 +315,96 @@ class LabDetailsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
+                  child: Column(
                     children: [
-                      const Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.green,
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.green,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
+                            'Blood Test',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 15,
+                            ),
+                          ),
+                          const Spacer(),
+                          const Text(
+                            '₹ 500',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          5.widthBox,
+                          const Text(
+                            '₹630',
+                            style: TextStyle(
+                              color: Colors.black45,
+                              fontSize: 15,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                          15.widthBox,
+                          index == 1
+                              ? Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.add_circle_outline,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '1',
+                                      style: TextStyle(
+                                        color: themeColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Icon(
+                                      Icons.remove_circle_outline,
+                                    ),
+                                  ],
+                                )
+                              : "add"
+                                  .text
+                                  .color(Colors.white)
+                                  .bold
+                                  .makeCentered()
+                                  .box
+                                  .width(60)
+                                  .height(25)
+                                  .withRounded()
+                                  .color(themeColor)
+                                  .make()
+                                  .onTap(() {
+                                  Get.to(() => const LabDescriptionScreen());
+                                }),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 5,
+                      10.heightBox,
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: "View Details"
+                            .text
+                            .color(themeColor)
+                            .bold
+                            .make()
+                            .onTap(() {
+                          Get.to(() => const LabDescriptionScreen());
+                        }),
                       ),
-                      const Text(
-                        'Blood Test',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                      const Spacer(),
-                      const Text(
-                        '₹ 500',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-                      5.widthBox,
-                      const Text(
-                        '₹630',
-                        style: TextStyle(
-                          color: Colors.black45,
-                          fontSize: 15,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                      15.widthBox,
-                      "add"
-                          .text
-                          .color(Colors.white)
-                          .bold
-                          .makeCentered()
-                          .box
-                          .width(60)
-                          .height(25)
-                          .withRounded()
-                          .color(themeColor)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const LabDescriptionScreen());
-                      }),
                     ],
                   ),
                 )

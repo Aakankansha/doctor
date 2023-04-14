@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:chips_choice/chips_choice.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
 import 'package:clear_vikalp_app/app/modules/edit_profile/controllers/edit_profile_controller.dart';
@@ -20,6 +21,19 @@ class EditProfileView extends StatefulWidget {
 class _EditProfileViewState extends State<EditProfileView> {
   bool isInsured = false;
   bool isMedical = false;
+  List<String> tags = [];
+  List<String> medicalHistory = [
+    "Diabetes",
+    "Hypertension",
+    "Heart Disease",
+    "Kidney Disease",
+    "Liver Disease",
+    "Thyroid",
+    "Cancer",
+    "Asthma",
+    "Allergies",
+    "None"
+  ];
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -222,7 +236,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                 Expanded(
                   child: buildField(
                     title: "Height(cm)",
-                    hint: "55",
+                    hint: "58",
                     controller: mobileController,
                   ),
                 ),
@@ -340,7 +354,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             Row(
               children: [
                 //yes no elevated button
- 
+
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -396,77 +410,46 @@ class _EditProfileViewState extends State<EditProfileView> {
               right: 10,
             ),
             if (isMedical == true)
-              Theme(
-                data: ThemeData(
-                  canvasColor: Colors.white,
+              ChipsChoice<String>.multiple(
+                value: tags,
+                wrapped: true,
+                padding: const EdgeInsets.all(2),
+                onChanged: (val) {
+                  setState(() {
+                    tags = val;
+                  });
+                },
+                choiceItems: C2Choice.listFrom<String, String>(
+                  source: medicalHistory,
+                  value: (i, v) => v,
+                  label: (i, v) => v,
+                  tooltip: (i, v) => v,
                 ),
-                child: DropdownButton(
-                        value: "Diabetes",
-                        items: [
-                          DropdownMenuItem(
-                            value: "Diabetes",
-                            child: "Diabetes".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Hypertension",
-                            child: "Hypertension".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Cardiac",
-                            child: "Cardiac".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Asthma",
-                            child: "Asthma".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Thyroid",
-                            child: "Thyroid".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Kidney Disease",
-                            child: "Kidney Disease".text.make(),
-                          ),
-                          DropdownMenuItem(
-                            value: "Others",
-                            child: "Others".text.make(),
-                          ),
-                        ],
-                        underline: Container(),
-                        isExpanded: true,
-                        onChanged: (value) {})
-                    .marginOnly(left: 10, right: 10)
-                    .box
-                    .withRounded(value: 8)
-                    .border(
-                      color: Colors.grey,
-                      width: 1,
-                    )
-                    .make()
-                    .marginOnly(left: 10, right: 10),
+                choiceCheckmark: true,
+                choiceStyle: C2ChipStyle.outlined(),
               ),
-            10.heightBox,
-            if (isMedical)
-              buildField(
-                title: "Duration",
-                hint: "Duration",
-              ),
-            if (isMedical)
-              //add more button
-              ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        minimumSize: const Size(60, 30),
-                        backgroundColor: themeColor2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: "Add More".text.white.make())
-                  .pSymmetric(
-                h: 10,
-              ),
+            // 10.heightBox,
+            // if (isMedical)
+            //   buildField(
+            //     title: "Duration",
+            //     hint: "Duration",
+            //   ),
+            // if (isMedical)
+            //   //add more button
+            //   ElevatedButton(
+            //           style: ElevatedButton.styleFrom(
+            //             elevation: 0,
+            //             minimumSize: const Size(60, 30),
+            //             backgroundColor: themeColor2,
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(10),
+            //             ),
+            //           ),
+            //           onPressed: () {},
+            //           child: "Add More".text.white.make())
+            //       .pSymmetric(
+            //     h: 10,
+            //   ),
             ButtonPrimary(
               onPressed: () async {
                 isLoading.value = true;

@@ -1,39 +1,38 @@
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:chips_choice/chips_choice.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/near_by_homehealth_question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
 
-class KnowYourDiet extends StatefulWidget {
-  const KnowYourDiet({super.key});
+class GetSurgeryDoneScreen extends StatefulWidget {
+  const GetSurgeryDoneScreen({super.key});
 
   @override
-  State<KnowYourDiet> createState() => _KnowYourDietState();
+  State<GetSurgeryDoneScreen> createState() => _GetSurgeryDoneScreenState();
 }
 
-class _KnowYourDietState extends State<KnowYourDiet> {
+class _GetSurgeryDoneScreenState extends State<GetSurgeryDoneScreen> {
   String birthday = "Select Date";
   int currentIndex = 0;
-  int isGender = 4;
-  int meal = 4;
+  int isGender = 3;
+  int isNurseGender = 3;
+  int nurseQualification = 5;
   int activity = 4;
   String height = "0.0";
   double bmi = 0.0;
-  List<String> tags = [];
-  List<String> medicalHistory = [
-    "Diabetes",
-    "Hypertension",
-    "Heart Disease",
-    "Kidney Disease",
-    "Liver Disease",
-    "Thyroid",
-    "Cancer",
-    "Asthma",
-    "Allergies",
-    "None"
+  String tags = "";
+  List<String> surgery = [
+    "Cataract Surgery",
+    "Corneal Transplant",
+    "Glaucoma Surgery",
+    "Laser Eye Surgery",
+    "LASIK",
+    "Oculoplastic Surgery",
+    "Retinal Surgery",
+    "Vitrectomy",
+    "Other"
   ];
   final ScrollController _scrollController = ScrollController();
   @override
@@ -61,7 +60,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                 setState(() {
                   currentIndex = 0;
                   isGender = 4;
-                  meal = 4;
+                  nurseQualification = 4;
                   activity = 4;
                   birthday = "Select Date";
                 });
@@ -70,7 +69,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
         ],
         backgroundColor: themeColor,
         title: const Text(
-          'Know Your Diet',
+          'Get Surgery Done',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,
@@ -91,18 +90,17 @@ class _KnowYourDietState extends State<KnowYourDiet> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              5.heightBox,
-              "Let's know you better".text.bold.xl.make(),
-              Divider(
-                color: Colors.grey[300],
-                thickness: 1,
-              ),
+              "Kindly help us with some details to better assist you."
+                  .text
+                  .semiBold
+                  .make(),
+              10.heightBox,
               if (currentIndex >= 0)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const BubbleSpecialThree(
-                      text: 'What is your name?',
+                      text: 'Please mentioned patient name?',
                       color: themeColor,
                       tail: true,
                       isSender: false,
@@ -117,7 +115,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                             primaryColor: const Color(0xff0D0940)),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            labelText: 'Enter your name',
+                            labelText: 'Enter name',
                             filled: true,
                             border: UnderlineInputBorder(
                               borderSide: BorderSide.none,
@@ -154,7 +152,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: 'Select your gender',
+                      text: 'Select your patient gender',
                       color: themeColor,
                       tail: true,
                       isSender: false,
@@ -217,7 +215,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                         }),
                       ],
                     ),
-                    15.heightBox,
+                    10.heightBox,
                     "Other"
                         .text
                         .bold
@@ -250,7 +248,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: 'Select your date of birth',
+                      text: 'Select patient date of birth',
                       color: themeColor,
                       tail: true,
                       isSender: false,
@@ -324,163 +322,27 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: 'What is your height?',
+                      text: "What is the diagnosis?",
                       color: themeColor,
                       tail: true,
                       isSender: false,
                       textStyle: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     10.heightBox,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 98.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: "Enter your height in cm",
-                          filled: true,
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          fillColor: Colors.grey[200],
-                        ),
-                        keyboardType: TextInputType.number,
-                        onFieldSubmitted: (value) {
-                          height = value;
-                          setState(() {
-                            currentIndex = 4;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              if (currentIndex >= 4)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    20.heightBox,
-                    const BubbleSpecialThree(
-                      text: 'What is your Weight?',
-                      color: themeColor,
-                      tail: true,
-                      isSender: false,
-                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
                     10.heightBox,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 98.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: "Enter your weight in kg",
-                          filled: true,
-                          fillColor: Colors.grey[200],
-                          enabledBorder: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide.none),
-                        ),
-                        onFieldSubmitted: (value) {
-                          bmi = 0.0;
-                          setState(() {
-                            currentIndex = 5;
-                            print(value);
-                            print(bmi);
-                            bmi = double.parse(value) /
-                                (double.parse(height) *
-                                    double.parse(height) /
-                                    10000);
-                            print(bmi);
-                          });
-                          _scrollController.animateTo(
-                            _scrollController.position.maxScrollExtent,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeOut,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              if (currentIndex >= 5)
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: BubbleSpecialThree(
-                    text: "your bmi is ${bmi.toStringAsFixed(2)}",
-                    color: themeColor2,
-                    tail: true,
-                    isSender: false,
-                    textStyle:
-                        const TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ),
-              if (currentIndex >= 5)
-                Column(
-                  children: [
-                    if (bmi < 18.5)
-                      const Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: BubbleSpecialThree(
-                          text: "you are underweight",
-                          color: themeColor2,
-                          tail: true,
-                          isSender: false,
-                          textStyle:
-                              TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ),
-                    if (bmi >= 18.5 && bmi < 25)
-                      const Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: BubbleSpecialThree(
-                          text: "you are normal",
-                          color: themeColor2,
-                          tail: true,
-                          isSender: false,
-                          textStyle:
-                              TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ),
-                    if (bmi >= 25 && bmi < 30)
-                      const Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: BubbleSpecialThree(
-                          text: "you are overweight",
-                          color: themeColor2,
-                          tail: true,
-                          isSender: false,
-                          textStyle:
-                              TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ),
-                  ],
-                ),
-              if (currentIndex >= 5)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    20.heightBox,
-                    const BubbleSpecialThree(
-                      text: "Do you have any Medical History?",
-                      color: themeColor,
-                      tail: true,
-                      isSender: false,
-                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    10.heightBox,
-                    ChipsChoice<String>.multiple(
+                    ChipsChoice<String>.single(
                       value: tags,
                       wrapped: true,
                       padding: const EdgeInsets.all(2),
                       onChanged: (val) {
                         if (val.isEmpty) {
                           setState(() {
-                            currentIndex = 5;
-                            tags = val;
+                            currentIndex = 4;
+                            tags = "";
                           });
                         } else {
                           setState(() {
-                            currentIndex = 6;
+                            currentIndex = 5;
                             tags = val;
                           });
                         }
@@ -491,7 +353,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                         );
                       },
                       choiceItems: C2Choice.listFrom<String, String>(
-                        source: medicalHistory,
+                        source: surgery,
                         value: (i, v) => v,
                         label: (i, v) => v,
                         tooltip: (i, v) => v,
@@ -507,13 +369,13 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                     ),
                   ],
                 ),
-              if (currentIndex >= 6)
+              if (currentIndex >= 4)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: "Diet you prefer in your routine",
+                      text: 'Do you have Insurance?',
                       color: themeColor,
                       tail: true,
                       isSender: false,
@@ -522,18 +384,22 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                     10.heightBox,
                     Row(
                       children: [
-                        "Veg"
+                        "Yes"
                             .text
                             .bold
                             .xl
-                            .color(meal == 0 ? themeColor : Colors.black38)
+                            .color(isNurseGender == 0
+                                ? themeColor
+                                : Colors.black38)
                             .makeCentered()
                             .box
                             .width(130)
                             .height(35)
                             .withRounded(value: 8)
                             .border(
-                              color: meal == 0 ? themeColor : Colors.grey[300]!,
+                              color: isNurseGender == 0
+                                  ? themeColor
+                                  : Colors.grey[300]!,
                               width: 1,
                             )
                             .make()
@@ -542,8 +408,8 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                             )
                             .onTap(() {
                           setState(() {
-                            meal = 0;
-                            currentIndex = 7;
+                            isNurseGender = 0;
+                            currentIndex = 5;
                             _scrollController.animateTo(
                               _scrollController.position.maxScrollExtent,
                               duration: const Duration(milliseconds: 300),
@@ -551,18 +417,22 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                             );
                           });
                         }),
-                        "Non-Veg"
+                        "No"
                             .text
                             .bold
                             .xl
-                            .color(meal == 1 ? themeColor : Colors.black38)
+                            .color(isNurseGender == 1
+                                ? themeColor
+                                : Colors.black38)
                             .makeCentered()
                             .box
                             .width(130)
                             .height(35)
                             .withRounded(value: 8)
                             .border(
-                              color: meal == 1 ? themeColor : Colors.grey[300]!,
+                              color: isNurseGender == 1
+                                  ? themeColor
+                                  : Colors.grey[300]!,
                               width: 1,
                             )
                             .make()
@@ -571,8 +441,8 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                             )
                             .onTap(() {
                           setState(() {
-                            meal = 1;
-                            currentIndex = 7;
+                            isNurseGender = 1;
+                            currentIndex = 5;
                             _scrollController.animateTo(
                               _scrollController.position.maxScrollExtent,
                               duration: const Duration(milliseconds: 300),
@@ -582,165 +452,52 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                         }),
                       ],
                     ),
-                    10.heightBox,
-                    "Both"
-                        .text
-                        .bold
-                        .xl
-                        .color(meal == 2 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(130)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: meal == 2 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        meal = 2;
-                        currentIndex = 7;
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeOut,
-                        );
-                      });
-                    }),
                   ],
                 ),
-              if (currentIndex >= 7)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    20.heightBox,
-                    const BubbleSpecialThree(
-                      text: "How active are you in your daily routine?",
-                      color: themeColor,
-                      tail: true,
-                      isSender: false,
-                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
+              if (currentIndex >= 5) 20.heightBox,
+              if (currentIndex >= 5)
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Daily"
-                            .text
-                            .bold
-                            .xl
-                            .color(activity == 0 ? themeColor : Colors.black38)
-                            .makeCentered()
-                            .box
-                            .width(160)
-                            .height(35)
-                            .withRounded(value: 8)
-                            .border(
-                              color: activity == 0
-                                  ? themeColor
-                                  : Colors.grey[300]!,
-                              width: 1,
-                            )
-                            .make()
-                            .pOnly(
-                              left: 20,
-                            )
-                            .onTap(() {
-                          setState(() {
-                            activity = 0;
-                            currentIndex = 8;
-                            Get.to(() => const NearbyHomeHealthQuestions());
-                            _scrollController.animateTo(
-                              _scrollController.position.maxScrollExtent,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeOut,
-                            );
-                          });
-                        }),
-                        "Non Frequently"
-                            .text
-                            .bold
-                            .xl
-                            .color(activity == 1 ? themeColor : Colors.black38)
-                            .makeCentered()
-                            .box
-                            .width(160)
-                            .height(35)
-                            .withRounded(value: 8)
-                            .border(
-                              color: activity == 1
-                                  ? themeColor
-                                  : Colors.grey[300]!,
-                              width: 1,
-                            )
-                            .make()
-                            .pOnly(
-                              left: 20,
-                            )
-                            .onTap(() {
-                          setState(() {
-                            activity = 1;
-                            currentIndex = 8;
-                            Get.to(() => const NearbyHomeHealthQuestions());
-                            _scrollController.animateTo(
-                              _scrollController.position.maxScrollExtent,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeOut,
-                            );
-                          });
-                        }),
-                      ],
-                    ),
-                    10.heightBox,
-                    "Not at all"
-                        .text
-                        .bold
-                        .xl
-                        .color(activity == 2 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(160)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: activity == 2 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        activity = 2;
-                        currentIndex = 8;
-                        Get.to(() => const NearbyHomeHealthQuestions());
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeOut,
-                        );
-                      });
-                    }),
-                    if (currentIndex >= 8) 20.heightBox,
-                    if (currentIndex >= 8)
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                    onPressed: () {
+                      Get.dialog(
+                        WillPopScope(
+                          onWillPop: () async {
+                            Get.back();
+                            Get.back();
+                            Get.back();
+                            Get.back();
+
+                            return false;
+                          },
+                          child: Theme(
+                            data: ThemeData.light(),
+                            child: AlertDialog(
+                              title: const Text("Thank you!"),
+                              content: const Text(
+                                  "Thank you for the detail. Our customer executive would reach out to you on +9199999999 within 30 min of working hour to assist you."),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                      Get.back();
+                                      Get.back();
+                                      Get.back();
+                                    },
+                                    child: const Text("Okay")),
+                              ],
                             ),
                           ),
-                          onPressed: () {
-                            Get.to(() => const NearbyHomeHealthQuestions());
-                          },
-                          child: const Text("Submit"))
-                  ],
-                ),
+                        ),
+                        barrierDismissible: false,
+                        barrierColor: Colors.black.withOpacity(0.8),
+                      );
+                    },
+                    child: const Text("Submit")),
               100.heightBox,
             ],
           ),
