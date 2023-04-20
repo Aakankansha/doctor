@@ -1,6 +1,7 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/notification/views/notification_view.dart';
 import 'package:clear_vikalp_app/app/modules/profile/views/profile_view.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -69,11 +70,62 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.health_and_safety,
-          color: Colors.white,
+      floatingActionButton: RawGestureDetector(
+        gestures: <Type, GestureRecognizerFactory>{
+          LongPressGestureRecognizer:
+              GestureRecognizerFactoryWithHandlers<LongPressGestureRecognizer>(
+            () => LongPressGestureRecognizer(
+              debugOwner: this,
+              duration: const Duration(seconds: 2),
+            ),
+            (LongPressGestureRecognizer instance) {
+              instance.onLongPress = () {
+                Get.dialog(
+                  Theme(
+                    data: ThemeData(
+                      canvasColor: Colors.white,
+                    ),
+                    child: AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      title: const Text('Emergency'),
+                      content: const Text(
+                          'Are you sure you want to call emergency?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: const Text(
+                            'Call',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              };
+            },
+          ),
+        },
+        child: FloatingActionButton(
+          onPressed: () {
+            //on long press
+          },
+          child: const Icon(
+            Icons.health_and_safety,
+            color: Colors.white,
+          ),
         ),
       ),
       body: FutureBuilder(
