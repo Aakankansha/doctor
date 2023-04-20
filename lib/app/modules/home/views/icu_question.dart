@@ -115,7 +115,7 @@ class _ICUQuestionState extends State<ICUQuestion> {
                             primaryColor: const Color(0xff0D0940)),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            labelText: 'Enter  name',
+                            labelText: 'Enter name',
                             filled: true,
                             border: UnderlineInputBorder(
                               borderSide: BorderSide.none,
@@ -427,7 +427,7 @@ class _ICUQuestionState extends State<ICUQuestion> {
                             child: AlertDialog(
                               title: const Text("Thank you!"),
                               content: const Text(
-                                  "Thanks for your the details our customer executive would reach out to you within 30 min of working hours to assist you."),
+                                  "Thank you for the detail. Our customer executive would reach out to you on +9199999999 within 30 min of working hour to assist you."),
                               actions: [
                                 TextButton(
                                     onPressed: () {

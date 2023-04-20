@@ -1,5 +1,4 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
-import 'package:clear_vikalp_app/app/modules/community/views/health_record.dart';
 import 'package:clear_vikalp_app/app/modules/notification/views/notification_view.dart';
 import 'package:clear_vikalp_app/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../health_record/views/health_record.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/main_controller.dart';
 

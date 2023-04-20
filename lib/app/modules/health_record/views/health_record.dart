@@ -1,12 +1,11 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
+import 'package:clear_vikalp_app/app/modules/health_record/controllers/community_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../controllers/community_controller.dart';
-
-class HealthRecord extends GetView<CommunityController> {
+class HealthRecord extends GetView<HealthRecordController> {
   const HealthRecord({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -55,6 +54,13 @@ class HealthRecord extends GetView<CommunityController> {
                     gridWidget(
                       textColor: const Color.fromARGB(255, 45, 79, 99),
                       title: "Prescription Details Record",
+                      image:
+                          'assets/images/lady-doctor-checking-patient-2496307-2093272.png',
+                      color: const Color.fromARGB(255, 240, 249, 255),
+                    ),
+                    gridWidget(
+                      textColor: const Color.fromARGB(255, 45, 99, 85),
+                      title: "Health Record",
                       image:
                           'assets/images/lady-doctor-checking-patient-2496307-2093272.png',
                       color: const Color.fromARGB(255, 240, 249, 255),

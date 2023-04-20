@@ -3,12 +3,12 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:clear_vikalp_app/app/modules/community/model/messages_model.dart';
 
 import '../../../../util/constant.dart';
 import '../model/communities_model.dart';
+import '../model/messages_model.dart';
 
-class CommunityController extends GetxController {
+class HealthRecordController extends GetxController {
   CommunitesModel? communitesModel;
   CommunityMessagesModel? communityMessagesModel;
   Future addMessage({String? message, String? communityId}) async {

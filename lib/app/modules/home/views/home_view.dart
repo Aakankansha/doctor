@@ -7,6 +7,7 @@ import 'package:clear_vikalp_app/app/modules/home/views/know_your_diet.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/lab_nearby_view.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/offer_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/self_checkup_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/subscribtion.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
 import 'package:flutter/material.dart';
@@ -627,6 +628,8 @@ class HomeView extends GetView<HomeController> {
                                   Get.to(() => const ImagingNearbyScreen());
                                 } else if (index == 3) {
                                   Get.to(() => const KnowYourDiet());
+                                } else if (index == 5) {
+                                  Get.to(() => const SelfCheckUpScreen());
                                 }
                               }).w(MediaQuery.of(context).size.width),
                               Flexible(
@@ -847,42 +850,20 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       "Search By Symptoms".text.bold.size(14).make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
                     ],
                   ),
                   10.heightBox,
                   Image.asset(
                     'assets/images/Group 11034 (2).png',
                     width: 100.w,
-                  ),
+                  ).onTap(() {
+                    Get.to(() => const HospitalNearbyScreen());
+                  }),
                   30.heightBox,
                   Row(
                     children: [
                       "Screen Your Organ Function".text.bold.size(14).make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
                     ],
                   ),
                   10.heightBox,
@@ -890,7 +871,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/images/Group 11078 (1).png',
                     width: 100.w,
                   ).onTap(() {
-                    Get.to(() => const HospitalNearbyScreen());
+                    Get.to(() => const LabNearbyScreen());
                   }),
                   20.heightBox,
                   Image.asset(
@@ -901,7 +882,7 @@ class HomeView extends GetView<HomeController> {
                     v: 10,
                   )
                       .onTap(() {
-                    Get.to(() => const HospitalNearbyScreen());
+                    Get.to(() => const LabNearbyScreen());
                   }),
                   20.heightBox,
                   Row(
@@ -912,18 +893,6 @@ class HomeView extends GetView<HomeController> {
                           .size(14)
                           .make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
                     ],
                   ),
                   10.heightBox,
@@ -931,25 +900,13 @@ class HomeView extends GetView<HomeController> {
                     'assets/images/Group 11079 (2).png',
                     width: 100.w,
                   ).onTap(() {
-                    Get.to(() => const HospitalNearbyScreen());
+                    Get.to(() => const LabNearbyScreen());
                   }),
                   20.heightBox,
                   Row(
                     children: [
                       "Get Screening for your Eyes".text.bold.size(14).make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
                     ],
                   ),
                   10.heightBox,
@@ -962,18 +919,18 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       "Get Your Dental Screened".text.bold.size(14).make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
+                      // "View More"
+                      //     .text
+                      //     .size(8)
+                      //     .white
+                      //     .make()
+                      //     .pSymmetric(h: 10, v: 5)
+                      //     .box
+                      //     .withRounded(
+                      //       value: 16,
+                      //     )
+                      //     .color(themeColor)
+                      //     .make(),
                     ],
                   ),
                   10.heightBox,
@@ -992,18 +949,18 @@ class HomeView extends GetView<HomeController> {
                           .size(14)
                           .make(),
                       const Spacer(),
-                      "View More"
-                          .text
-                          .size(8)
-                          .white
-                          .make()
-                          .pSymmetric(h: 10, v: 5)
-                          .box
-                          .withRounded(
-                            value: 16,
-                          )
-                          .color(themeColor)
-                          .make(),
+                      // "View More"
+                      //     .text
+                      //     .size(8)
+                      //     .white
+                      //     .make()
+                      //     .pSymmetric(h: 10, v: 5)
+                      //     .box
+                      //     .withRounded(
+                      //       value: 16,
+                      //     )
+                      //     .color(themeColor)
+                      //     .make(),
                     ],
                   ),
                   10.heightBox,

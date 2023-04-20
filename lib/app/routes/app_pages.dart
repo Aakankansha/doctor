@@ -6,8 +6,6 @@ import '../modules/add_comment/bindings/add_comment_binding.dart';
 import '../modules/add_comment/views/add_comment_view.dart';
 import '../modules/chats/bindings/chats_binding.dart';
 import '../modules/chats/views/chats_view.dart';
-import '../modules/community/bindings/community_binding.dart';
-import '../modules/community/views/health_record.dart';
 import '../modules/consultation/bindings/consultation_binding.dart';
 import '../modules/consultation/views/consultation_view.dart';
 import '../modules/consultation_details/bindings/consultation_details_binding.dart';
@@ -24,6 +22,7 @@ import '../modules/feedback/bindings/feedback_binding.dart';
 import '../modules/feedback/views/feedback_view.dart';
 import '../modules/forget_password/bindings/forget_password_binding.dart';
 import '../modules/forget_password/views/forget_password_view.dart';
+import '../modules/health_record/views/health_record.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -52,10 +51,10 @@ import '../modules/test_score/bindings/test_score_binding.dart';
 import '../modules/test_score/views/test_score_view.dart';
 import '../modules/trainer_details/bindings/trainer_details_binding.dart';
 import '../modules/trainer_details/views/trainer_details_view.dart';
-import '../modules/upload_prescription/bindings/ug_details_binding.dart';
-import '../modules/upload_prescription/views/upload_prescription_screen.dart';
 import '../modules/university_details/bindings/university_details_binding.dart';
 import '../modules/university_details/views/university_details_view.dart';
+import '../modules/upload_prescription/bindings/ug_details_binding.dart';
+import '../modules/upload_prescription/views/upload_prescription_screen.dart';
 
 part 'app_routes.dart';
 
@@ -135,7 +134,7 @@ class AppPages {
     GetPage(
       name: _Paths.COMMUNITY,
       page: () => const HealthRecord(),
-      binding: CommunityBinding(),
+      // binding: CommunityBinding(),
     ),
     GetPage(
       name: _Paths.NOTIFICATION,

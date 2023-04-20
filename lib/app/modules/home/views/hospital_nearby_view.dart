@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/hospital_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,21 +54,57 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                child: TextFormField(
-                  readOnly: true,
-                  onTap: () {},
-                  decoration: InputDecoration(
-                    hintText: 'Hospital...',
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: EdgeInsets.zero,
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const SizedBox(
+                      width: 20.0,
                     ),
-                  ),
-                ),
+                    const Icon(
+                      Icons.search,
+                      color: Colors.black45,
+                      size: 18.0,
+                    ),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    const Text(
+                      'Search for',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black45,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black45,
+                      ),
+                      child: AnimatedTextKit(
+                        isRepeatingAnimation: true,
+                        repeatForever: true,
+                        animatedTexts: [
+                          RotateAnimatedText('Cancer'),
+                          RotateAnimatedText('Heart'),
+                          RotateAnimatedText('Diabetes'),
+                          RotateAnimatedText('Kidney'),
+                          RotateAnimatedText('Liver'),
+                          RotateAnimatedText('Dental'),
+                        ],
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                )
+                    .box
+                    .withRounded(value: 8)
+                    .width(double.infinity)
+                    .height(50)
+                    .white
+                    .make(),
               ),
               const SizedBox(
                 height: 20,

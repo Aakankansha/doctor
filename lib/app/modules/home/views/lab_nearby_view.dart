@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -50,25 +51,60 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
         ),
         body: Column(
           children: [
+            10.heightBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
-              child: TextFormField(
-                readOnly: true,
-                onTap: () {
-                  //   Get.to(() => const HospitalDetailsScreen());
-                },
-                decoration: InputDecoration(
-                  hintText: 'Lab...',
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: EdgeInsets.zero,
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const SizedBox(
+                    width: 20.0,
                   ),
-                ),
-              ),
+                  const Icon(
+                    Icons.search,
+                    color: Colors.black45,
+                    size: 18.0,
+                  ),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                  const Text(
+                    'Search for',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black45,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black45,
+                    ),
+                    child: AnimatedTextKit(
+                      isRepeatingAnimation: true,
+                      repeatForever: true,
+                      animatedTexts: [
+                        RotateAnimatedText('Cancer'),
+                        RotateAnimatedText('Heart'),
+                        RotateAnimatedText('Diabetes'),
+                        RotateAnimatedText('Kidney'),
+                        RotateAnimatedText('Liver'),
+                        RotateAnimatedText('Dental'),
+                      ],
+                      onTap: () {},
+                    ),
+                  ),
+                ],
+              )
+                  .box
+                  .withRounded(value: 8)
+                  .width(double.infinity)
+                  .height(50)
+                  .white
+                  .make(),
             ),
             Expanded(
               child: SingleChildScrollView(

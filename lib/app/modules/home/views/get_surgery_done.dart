@@ -329,6 +329,24 @@ class _GetSurgeryDoneScreenState extends State<GetSurgeryDoneScreen> {
                       textStyle: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     10.heightBox,
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Enter your Diagnosis',
+                        filled: true,
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        fillColor: Colors.grey[200],
+                      ),
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your diagnosis';
+                        }
+                        return null;
+                      },
+                    ),
                     10.heightBox,
                     ChipsChoice<String>.single(
                       value: tags,

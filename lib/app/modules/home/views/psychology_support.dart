@@ -159,55 +159,62 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       textStyle: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     10.heightBox,
-                    "Male"
-                        .text
-                        .bold
-                        .xl
-                        .color(isGender == 0 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(130)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: isGender == 0 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        isGender = 0;
-                        currentIndex = 2;
-                      });
-                    }),
-                    10.heightBox,
-                    "Female"
-                        .text
-                        .bold
-                        .xl
-                        .color(isGender == 1 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(130)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: isGender == 1 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        isGender = 1;
-                        currentIndex = 2;
-                      });
-                    }),
+                    Row(
+                      children: [
+                        "Male"
+                            .text
+                            .bold
+                            .xl
+                            .color(isGender == 0 ? themeColor : Colors.black38)
+                            .makeCentered()
+                            .box
+                            .width(130)
+                            .height(35)
+                            .withRounded(value: 8)
+                            .border(
+                              color: isGender == 0
+                                  ? themeColor
+                                  : Colors.grey[300]!,
+                              width: 1,
+                            )
+                            .make()
+                            .pOnly(
+                              left: 20,
+                            )
+                            .onTap(() {
+                          setState(() {
+                            isGender = 0;
+                            currentIndex = 2;
+                          });
+                        }),
+                        "Female"
+                            .text
+                            .bold
+                            .xl
+                            .color(isGender == 1 ? themeColor : Colors.black38)
+                            .makeCentered()
+                            .box
+                            .width(130)
+                            .height(35)
+                            .withRounded(value: 8)
+                            .border(
+                              color: isGender == 1
+                                  ? themeColor
+                                  : Colors.grey[300]!,
+                              width: 1,
+                            )
+                            .make()
+                            .pOnly(
+                              left: 20,
+                            )
+                            .onTap(() {
+                          setState(() {
+                            isGender = 1;
+                            currentIndex = 2;
+                          });
+                        }),
+                      ],
+                    ),
                     10.heightBox,
                     "Other"
                         .text
@@ -315,14 +322,14 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: "Nursing qualification required?",
+                      text: "Your requirement for physiotherapy?",
                       color: themeColor,
                       tail: true,
                       isSender: false,
                       textStyle: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     10.heightBox,
-                    "BSC"
+                    "Cardiac physiotherapy"
                         .text
                         .bold
                         .xl
@@ -331,7 +338,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                             : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(210)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -356,7 +363,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       });
                     }),
                     10.heightBox,
-                    "GNM"
+                    "Neuro Physiotherapy"
                         .text
                         .bold
                         .xl
@@ -365,7 +372,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                             : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(210)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -390,7 +397,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       });
                     }),
                     10.heightBox,
-                    "ANM"
+                    "Ortho Physiotherapy"
                         .text
                         .bold
                         .xl
@@ -399,7 +406,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                             : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(210)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -424,7 +431,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       });
                     }),
                     10.heightBox,
-                    "Anyone"
+                    "Others"
                         .text
                         .bold
                         .xl
@@ -433,7 +440,7 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                             : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(210)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -465,21 +472,21 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                   children: [
                     20.heightBox,
                     const BubbleSpecialThree(
-                      text: 'Nursing Gender required?',
+                      text: 'Session required in a day?',
                       color: themeColor,
                       tail: true,
                       isSender: false,
                       textStyle: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     10.heightBox,
-                    "Male"
+                    "Once a day "
                         .text
                         .bold
                         .xl
                         .color(isNurseGender == 0 ? themeColor : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(180)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -499,14 +506,14 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       });
                     }),
                     10.heightBox,
-                    "Female"
+                    "Twice a day"
                         .text
                         .bold
                         .xl
                         .color(isNurseGender == 1 ? themeColor : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(180)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -526,14 +533,14 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                       });
                     }),
                     10.heightBox,
-                    "Anyone"
+                    "Three times a day"
                         .text
                         .bold
                         .xl
                         .color(isNurseGender == 2 ? themeColor : Colors.black38)
                         .makeCentered()
                         .box
-                        .width(130)
+                        .width(180)
                         .height(35)
                         .withRounded(value: 8)
                         .border(
@@ -559,150 +566,48 @@ class _PsychologySupportQuestionState extends State<PsychologySupportQuestion> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     20.heightBox,
-                    const BubbleSpecialThree(
-                      text: "Timing for service required?",
-                      color: themeColor,
-                      tail: true,
-                      isSender: false,
-                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    10.heightBox,
-                    "8 hrs"
-                        .text
-                        .bold
-                        .xl
-                        .color(activity == 0 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(160)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: activity == 0 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        activity = 0;
-                        currentIndex = 8;
-                        Get.to(() => const PsychologySupportQuestion());
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeOut,
-                        );
-                      });
-                    }),
-                    10.heightBox,
-                    "12 hrs"
-                        .text
-                        .bold
-                        .xl
-                        .color(activity == 1 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(160)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: activity == 1 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        activity = 1;
-                        currentIndex = 8;
-                        Get.to(() => const PsychologySupportQuestion());
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeOut,
-                        );
-                      });
-                    }),
-                    10.heightBox,
-                    "24 hrs"
-                        .text
-                        .bold
-                        .xl
-                        .color(activity == 2 ? themeColor : Colors.black38)
-                        .makeCentered()
-                        .box
-                        .width(160)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: activity == 2 ? themeColor : Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        activity = 2;
-                        currentIndex = 8;
-                        Get.to(() => const PsychologySupportQuestion());
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeOut,
-                        );
-                      });
-                    }),
-                    if (currentIndex >= 8) 20.heightBox,
-                    if (currentIndex >= 8)
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(double.infinity, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          onPressed: () {
-                            Get.dialog(
-                              WillPopScope(
-                                onWillPop: () async {
-                                  Get.back();
-                                  Get.back();
-                                  Get.back();
-                                  Get.back();
+                        ),
+                        onPressed: () {
+                          Get.dialog(
+                            WillPopScope(
+                              onWillPop: () async {
+                                Get.back();
+                                Get.back();
+                                Get.back();
+                                Get.back();
 
-                                  return false;
-                                },
-                                child: Theme(
-                                  data: ThemeData.light(),
-                                  child: AlertDialog(
-                                    title: const Text("Thank you!"),
-                                    content: const Text(
-                                        "Thanks for your the details our customer executive would reach out to you within 30 min of working hours to assist you."),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.back();
-                                            Get.back();
-                                            Get.back();
-                                          },
-                                          child: const Text("Okay")),
-                                    ],
-                                  ),
+                                return false;
+                              },
+                              child: Theme(
+                                data: ThemeData.light(),
+                                child: AlertDialog(
+                                  title: const Text("Thank you!"),
+                                  content: const Text(
+                                      "Thank you for the detail. Our customer executive would reach out to you on +9199999999 within 30 min of working hour to assist you."),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                          Get.back();
+                                          Get.back();
+                                          Get.back();
+                                        },
+                                        child: const Text("Okay")),
+                                  ],
                                 ),
                               ),
-                              barrierDismissible: false,
-                              barrierColor: Colors.black.withOpacity(0.8),
-                            );
-                          },
-                          child: const Text("Submit"))
+                            ),
+                            barrierDismissible: false,
+                            barrierColor: Colors.black.withOpacity(0.8),
+                          );
+                        },
+                        child: const Text("Submit"))
                   ],
                 ),
               100.heightBox,
