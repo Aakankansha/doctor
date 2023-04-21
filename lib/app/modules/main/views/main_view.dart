@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../health_record/views/health_record.dart';
@@ -96,6 +97,7 @@ class _MainViewState extends State<MainView> {
                         TextButton(
                           onPressed: () {
                             Get.back();
+                            launchUrl(Uri.parse('tel:102'));
                           },
                           child: const Text(
                             'Call',

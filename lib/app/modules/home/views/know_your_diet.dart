@@ -3,6 +3,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/near_by_homehealth_question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
@@ -356,6 +357,11 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                                       "${value!.day}/${value.month}/${value.year} (${DateTime.now().year - value.year} years old)";
                                   currentIndex = 3;
                                 });
+                                _scrollController.animateTo(
+                                  _scrollController.position.maxScrollExtent,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeOut,
+                                );
                               });
                             },
                             decoration: InputDecoration(
@@ -411,6 +417,11 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                           setState(() {
                             currentIndex = 4;
                           });
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeOut,
+                          );
                         },
                       ),
                     ),
@@ -803,7 +814,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                           child: const Text("Submit"))
                   ],
                 ),
-              100.heightBox,
+              40.h.heightBox,
             ],
           ),
         ),

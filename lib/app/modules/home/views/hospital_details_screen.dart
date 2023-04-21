@@ -1,4 +1,5 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
+import 'package:clear_vikalp_app/app/modules/edit_profile/views/add_family_member.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/review_order_screen.dart';
 import 'package:expandable/expandable.dart';
 import 'package:find_dropdown/find_dropdown.dart';
@@ -372,7 +373,7 @@ class HospitalDetailsScreen extends StatelessWidget {
                                       "Dr. Raj Sharma".text.xl.bold.make(),
                                       "Spine Surgeon".text.xl.make(),
                                       "Nanavati hospital".text.xl.make(),
-                                      20.heightBox,
+                                      10.heightBox,
                                       "Date for booking".text.xl.make(),
                                       10.heightBox,
                                       TextFormField(
@@ -459,9 +460,9 @@ class HospitalDetailsScreen extends StatelessWidget {
                                           hintText: "Select Date",
                                         ),
                                       ),
-                                      20.heightBox,
+                                      10.heightBox,
                                       "Time for booking".text.xl.make(),
-                                      20.heightBox,
+                                      10.heightBox,
                                       Row(
                                         children: [
                                           Expanded(
@@ -612,7 +613,10 @@ class HospitalDetailsScreen extends StatelessWidget {
                                               color: Colors.white,
                                               size: 30,
                                             ),
-                                          ),
+                                          ).onTap(() {
+                                            Get.to(() =>
+                                                const AddFamilyMemberScreen());
+                                          }),
                                         ],
                                       ),
                                       const Spacer(),

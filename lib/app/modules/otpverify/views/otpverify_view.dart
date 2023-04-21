@@ -5,6 +5,7 @@ import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
 import 'package:clear_vikalp_app/app/modules/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:otp_timer_button/otp_timer_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -17,6 +18,8 @@ class OtpverifyView extends GetView<OtpverifyController> {
 
   @override
   Widget build(BuildContext context) {
+    OtpTimerButtonController c = OtpTimerButtonController();
+
     final formKey = GlobalKey<FormState>();
     final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
     final otpController = Get.put(LoginController());
@@ -75,6 +78,25 @@ class OtpverifyView extends GetView<OtpverifyController> {
                   return true;
                 },
               ),
+            ),
+            10.heightBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                "Didn't receive the code?".text.black.make(),
+                10.widthBox,
+                OtpTimerButton(
+                  buttonType: ButtonType.text_button,
+                  controller: c,
+                  onPressed: () {
+                    c.startTimer();
+                    controller.resendOtp(loginController.mobile);
+                  },
+                  text: const Text('Resend OTP'),
+                  duration: 30,
+                ),
+              ],
             ),
             80.heightBox,
             ValueListenableBuilder(

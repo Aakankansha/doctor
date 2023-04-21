@@ -3,6 +3,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/hospital_nearby_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
@@ -567,9 +568,7 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                     )
                 ],
               ),
-            const SizedBox(
-              height: 100,
-            )
+            40.h.heightBox,
           ],
         ),
       ),

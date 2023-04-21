@@ -46,4 +46,24 @@ class OtpverifyController extends GetxController {
       } else {}
     } on Exception {}
   }
+
+  resendOtp(mobile) async {
+    var request =
+        http.MultipartRequest('POST', Uri.parse('${baseUrl}Auth/resend_otp'));
+    request.fields.addAll({'mobile': mobile});
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      Get.snackbar(
+        "Success",
+        "OTP sent successfully",
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
 }

@@ -1,5 +1,7 @@
-import 'package:clear_vikalp_app/app/modules/main/model/user_model.dart';
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MainController extends GetxController {
@@ -11,33 +13,21 @@ class MainController extends GetxController {
     persistentTabController = PersistentTabController(initialIndex: 4);
   }
 
-  UserModel? userModel;
-  // Future<UserModel?> getUserInfo({
+  var userModel;
+  Future<void> getUserInfo() async {
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            'https://clearviklap.digitalnaman.com/api/index.php/Auth/profile_fetch'));
+    request.fields.addAll({'users_id': '1'});
 
-  // }) async {
-  //   try {
-  //     final box = GetStorage();
-  //     log("Loading...");
-  //     const String pageUrl = "Auth/profile_fetch";
+    http.StreamedResponse response = await request.send();
 
-  //     final response = await http.post(
-  //       Uri.parse(baseUrl + pageUrl),
-  //users_id
-  //       headers: header,
-  //     );
-  //     if (response.statusCode == 200) {
-  //       log("User: ${response.body}");
-  //       userModel = UserModel.fromJson(jsonDecode(response.body));
-  //     } else {
-  //       log(response.body);
-  //       Get.snackbar("Error", response.body);
-  //     }
-  //   } on Exception catch (e) {
-  //     log("$e");
-  //     Get.snackbar("Error", "$e");
-  //   } catch (e) {
-  //     log("$e");
-  //   }
-  //   return userModel;
-  // }
+    if (response.statusCode == 200) {
+      var res = await response.stream.bytesToString();
+      userModel = jsonDecode(res)["profile_details"][0];
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
 }

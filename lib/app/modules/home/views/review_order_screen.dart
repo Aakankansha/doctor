@@ -1,6 +1,7 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/home_controller.dart';
@@ -25,6 +26,7 @@ class ReviewOrderScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             )),
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -172,6 +174,7 @@ class ReviewOrderScreen extends StatelessWidget {
                 Image.asset(
                   "assets/images/Banner.png",
                 ),
+                10.h.heightBox,
               ],
             ),
           ),
