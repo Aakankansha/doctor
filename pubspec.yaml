@@ -103,3 +103,4 @@ flutter:
   # example:
   assets:
     - assets/images/
+    - assets/icons/

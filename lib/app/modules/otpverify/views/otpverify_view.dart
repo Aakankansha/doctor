@@ -30,10 +30,11 @@ class OtpverifyView extends GetView<OtpverifyController> {
       body: Form(
         key: formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             "A 4 digit code sent to your number".text.gray500.make(),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 loginController.mobile.text.gray500.make(),
                 10.widthBox,
@@ -45,7 +46,12 @@ class OtpverifyView extends GetView<OtpverifyController> {
                 )
               ],
             ),
-            20.heightBox,
+            Center(
+              child: Image.asset(
+                "assets/icons/otp.png",
+                height: 25.h,
+              ),
+            ),
             20.heightBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -98,7 +104,7 @@ class OtpverifyView extends GetView<OtpverifyController> {
                 ),
               ],
             ),
-            80.heightBox,
+            30.heightBox,
             ValueListenableBuilder(
               valueListenable: isLoading,
               builder: (BuildContext context, dynamic value, Widget? child) {

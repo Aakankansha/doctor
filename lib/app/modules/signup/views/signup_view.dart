@@ -1,9 +1,7 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignupView extends StatefulWidget {
@@ -48,8 +46,7 @@ class _SignupViewState extends State<SignupView> {
               children: [
                 Center(
                   child: Image.asset(
-                    "assets/images/Patient-doctor-in-a-clinic-Free-Vector-png.png",
-                    height: 35.h,
+                    "assets/icons/create ac.png",
                   ),
                 ),
                 Column(

@@ -4,7 +4,6 @@ import 'package:clear_vikalp_app/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../util/styles.dart';
@@ -13,6 +12,7 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
@@ -28,12 +28,7 @@ class LoginView extends GetView<LoginController> {
             children: [
               20.heightBox,
               Image.asset(
-                "assets/images/logo1.png",
-                height: 90,
-              ),
-              Lottie.network(
-                'https://assets9.lottiefiles.com/packages/lf20_bYskKBq3WY.json',
-                height: 350,
+                "assets/icons/first_screen.png",
               ),
 
               Padding(

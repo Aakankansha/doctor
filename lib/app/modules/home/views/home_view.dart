@@ -47,14 +47,39 @@ class HomeView extends GetView<HomeController> {
     "Self Checkup",
   ];
   var listOfImages = [
-    "assets/images/1881340.png",
-    "assets/images/6401502.png",
-    "assets/images/doctor-scanning-young-man-with-ultrasound-diagnostic-machine-4587252-3845873.png",
-    "assets/images/706164.png",
-    "assets/images/3035041.png",
-    "assets/images/1523.png",
+    "assets/icons/hospital near by you.png",
+    "assets/icons/lab.png",
+    "assets/icons/imaging center.png",
+    "assets/icons/know your diet.png",
+    "assets/icons/home helath care.png",
+    "assets/icons/know your health.png",
   ];
-
+  var listOfSymtoms = [
+    "assets/icons/fever.png",
+    "assets/icons/nasal.png",
+    "assets/icons/mens.png",
+    "assets/icons/hair.png",
+    "assets/icons/knee.png",
+    "assets/icons/stomach.png",
+    "assets/icons/weight.png",
+    "assets/icons/back.png",
+  ];
+  var listOfOrgan = [
+    "assets/icons/cardiac screening.png",
+    "assets/icons/dibetes.png",
+    "assets/icons/full body.png",
+    "assets/icons/kidney.png",
+    "assets/icons/liver.png",
+    "assets/icons/thyroid.png",
+  ];
+  var listOfOrganTitle = [
+    "Cardiac Screening",
+    "Diabetes Screening",
+    "Full Body Screening",
+    "Kidney Screening",
+    "Liver/Pancreas Screening",
+    "Thyroid Screening",
+  ];
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
@@ -378,15 +403,15 @@ class HomeView extends GetView<HomeController> {
             Stack(
               children: [
                 Image.asset(
-                  "assets/images/cashback.png",
-                  height: 100,
+                  "assets/icons/cashback.png",
+                  height: 80,
                 ),
                 VxShimmer(
                   primaryColor: Colors.white12,
                   secondaryColor: Colors.black12,
                   child: Image.asset(
-                    "assets/images/cashback.png",
-                    height: 100,
+                    "assets/icons/cashback.png",
+                    height: 80,
                   ),
                 ),
               ],
@@ -576,7 +601,7 @@ class HomeView extends GetView<HomeController> {
                                                 255, 224, 250, 255)
                                             : index == 3
                                                 ? const Color.fromARGB(
-                                                    255, 246, 239, 255)
+                                                    255, 239, 255, 243)
                                                 : index == 4
                                                     ? const Color.fromARGB(
                                                         255, 235, 231, 255)
@@ -591,13 +616,13 @@ class HomeView extends GetView<HomeController> {
                                     Column(
                                       children: [
                                         Container(
-                                          height: 50,
-                                          width: 50,
+                                          height: 60,
+                                          width: 60,
                                           decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(2.0),
+                                            padding: const EdgeInsets.all(4.0),
                                             child: Image.asset(
                                               listOfImages[index],
                                               fit: BoxFit.fitHeight,
@@ -788,7 +813,7 @@ class HomeView extends GetView<HomeController> {
                   CarouselSlider.builder(
                     options: CarouselOptions(
                       height: 120,
-                      viewportFraction: 0.8,
+                      viewportFraction: 1,
                       autoPlay: true,
                       enlargeCenterPage: true,
                       autoPlayInterval: const Duration(seconds: 3),
@@ -801,7 +826,7 @@ class HomeView extends GetView<HomeController> {
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int itemIndex,
                             int pageViewIndex) =>
-                        Image.asset('assets/images/Group 11077.png'),
+                        Image.asset('assets/icons/offers.png'),
                   ),
                   10.heightBox,
                   Row(
@@ -853,12 +878,28 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   10.heightBox,
-                  Image.asset(
-                    'assets/images/Group 11034 (2).png',
-                    width: 100.w,
-                  ).onTap(() {
-                    Get.to(() => const HospitalNearbyScreen());
-                  }),
+                  GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: listOfSymtoms.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Image.asset(
+                                listOfSymtoms[index],
+                              )),
+                        ).onTap(() {
+                          Get.to(() => const HospitalNearbyScreen());
+                        });
+                      }),
                   30.heightBox,
                   Row(
                     children: [
@@ -867,12 +908,46 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   10.heightBox,
-                  Image.asset(
-                    'assets/images/Group 11078 (1).png',
-                    width: 100.w,
-                  ).onTap(() {
-                    Get.to(() => const LabNearbyScreen());
-                  }),
+                  GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: listOfOrgan.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            Positioned(
+                              top: 5,
+                              left: 5,
+                              right: 5,
+                              child: listOfOrganTitle[index]
+                                  .toString()
+                                  .text
+                                  .color(themeColor)
+                                  .bold
+                                  .center
+                                  .makeCentered(),
+                            ),
+                            Image.asset(
+                              listOfOrgan[index],
+                              width: double.infinity,
+                            ),
+                          ],
+                        )
+                            .box
+                            .color(const Color.fromARGB(255, 187, 187, 187))
+                            .withRounded(value: 12)
+                            .make()
+                            .onTap(() {
+                          Get.to(() => const LabNearbyScreen());
+                        });
+                      }),
                   20.heightBox,
                   Image.asset(
                     'assets/images/Group 11099.png',

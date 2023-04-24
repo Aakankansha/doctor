@@ -158,7 +158,7 @@ class HomeController extends GetxController {
                           child: "Get Cashback".text.white.make(),
                         ),
                       ),
-                      10.heightBox, 
+                      10.heightBox,
                     ],
                   ),
                 ),
@@ -325,7 +325,7 @@ class HomeController extends GetxController {
                       h: 20,
                     ),
                     Image.asset(
-                      "assets/images/lady-doctor-checking-patient-2496307-2093272.png",
+                      "assets/icons/popup.png",
                       fit: BoxFit.cover,
                       height: Get.height * 0.17,
                     ),
