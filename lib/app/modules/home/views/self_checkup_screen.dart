@@ -521,7 +521,7 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                         "You May Have".text.bold.xl.make(),
                         ListTile(
                             title: "1.Migraine (90%)".text.make(),
-                            trailing: "No More"
+                            trailing: "Know More"
                                 .text
                                 .white
                                 .make()
@@ -535,7 +535,7 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                         ),
                         ListTile(
                             title: "2.Brain diseases (50%)".text.make(),
-                            trailing: "No More"
+                            trailing: "Know More"
                                 .text
                                 .white
                                 .make()

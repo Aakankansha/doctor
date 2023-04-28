@@ -1,10 +1,10 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/notification/views/notification_view.dart';
 import 'package:clear_vikalp_app/app/modules/profile/views/profile_view.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -24,6 +24,7 @@ class _MainViewState extends State<MainView> {
   // final notificationController = Get.put(NotificationController());
   // final communityController = Get.put(CommunityController());
   final controller = Get.put(MainController());
+  bool showEmergencyColor = false;
 
   List<Widget> _buildScreen() {
     return [
@@ -71,16 +72,17 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: RawGestureDetector(
-        gestures: <Type, GestureRecognizerFactory>{
-          LongPressGestureRecognizer:
-              GestureRecognizerFactoryWithHandlers<LongPressGestureRecognizer>(
-            () => LongPressGestureRecognizer(
-              debugOwner: this,
-              duration: const Duration(seconds: 2),
-            ),
-            (LongPressGestureRecognizer instance) {
-              instance.onLongPress = () {
+      floatingActionButton: GestureDetector(
+        onLongPressCancel: () {
+          setState(() {
+            showEmergencyColor = false;
+          });
+        },
+        onLongPress: () {
+          Future.delayed(
+            const Duration(seconds: 3),
+            () {
+              if (showEmergencyColor) {
                 Get.dialog(
                   Theme(
                     data: ThemeData(
@@ -116,18 +118,49 @@ class _MainViewState extends State<MainView> {
                     ),
                   ),
                 );
-              };
+              }
+              setState(() {
+                showEmergencyColor = false;
+              });
             },
-          ),
+          );
         },
-        child: FloatingActionButton(
-          onPressed: () {
-            //on long press
-          },
-          child: const Icon(
-            Icons.health_and_safety,
-            color: Colors.white,
-          ),
+        onLongPressStart: (s) {
+          setState(() {
+            showEmergencyColor = true;
+          });
+        },
+        child: Stack(
+          children: [
+            if (showEmergencyColor)
+              const Positioned(
+                bottom: 0,
+                right: 0,
+                top: 0,
+                left: 0,
+                child: RippleAnimation(
+                  color: themeColor,
+                  delay: Duration(milliseconds: 300),
+                  repeat: true,
+                  minRadius: 35,
+                  ripplesCount: 6,
+                  duration: Duration(milliseconds: 6 * 300),
+                  child: CircleAvatar(
+                    minRadius: 15,
+                    maxRadius: 15,
+                  ),
+                ),
+              ),
+            FloatingActionButton(
+              onPressed: () {
+                //on long press
+              },
+              child: const Icon(
+                Icons.health_and_safety,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
       body: FutureBuilder(

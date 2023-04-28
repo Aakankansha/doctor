@@ -48,7 +48,7 @@ class OtpverifyView extends GetView<OtpverifyController> {
             ),
             Center(
               child: Image.asset(
-                "assets/icons/otp.png",
+                "assets/images/otp.png",
                 height: 25.h,
               ),
             ),

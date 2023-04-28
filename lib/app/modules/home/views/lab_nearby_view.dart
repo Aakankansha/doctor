@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/health_checkup_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -6,7 +7,8 @@ import 'package:velocity_x/velocity_x.dart';
 import 'lab_details_screen.dart';
 
 class LabNearbyScreen extends StatefulWidget {
-  const LabNearbyScreen({super.key});
+  const LabNearbyScreen({super.key, this.isHomeCheckup = false});
+  final bool isHomeCheckup;
 
   @override
   State<LabNearbyScreen> createState() => _LabNearbyScreenState();
@@ -112,7 +114,11 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
                   "assets/images/Group 11102.png",
                   fit: BoxFit.cover,
                 ).onTap(() {
-                  Get.to(() => const LabDetailsScreen());
+                  if (widget.isHomeCheckup) {
+                    Get.to(() => const HealthCheckupDetails());
+                  } else {
+                    Get.to(() => const LabDetailsScreen());
+                  }
                 }),
               ),
             ),

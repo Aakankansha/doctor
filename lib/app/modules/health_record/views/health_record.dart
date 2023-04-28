@@ -35,27 +35,25 @@ class HealthRecord extends GetView<HealthRecordController> {
                     gridWidget(
                       textColor: const Color.fromARGB(255, 45, 92, 99),
                       title: "Lab Test\nRecord",
-                      image: 'assets/images/6401502.png',
+                      image: 'assets/images/lab test.png',
                       color: const Color.fromARGB(255, 240, 255, 254),
                     ),
                     gridWidget(
                       textColor: const Color.fromARGB(255, 99, 53, 45),
                       title: "OPD Booking Record",
-                      image: 'assets/images/1881340.png',
+                      image: 'assets/images/opd booking.png',
                       color: const Color.fromARGB(255, 255, 242, 240),
                     ),
                     gridWidget(
                       textColor: const Color.fromARGB(255, 59, 45, 99),
                       title: "Imaging Center Record",
-                      image:
-                          'assets/images/doctor-scanning-young-man-with-ultrasound-diagnostic-machine-4587252-3845873.png',
+                      image: 'assets/images/imaging center.png',
                       color: const Color.fromARGB(255, 247, 240, 255),
                     ),
                     gridWidget(
                       textColor: const Color.fromARGB(255, 45, 79, 99),
                       title: "Prescription Details Record",
-                      image:
-                          'assets/images/lady-doctor-checking-patient-2496307-2093272.png',
+                      image: 'assets/images/presciption 2.png',
                       color: const Color.fromARGB(255, 240, 249, 255),
                     ),
                     gridWidget(
@@ -128,7 +126,7 @@ class HealthRecord extends GetView<HealthRecordController> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(2.0),
                 child: Image.asset(image),
               ),
             ),

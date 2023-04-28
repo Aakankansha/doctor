@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../../../util/styles.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -19,7 +18,7 @@ class LoginView extends GetView<LoginController> {
     final mobileNumberController = TextEditingController();
     final formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: const Color(0xffEDF9F9),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Form(
@@ -28,7 +27,7 @@ class LoginView extends GetView<LoginController> {
             children: [
               20.heightBox,
               Image.asset(
-                "assets/icons/first_screen.png",
+                "assets/images/login.png",
               ),
 
               Padding(
@@ -49,7 +48,7 @@ class LoginView extends GetView<LoginController> {
                   autofillHints: const [AutofillHints.telephoneNumber],
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    fillColor: Colors.white,
+                    fillColor: const Color.fromARGB(255, 240, 240, 240),
                     filled: true,
                     prefixIcon: SizedBox(
                       width: 80,
@@ -65,12 +64,35 @@ class LoginView extends GetView<LoginController> {
                     ),
                     hintText: "Mobile number",
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey[200]!),
-                      gapPadding: 5,
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 240, 240, 240),
+                      ),
                     ),
-                    //    border: appBorderStyle,
-                    disabledBorder: appBorderStyle,
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 240, 240, 240),
+                      ),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 240, 240, 240),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 240, 240, 240),
+                      ),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 240, 240, 240),
+                      ),
+                    ),
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 20),
                   ),
@@ -89,15 +111,15 @@ class LoginView extends GetView<LoginController> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               isLoading.value = true;
-                              try {
-                                // Get.toNamed(Routes.OTPVERIFY,
-                                //     arguments: Routes.MAIN);
-                                await controller.login(
-                                  mobileNumber: mobileNumberController.text,
-                                );
-                              } finally {
-                                isLoading.value = false;
-                              }
+                              //   try {
+                              Get.toNamed(Routes.OTPVERIFY,
+                                  arguments: Routes.MAIN);
+                              //   await controller.login(
+                              //     mobileNumber: mobileNumberController.text,
+                              //   );
+                              // } finally {
+                              //   isLoading.value = false;
+                              // }
                             }
                           },
                           title: "Login",

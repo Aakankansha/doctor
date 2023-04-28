@@ -325,7 +325,7 @@ class HomeController extends GetxController {
                       h: 20,
                     ),
                     Image.asset(
-                      "assets/icons/popup.png",
+                      "assets/images/popup.png",
                       fit: BoxFit.cover,
                       height: Get.height * 0.17,
                     ),

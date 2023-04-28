@@ -20,10 +20,10 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff0D0940),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
-          backgroundColor: const Color(0xff0D0940),
-          title: "Create Account".text.color(themeColor2).xl2.bold.make(),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          title: "Create Account".text.color(themeColor).xl2.bold.make(),
           centerTitle: true,
           elevation: 0,
           shape:
@@ -34,7 +34,7 @@ class _SignupViewState extends State<SignupView> {
             },
             child: const Icon(
               Icons.arrow_back_rounded,
-              color: themeColor2,
+              color: themeColor,
             ),
           ),
         ),
@@ -46,7 +46,7 @@ class _SignupViewState extends State<SignupView> {
               children: [
                 Center(
                   child: Image.asset(
-                    "assets/icons/create ac.png",
+                    "assets/images/create ac.png",
                   ),
                 ),
                 Column(
@@ -55,7 +55,8 @@ class _SignupViewState extends State<SignupView> {
                       decoration: InputDecoration(
                         labelText: 'Name',
                         filled: true,
-                        border: UnderlineInputBorder(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         fillColor: Colors.grey[200],
@@ -108,7 +109,8 @@ class _SignupViewState extends State<SignupView> {
                         decoration: InputDecoration(
                           labelText: 'Date of Birth',
                           filled: true,
-                          border: UnderlineInputBorder(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           fillColor: Colors.grey[200],
@@ -134,7 +136,8 @@ class _SignupViewState extends State<SignupView> {
                           labelText: 'Gender',
                           filled: true,
                           fillColor: Colors.grey[200],
-                          border: UnderlineInputBorder(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),

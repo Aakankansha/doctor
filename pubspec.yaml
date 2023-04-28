@@ -51,7 +51,6 @@ dependencies:
   sizer: ^2.0.15
   velocity_x: 3.5.1
   get_storage: ^2.0.3
-
   flutter_launcher_icons: ^0.10.0
   lottie: ^2.2.0
   status_view: ^0.0.2
@@ -62,7 +61,9 @@ dependencies:
   chips_choice: ^3.0.0
   url_launcher: ^6.1.10
   otp_timer_button: ^1.1.0
-  
+  simple_ripple_animation: ^0.0.7
+  tutorial_coach_mark: ^1.2.8
+  focused_menu_custom: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -103,4 +104,3 @@ flutter:
   # example:
   assets:
     - assets/images/
-    - assets/icons/

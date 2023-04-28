@@ -47,30 +47,30 @@ class HomeView extends GetView<HomeController> {
     "Self Checkup",
   ];
   var listOfImages = [
-    "assets/icons/hospital near by you.png",
-    "assets/icons/lab.png",
-    "assets/icons/imaging center.png",
-    "assets/icons/know your diet.png",
-    "assets/icons/home helath care.png",
-    "assets/icons/know your health.png",
+    "assets/images/hospital near by you.png",
+    "assets/images/lab.png",
+    "assets/images/imaging center.png",
+    "assets/images/know your diet.png",
+    "assets/images/home helath care.png",
+    "assets/images/know your health.png",
   ];
   var listOfSymtoms = [
-    "assets/icons/fever.png",
-    "assets/icons/nasal.png",
-    "assets/icons/mens.png",
-    "assets/icons/hair.png",
-    "assets/icons/knee.png",
-    "assets/icons/stomach.png",
-    "assets/icons/weight.png",
-    "assets/icons/back.png",
+    "assets/images/fever.png",
+    "assets/images/nasal.png",
+    "assets/images/mens.png",
+    "assets/images/hair.png",
+    "assets/images/knee.png",
+    "assets/images/stomach.png",
+    "assets/images/weight.png",
+    "assets/images/back.png",
   ];
   var listOfOrgan = [
-    "assets/icons/cardiac screening.png",
-    "assets/icons/dibetes.png",
-    "assets/icons/full body.png",
-    "assets/icons/kidney.png",
-    "assets/icons/liver.png",
-    "assets/icons/thyroid.png",
+    "assets/images/cardiac screening.png",
+    "assets/images/dibetes.png",
+    "assets/images/full body.png",
+    "assets/images/kidney.png",
+    "assets/images/liver.png",
+    "assets/images/thyroid.png",
   ];
   var listOfOrganTitle = [
     "Cardiac Screening",
@@ -403,14 +403,14 @@ class HomeView extends GetView<HomeController> {
             Stack(
               children: [
                 Image.asset(
-                  "assets/icons/cashback.png",
+                  "assets/images/cashback.png",
                   height: 80,
                 ),
                 VxShimmer(
                   primaryColor: Colors.white12,
                   secondaryColor: Colors.black12,
                   child: Image.asset(
-                    "assets/icons/cashback.png",
+                    "assets/images/cashback.png",
                     height: 80,
                   ),
                 ),
@@ -583,7 +583,7 @@ class HomeView extends GetView<HomeController> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          childAspectRatio: 1.1,
+                          childAspectRatio: 1,
                           crossAxisSpacing: 5,
                         ),
                         itemCount: 6,
@@ -706,68 +706,71 @@ class HomeView extends GetView<HomeController> {
                           )
                               .p4()
                               .box
-                              .color(const Color.fromARGB(255, 0, 162, 236))
+                              .linearGradient([
+                                const Color(0xff0D0940),
+                                const Color.fromARGB(255, 39, 31, 156),
+                              ])
                               .withRounded()
                               .make()
                               .onTap(() {
-                            Get.dialog(Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Material(
-                                      child: Card(
-                                        child: Center(
-                                          child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                20.heightBox,
-                                                "Thank you for Choosing Clear Vikalp"
-                                                    .text
-                                                    .xl
-                                                    .bold
-                                                    .make(),
-                                                "Our team will contact on +91 1234567890"
-                                                    .text
-                                                    .make(),
-                                                20.heightBox,
-                                                ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            minimumSize: Size(
-                                                                MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.6,
-                                                                40),
-                                                            backgroundColor:
-                                                                themeColor,
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                            )),
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: "Okay"
+                                Get.dialog(Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Material(
+                                          child: Card(
+                                            child: Center(
+                                              child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    20.heightBox,
+                                                    "Thank you for Choosing Clear Vikalp"
                                                         .text
-                                                        .white
-                                                        .make()),
-                                                20.heightBox,
-                                              ]),
+                                                        .xl
+                                                        .bold
+                                                        .make(),
+                                                    "Our team will contact on +91 1234567890"
+                                                        .text
+                                                        .make(),
+                                                    20.heightBox,
+                                                    ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                minimumSize: Size(
+                                                                    MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.6,
+                                                                    40),
+                                                                backgroundColor:
+                                                                    themeColor,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                )),
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        child: "Okay"
+                                                            .text
+                                                            .white
+                                                            .make()),
+                                                    20.heightBox,
+                                                  ]),
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ));
-                          }),
+                                  ),
+                                ));
+                              }),
                         ),
                         10.widthBox,
                         Flexible(
@@ -801,12 +804,15 @@ class HomeView extends GetView<HomeController> {
                         )
                                 .p4()
                                 .box
-                                .color(const Color.fromARGB(255, 224, 127, 0))
+                                .linearGradient([
+                                  const Color.fromARGB(255, 9, 59, 64),
+                                  const Color.fromARGB(255, 31, 141, 156),
+                                ])
                                 .withRounded()
                                 .make()
                                 .onTap(() {
-                          controller.showUploadPrescription();
-                        })),
+                                  controller.showUploadPrescription();
+                                })),
                       ],
                     ),
                   ),
@@ -826,7 +832,7 @@ class HomeView extends GetView<HomeController> {
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int itemIndex,
                             int pageViewIndex) =>
-                        Image.asset('assets/icons/offers.png'),
+                        Image.asset('assets/images/offers.png'),
                   ),
                   10.heightBox,
                   Row(
@@ -939,12 +945,7 @@ class HomeView extends GetView<HomeController> {
                               width: double.infinity,
                             ),
                           ],
-                        )
-                            .box
-                            .color(const Color.fromARGB(255, 187, 187, 187))
-                            .withRounded(value: 12)
-                            .make()
-                            .onTap(() {
+                        ).onTap(() {
                           Get.to(() => const LabNearbyScreen());
                         });
                       }),
@@ -957,7 +958,9 @@ class HomeView extends GetView<HomeController> {
                     v: 10,
                   )
                       .onTap(() {
-                    Get.to(() => const LabNearbyScreen());
+                    Get.to(() => const LabNearbyScreen(
+                          isHomeCheckup: true,
+                        ));
                   }),
                   20.heightBox,
                   Row(
@@ -1038,11 +1041,11 @@ class HomeView extends GetView<HomeController> {
                       //     .make(),
                     ],
                   ),
-                  10.heightBox,
-                  Image.asset(
-                    'assets/images/Group 11091.png',
-                    width: 100.w,
-                  ),
+                  // 10.heightBox,
+                  // Image.asset(
+                  //   'assets/images/Group 11091.png',
+                  //   width: 100.w,
+                  // ),
                   20.heightBox,
                   80.heightBox,
                 ],

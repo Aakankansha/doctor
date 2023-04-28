@@ -1,7 +1,5 @@
-import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/splash_controller.dart';
@@ -12,30 +10,25 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     SplashController controller = Get.find();
     return Scaffold(
-        body: Obx(
-      () => controller.isLogin.value == false
-          ? const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Center(
-                child: FadeIn(
-                  duration: Duration(seconds: 2),
-                  child: Text(
-                      "Bringing Best Possible Healthcare Options on a Single Platform",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: themeColor,
-                        fontWeight: FontWeight.bold,
-                      )),
+      backgroundColor: Colors.white,
+      body: Obx(
+        () => Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: !controller.isLogin.value
+              ? Center(
+                  child: FadeIn(
+                    duration: const Duration(seconds: 3),
+                    child: Image.asset("assets/images/test.jpg"),
+                  ),
+                )
+              : Center(
+                  child: FadeIn(
+                    duration: const Duration(seconds: 1),
+                    child: Image.asset("assets/images/first_screen.png"),
+                  ),
                 ),
-              ),
-            )
-          : Center(
-              child: FadeIn(
-                duration: const Duration(seconds: 3),
-                child: Image.asset("assets/images/logo.png"),
-              ),
-            ),
-    ));
+        ),
+      ),
+    );
   }
 }
