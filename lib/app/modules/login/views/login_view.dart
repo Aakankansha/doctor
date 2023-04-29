@@ -53,7 +53,7 @@ class LoginView extends GetView<LoginController> {
                     prefixIcon: SizedBox(
                       width: 80,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Row(
                           children: const [
                             Text("IN +91"),

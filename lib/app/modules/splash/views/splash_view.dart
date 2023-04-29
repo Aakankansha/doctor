@@ -8,26 +8,25 @@ class SplashView extends GetView<SplashController> {
   const SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SplashController controller = Get.find();
+    SplashController controller = Get.put(SplashController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(
         () => Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: !controller.isLogin.value
-              ? Center(
-                  child: FadeIn(
-                    duration: const Duration(seconds: 3),
-                    child: Image.asset("assets/images/test.jpg"),
-                  ),
-                )
-              : Center(
-                  child: FadeIn(
-                    duration: const Duration(seconds: 1),
-                    child: Image.asset("assets/images/first_screen.png"),
-                  ),
-                ),
-        ),
+            padding: const EdgeInsets.all(12.0),
+            child: controller.isLogin.value
+                ? Center(
+                    child: FadeIn(
+                      duration: const Duration(seconds: 2),
+                      child: Image.asset("assets/images/first_screen.png"),
+                    ),
+                  )
+                : Center(
+                    child: FadeIn(
+                      duration: const Duration(seconds: 2),
+                      child: Image.asset("assets/images/test.jpg"),
+                    ),
+                  )),
       ),
     );
   }

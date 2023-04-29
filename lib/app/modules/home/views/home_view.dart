@@ -80,270 +80,300 @@ class HomeView extends GetView<HomeController> {
     "Liver/Pancreas Screening",
     "Thyroid Screening",
   ];
+  var listOfDiagOrgan = [
+    "assets/images/mamography.png",
+    "assets/images/ct scan.png",
+    "assets/images/MRI.png",
+    "assets/images/usg.png",
+    "assets/images/2d echo.png",
+    "assets/images/color dopleger.png",
+  ];
+  var listOfDiagTitle = [
+    "Mammography",
+    "CT Scan",
+    "MRI Scan",
+    "USG",
+    "2D Echo ECG",
+    "Color Doppler",
+  ];
+  var listOfDoctor = [
+    "assets/images/pediatric.png",
+    "assets/images/cardiac.png",
+    "assets/images/medicine.png",
+    "assets/images/optho.png",
+    "assets/images/surgery.png",
+    "assets/images/ortho.png",
+  ];
+  var listOfDoctorTitle = [
+    "Pediatric",
+    "Cardiology",
+    "General Medicine",
+    "Ophthalmology",
+    "General Surgery",
+    "Orthopaedic",
+  ];
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
     return Scaffold(
+        backgroundColor: Colors.white,
         key: _scaffoldkey,
         drawer: Drawer(
           child: SafeArea(
-            child: Container(
-              color: Colors.white,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      5.heightBox,
-                      Row(
-                        children: [
-                          StatusView(
-                            radius: 26,
-                            spacing: 15,
-                            strokeWidth: 2,
-                            indexOfSeenStatus: 1,
-                            numberOfStatus: 4,
-                            padding: 4,
-                            centerImageUrl:
-                                "https://images.contentstack.io/v3/assets/blt47c9d788546e10c2/blt3d0e316d0ae0c29f/633ecff007fc3813471f0108/AW_image39_1200x600.jpg?format=webply&quality=50",
-                            seenColor: themeColor,
-                            unSeenColor: Colors.black12,
-                          ),
-                          10.widthBox,
-                          "Raj Kumar"
-                              .text
-                              .bold
-                              .xl
-                              .color(const Color(0xff0D0940))
-                              .make(),
-                          const Spacer(),
-                          const Text(
-                            '200',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              color: themeColor,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            Icons.wallet,
-                            size: 30,
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    5.heightBox,
+                    Row(
+                      children: [
+                        StatusView(
+                          radius: 26,
+                          spacing: 15,
+                          strokeWidth: 2,
+                          indexOfSeenStatus: 1,
+                          numberOfStatus: 4,
+                          padding: 4,
+                          centerImageUrl:
+                              "https://images.contentstack.io/v3/assets/blt47c9d788546e10c2/blt3d0e316d0ae0c29f/633ecff007fc3813471f0108/AW_image39_1200x600.jpg?format=webply&quality=50",
+                          seenColor: themeColor,
+                          unSeenColor: Colors.black12,
+                        ),
+                        10.widthBox,
+                        "Raj Kumar"
+                            .text
+                            .bold
+                            .xl
+                            .color(const Color(0xff0D0940))
+                            .make(),
+                        const Spacer(),
+                        const Text(
+                          '200',
+                          style: TextStyle(
+                            fontSize: 18.0,
                             color: themeColor,
                           ),
-                        ],
-                      ),
-                      20.heightBox,
-                      Row(
-                        children: [
-                          "My Orders".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => MyOrderScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Earned Cashback".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const EarnedCashbackScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Subscription".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const SubscriptionScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Transaction History".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const TransactionScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Refund Status".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const RefundStatusScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Comparative Analysis".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const ComparativeAnalysis());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Offers".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const OfferScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Help Center".text.bold.make(),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make()
-                          .onTap(() {
-                        Get.to(() => const HelpCenterScreen());
-                      }),
-                      10.heightBox,
-                      Row(
-                        children: [
-                          "Logout".text.red500.bold.make(),
-                          const Spacer(),
-                        ],
-                      )
-                          .p8()
-                          .box
-                          .white
-                          .border(
-                            color: Colors.black12,
-                            width: 1,
-                          )
-                          .withRounded(value: 4)
-                          .make(),
-                    ],
-                  ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(
+                          Icons.wallet,
+                          size: 30,
+                          color: themeColor,
+                        ),
+                      ],
+                    ),
+                    20.heightBox,
+                    Row(
+                      children: [
+                        "My Orders".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => MyOrderScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Earned Cashback".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const EarnedCashbackScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Subscription".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const SubscriptionScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Transaction History".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const TransactionScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Refund Status".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const RefundStatusScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Comparative Analysis".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const ComparativeAnalysis());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Offers".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const OfferScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Help Center".text.bold.make(),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make()
+                        .onTap(() {
+                      Get.to(() => const HelpCenterScreen());
+                    }),
+                    10.heightBox,
+                    Row(
+                      children: [
+                        "Logout".text.red500.bold.make(),
+                        const Spacer(),
+                      ],
+                    )
+                        .p8()
+                        .box
+                        .white
+                        .border(
+                          color: Colors.black12,
+                          width: 1,
+                        )
+                        .withRounded(value: 4)
+                        .make(),
+                  ],
                 ),
               ),
             ),
           ),
         ),
-        backgroundColor: const Color(0xffF5F5F5),
+
         // bottomSheet: Material(
         //   color: Colors.white,
         //   shape: const RoundedRectangleBorder(
@@ -572,8 +602,8 @@ class HomeView extends GetView<HomeController> {
                       .box
                       .withRounded(value: 8)
                       .width(double.infinity)
-                      .height(40)
-                      .white
+                      .height(50)
+                      .color(const Color(0xffF5F5F5))
                       .make(),
                   8.heightBox,
                   SizedBox(
@@ -583,7 +613,7 @@ class HomeView extends GetView<HomeController> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          childAspectRatio: 1,
+                          childAspectRatio: 0.9,
                           crossAxisSpacing: 5,
                         ),
                         itemCount: 6,
@@ -678,7 +708,7 @@ class HomeView extends GetView<HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(Icons.support_agent_rounded,
-                                  color: Colors.white, size: 30),
+                                  color: Colors.white, size: 24),
                               10.widthBox,
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -688,20 +718,18 @@ class HomeView extends GetView<HomeController> {
                                       .text
                                       .white
                                       .bold
-                                      .size(12)
-                                      .center
-                                      .makeCentered(),
+                                      .size(10)
+                                      .make(),
                                   "for your search"
                                       .text
                                       .white
                                       .bold
-                                      .size(12)
-                                      .center
-                                      .makeCentered(),
+                                      .size(10)
+                                      .make(),
                                   5.heightBox,
                                 ],
                               ),
-                              10.widthBox,
+                              5.widthBox,
                             ],
                           )
                               .p4()
@@ -778,8 +806,8 @@ class HomeView extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(Icons.upload,
-                                color: Colors.white, size: 28),
-                            10.widthBox,
+                                color: Colors.white, size: 24),
+                            5.widthBox,
                             Column(
                               children: [
                                 "Upload prescription"
@@ -787,15 +815,14 @@ class HomeView extends GetView<HomeController> {
                                     .white
                                     .bold
                                     .center
-                                    .size(12)
-                                    .makeCentered(),
+                                    .size(10)
+                                    .make(),
                                 "And we assist you"
                                     .text
                                     .white
-                                    .size(12)
-                                    .center
+                                    .size(10)
                                     .bold
-                                    .makeCentered(),
+                                    .make(),
                                 5.heightBox,
                               ],
                             ),
@@ -935,8 +962,9 @@ class HomeView extends GetView<HomeController> {
                               child: listOfOrganTitle[index]
                                   .toString()
                                   .text
-                                  .color(themeColor)
                                   .bold
+                                  .color(themeColor)
+                                  .size(10)
                                   .center
                                   .makeCentered(),
                             ),
@@ -949,7 +977,7 @@ class HomeView extends GetView<HomeController> {
                           Get.to(() => const LabNearbyScreen());
                         });
                       }),
-                  20.heightBox,
+                  10.heightBox,
                   Image.asset(
                     'assets/images/Group 11099.png',
                   )
@@ -974,12 +1002,41 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   10.heightBox,
-                  Image.asset(
-                    'assets/images/Group 11079 (2).png',
-                    width: 100.w,
-                  ).onTap(() {
-                    Get.to(() => const LabNearbyScreen());
-                  }),
+                  GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: listOfOrgan.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 2.4,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            Positioned(
+                              top: 20,
+                              right: 5,
+                              child: listOfDiagTitle[index]
+                                  .toString()
+                                  .text
+                                  .bold
+                                  .color(const Color.fromARGB(255, 11, 0, 167))
+                                  .size(10)
+                                  .center
+                                  .makeCentered(),
+                            ),
+                            Image.asset(
+                              listOfDiagOrgan[index],
+                              width: double.infinity,
+                            ),
+                          ],
+                        ).onTap(() {
+                          Get.to(() => const LabNearbyScreen());
+                        });
+                      }),
                   20.heightBox,
                   Row(
                     children: [
@@ -1027,25 +1084,45 @@ class HomeView extends GetView<HomeController> {
                           .size(14)
                           .make(),
                       const Spacer(),
-                      // "View More"
-                      //     .text
-                      //     .size(8)
-                      //     .white
-                      //     .make()
-                      //     .pSymmetric(h: 10, v: 5)
-                      //     .box
-                      //     .withRounded(
-                      //       value: 16,
-                      //     )
-                      //     .color(themeColor)
-                      //     .make(),
                     ],
                   ),
-                  // 10.heightBox,
-                  // Image.asset(
-                  //   'assets/images/Group 11091.png',
-                  //   width: 100.w,
-                  // ),
+                  10.heightBox,
+                  GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: listOfOrgan.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            Positioned(
+                              top: 15,
+                              right: 0,
+                              left: 0,
+                              child: listOfDoctorTitle[index]
+                                  .toString()
+                                  .text
+                                  .bold
+                                  .color(const Color.fromARGB(255, 11, 0, 167))
+                                  .size(10)
+                                  .center
+                                  .makeCentered(),
+                            ),
+                            Image.asset(
+                              listOfDoctor[index],
+                              width: double.infinity,
+                            ),
+                          ],
+                        ).onTap(() {
+                          Get.to(() => const HospitalNearbyScreen());
+                        });
+                      }),
                   20.heightBox,
                   80.heightBox,
                 ],

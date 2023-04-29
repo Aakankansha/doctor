@@ -138,7 +138,7 @@ class HomeController extends GetxController {
                   child: Column(
                     children: [
                       Image.asset(
-                        "assets/images/Group 11092 (1).png",
+                        "assets/images/Group 11092.png",
                         fit: BoxFit.cover,
                       ),
                       20.heightBox,

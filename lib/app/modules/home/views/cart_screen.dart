@@ -55,7 +55,7 @@ class CartScreen extends StatelessWidget {
                   30.widthBox,
                   Container(
                     width: 2,
-                    height: 140,
+                    height: 180,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50),
@@ -76,6 +76,20 @@ class CartScreen extends StatelessWidget {
                       "12/12/2021".text.white.make(),
                       5.heightBox,
                       "(Anytime)".text.white.make(),
+                      5.heightBox,
+                      IconButton(
+                        onPressed: () {},
+                        icon: Row(
+                          children: [
+                            const Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
+                            5.widthBox,
+                            "Edit".text.white.make(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   const Spacer(),

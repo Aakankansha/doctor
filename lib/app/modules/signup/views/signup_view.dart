@@ -229,7 +229,7 @@ class _SignupViewState extends State<SignupView> {
                         // if (formKey.currentState!.validate()) {
                         //   formKey.currentState!.save();
 
-                        Get.to(() => const MainView());
+                        Get.offAll(() => const MainView());
 
                         //   }
                       },

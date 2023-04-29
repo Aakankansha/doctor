@@ -125,7 +125,7 @@ class _ImagingNearbyScreenState extends State<ImagingNearbyScreen> {
                         Image.asset('assets/images/Group 11077.png'),
               ),
               Image.asset(
-                "assets/images/Group 11101.png",
+                "assets/images/Group 11102.png",
                 fit: BoxFit.cover,
               ).onTap(() {
                 Get.to(() => const ImagingCenterDetailsScreen());

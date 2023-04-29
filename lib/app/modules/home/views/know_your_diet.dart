@@ -17,10 +17,11 @@ class KnowYourDiet extends StatefulWidget {
 
 class _KnowYourDietState extends State<KnowYourDiet> {
   String birthday = "Select Date";
-  int currentIndex = 4;
+  int currentIndex = 2;
   int isGender = 4;
   int meal = 4;
-  bool isSelf = true;
+  int isSelf = 2;
+
   int activity = 4;
   String height = "0.0";
   double bmi = 0.0;
@@ -61,8 +62,8 @@ class _KnowYourDietState extends State<KnowYourDiet> {
           TextButton(
               onPressed: () {
                 setState(() {
-                  currentIndex = 4;
-                  isSelf = true;
+                  currentIndex = 2;
+                  isSelf = 2;
                   isGender = 4;
                   meal = 4;
                   activity = 4;
@@ -112,12 +113,12 @@ class _KnowYourDietState extends State<KnowYourDiet> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    isSelf = true;
+                    isSelf = 0;
                     currentIndex = 4;
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isSelf ? themeColor : Colors.grey,
+                  backgroundColor: isSelf == 0 ? themeColor : Colors.grey,
                   minimumSize: const Size(double.infinity, 50),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -131,12 +132,12 @@ class _KnowYourDietState extends State<KnowYourDiet> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    isSelf = false;
+                    isSelf = 1;
                     currentIndex = 0;
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: !isSelf ? themeColor : Colors.grey,
+                  backgroundColor: isSelf == 1 ? themeColor : Colors.grey,
                   minimumSize: const Size(double.infinity, 50),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -147,7 +148,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                 horizontal: 20,
               ),
               10.heightBox,
-              if (!isSelf)
+              if (isSelf == 1)
                 Column(
                   children: [
                     if (currentIndex >= 0)
@@ -204,7 +205,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                       ),
                   ],
                 ),
-              if (!isSelf)
+              if (isSelf == 1)
                 if (currentIndex >= 1)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,7 +305,7 @@ class _KnowYourDietState extends State<KnowYourDiet> {
                       }),
                     ],
                   ),
-              if (!isSelf)
+              if (isSelf == 1)
                 if (currentIndex >= 2)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

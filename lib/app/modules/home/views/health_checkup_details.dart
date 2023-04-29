@@ -154,7 +154,7 @@ class HealthCheckupDetails extends StatelessWidget {
             15.heightBox,
 
             const Text(
-              'Available Tests',
+              'Available Packages',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -168,7 +168,7 @@ class HealthCheckupDetails extends StatelessWidget {
             //search bar lab test  TextFormField
             TextFormField(
               decoration: const InputDecoration(
-                hintText: 'Search Lab Test',
+                hintText: 'Search Package',
                 hintStyle: TextStyle(
                   color: Colors.black54,
                   fontSize: 13,

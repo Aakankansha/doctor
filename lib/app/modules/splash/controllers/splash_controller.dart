@@ -12,7 +12,13 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 //String tokens = SharedMemory().getToken();
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 0), () {
+      check();
+    });
+  }
+
+  check() {
+    Future.delayed(const Duration(seconds: 2), () {
       isLogin.value = true;
       Future.delayed(Duration(seconds: duration), () {
         Get.toNamed(Routes.LOGIN);

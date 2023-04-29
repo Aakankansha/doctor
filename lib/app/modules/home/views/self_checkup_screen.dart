@@ -487,7 +487,6 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                               });
                             } else {
                               setState(() {
-                                currentIndex = 6;
                                 tags = val;
                               });
                             }
@@ -514,6 +513,27 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                         ),
                       ],
                     ),
+                  20.heightBox,
+                  if (currentIndex >= 5)
+                    ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(double.infinity, 50),
+                              backgroundColor: themeColor,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                currentIndex = 6;
+                              });
+                            },
+                            child: "Submit".text.white.make())
+                        .pSymmetric(
+                      h: 20,
+                    ),
                   30.heightBox,
                   if (currentIndex >= 6)
                     Column(
@@ -529,7 +549,36 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                                 .box
                                 .withRounded(value: 6)
                                 .color(themeColor)
-                                .make()),
+                                .make()
+                                .onTap(() {
+                              Get.dialog(
+                                Theme(
+                                  data: ThemeData(
+                                    canvasColor: Colors.white,
+                                  ),
+                                  child: AlertDialog(
+                                    title: const Text("Migraine"),
+                                    content: const Text(
+                                        "Migraine is a neurological condition that can cause multiple symptoms. It’s frequently characterized by intense, debilitating headaches. Symptoms may include nausea, vomiting, difficulty speaking, numbness or tingling, and sensitivity to light and sound. Migraines often run in families and affect all ages. They progress through four stages: prodrome, aura, attack, and post-drome. The good news is that you can manage your symptoms with lifestyle changes and medications."),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: const Text("OK"),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Get.to(() =>
+                                              const HospitalNearbyScreen());
+                                        },
+                                        child: const Text("Book Appointment"),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            })),
                         Divider(
                           color: Colors.grey[300]!,
                         ),
@@ -548,24 +597,6 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                       ],
                     ),
                   30.heightBox,
-                  if (currentIndex >= 6)
-                    ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(double.infinity, 50),
-                              backgroundColor: themeColor,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                            ),
-                            onPressed: () {
-                              Get.to(() => const HospitalNearbyScreen());
-                            },
-                            child: "Consult Now".text.white.make())
-                        .pSymmetric(
-                      h: 20,
-                    )
                 ],
               ),
             40.h.heightBox,
