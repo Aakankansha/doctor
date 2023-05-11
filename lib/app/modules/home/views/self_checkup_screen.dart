@@ -1,6 +1,6 @@
 import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:chips_choice/chips_choice.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/hospital_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/analiysis_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -16,7 +16,8 @@ class SelfCheckUpScreen extends StatefulWidget {
 }
 
 class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
-  bool isSelf = true;
+  int isSelf = 2;
+  bool isFamily = false;
   List<String> tags = [];
   List<String> medicalHistory = [
     "Headache",
@@ -74,6 +75,7 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                   setState(() {
                     currentIndex = 0;
                     isGender = 4;
+                    isSelf = 2;
                     tags = [];
 
                     birthday = "Select Date";
@@ -99,11 +101,16 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  isSelf = true;
+                  isSelf = 1;
                 });
+                _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: isSelf ? themeColor : Colors.grey,
+                backgroundColor: isSelf == 1 ? themeColor : Colors.grey,
                 minimumSize: const Size(double.infinity, 50),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -117,11 +124,16 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  isSelf = false;
+                  isSelf = 0;
                 });
+                _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: !isSelf ? themeColor : Colors.grey,
+                backgroundColor: isSelf == 0 ? themeColor : Colors.grey,
                 minimumSize: const Size(double.infinity, 50),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -132,7 +144,7 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
               horizontal: 20,
             ),
             10.heightBox,
-            if (!isSelf)
+            if (isSelf == 0)
               Column(
                 children: [
                   if (currentIndex >= 0)
@@ -367,33 +379,17 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                     ),
                 ],
               ),
-            if (isSelf == true || currentIndex >= 3)
+            if (isSelf == 1 || currentIndex >= 3)
               Column(
                 children: [
                   10.heightBox,
-                  "Select  symptoms"
-                      .text
-                      .bold
-                      .xl
-                      .color(Colors.black)
-                      .makeCentered()
-                      .box
-                      .width(300)
-                      .height(35)
-                      .withRounded(value: 8)
-                      .border(
-                        color: Colors.grey[300]!,
-                        width: 1,
-                      )
-                      .make()
-                      .pOnly(
-                        left: 20,
-                      )
-                      .onTap(() {
-                    setState(() {
-                      currentIndex = 5;
-                    });
-                  }),
+                  const BubbleSpecialThree(
+                    text: 'Please select your symptoms?',
+                    color: themeColor,
+                    tail: true,
+                    isSender: false,
+                    textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
                   20.heightBox,
                   TextFormField(
                     decoration: InputDecoration(
@@ -448,29 +444,13 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                   ),
                   20.heightBox,
                   if (currentIndex >= 5)
-                    "Please select any other symptoms"
-                        .text
-                        .bold
-                        .xl
-                        .color(Colors.black)
-                        .makeCentered()
-                        .box
-                        .width(300)
-                        .height(35)
-                        .withRounded(value: 8)
-                        .border(
-                          color: Colors.grey[300]!,
-                          width: 1,
-                        )
-                        .make()
-                        .pOnly(
-                          left: 20,
-                        )
-                        .onTap(() {
-                      setState(() {
-                        currentIndex = 5;
-                      });
-                    }),
+                    const BubbleSpecialThree(
+                      text: 'Any other symptoms you are facing from the list?',
+                      color: themeColor,
+                      tail: true,
+                      isSender: false,
+                      textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
                   20.heightBox,
                   if (currentIndex >= 5)
                     Column(
@@ -526,75 +506,11 @@ class _SelfCheckUpScreenState extends State<SelfCheckUpScreen> {
                                       BorderRadius.all(Radius.circular(10))),
                             ),
                             onPressed: () {
-                              setState(() {
-                                currentIndex = 6;
-                              });
+                              Get.to(() => const AnalysisScreen());
                             },
                             child: "Submit".text.white.make())
                         .pSymmetric(
                       h: 20,
-                    ),
-                  30.heightBox,
-                  if (currentIndex >= 6)
-                    Column(
-                      children: [
-                        "You May Have".text.bold.xl.make(),
-                        ListTile(
-                            title: "1.Migraine (90%)".text.make(),
-                            trailing: "Know More"
-                                .text
-                                .white
-                                .make()
-                                .pSymmetric(h: 10, v: 5)
-                                .box
-                                .withRounded(value: 6)
-                                .color(themeColor)
-                                .make()
-                                .onTap(() {
-                              Get.dialog(
-                                Theme(
-                                  data: ThemeData(
-                                    canvasColor: Colors.white,
-                                  ),
-                                  child: AlertDialog(
-                                    title: const Text("Migraine"),
-                                    content: const Text(
-                                        "Migraine is a neurological condition that can cause multiple symptoms. It’s frequently characterized by intense, debilitating headaches. Symptoms may include nausea, vomiting, difficulty speaking, numbness or tingling, and sensitivity to light and sound. Migraines often run in families and affect all ages. They progress through four stages: prodrome, aura, attack, and post-drome. The good news is that you can manage your symptoms with lifestyle changes and medications."),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        child: const Text("OK"),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Get.to(() =>
-                                              const HospitalNearbyScreen());
-                                        },
-                                        child: const Text("Book Appointment"),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            })),
-                        Divider(
-                          color: Colors.grey[300]!,
-                        ),
-                        ListTile(
-                            title: "2.Brain diseases (50%)".text.make(),
-                            trailing: "Know More"
-                                .text
-                                .white
-                                .make()
-                                .pSymmetric(h: 10, v: 5)
-                                .box
-                                .withRounded(value: 6)
-                                .color(themeColor)
-                                .make()),
-                        const Divider(),
-                      ],
                     ),
                   30.heightBox,
                 ],

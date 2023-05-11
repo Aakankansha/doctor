@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:clear_vikalp_app/app/modules/login/views/login_view.dart';
 import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
 import 'package:clear_vikalp_app/app/modules/otpverify/model/user_model.dart';
+import 'package:clear_vikalp_app/app/modules/signup/views/signup_view.dart';
 import 'package:clear_vikalp_app/util/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,15 +27,20 @@ class OtpverifyController extends GetxController {
         Uri.parse(baseUrl + pageUrl),
         body: body,
       );
-
+      log(response.body);
       if (response.statusCode == 200) {
         log(response.body);
-        userModel = OtpUserModel.fromJson(jsonDecode(response.body));
-        Future.delayed(Duration.zero);
+        var data = json.decode(response.body);
+        if (data["verify_status"] == 1) {
+          userModel = OtpUserModel.fromJson(jsonDecode(response.body));
+          Future.delayed(Duration.zero);
 
-        SharedMemory().setToken(userModel!.token.toString());
-        token = userModel!.token.toString();
-        Get.to(() => const MainView());
+          SharedMemory().setToken(userModel!.token.toString());
+          token = userModel!.token.toString();
+          Get.to(() => const MainView());
+        } else {
+          Get.to(() => const SignupView());
+        }
       } else if (response.statusCode == 400) {
         Get.snackbar(
           "Error",

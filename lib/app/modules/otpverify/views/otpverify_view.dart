@@ -10,7 +10,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../signup/views/signup_view.dart';
 import '../controllers/otpverify_controller.dart';
 
 class OtpverifyView extends GetView<OtpverifyController> {
@@ -118,11 +117,11 @@ class OtpverifyView extends GetView<OtpverifyController> {
                             isLoading.value = true;
                             try {
                               // Get.to(() => const MainView());
-                              Get.to(() => const SignupView());
-                              // await controller.verifyOtp(
-                              //   mobileNumber: loginController.mobile,
-                              //   otpCode: otpPinController.text,
-                              // );
+                              // Get.to(() => const SignupView());
+                              await controller.verifyOtp(
+                                mobileNumber: loginController.mobile,
+                                otpCode: otpPinController.text,
+                              );
                             } on Exception catch (e) {
                               log("$e");
                             } finally {

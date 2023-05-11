@@ -111,7 +111,7 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Image.asset(
-                  "assets/images/Group 11102.png",
+                  "assets/images/Group 11089 (3).png",
                   fit: BoxFit.cover,
                 ).onTap(() {
                   if (widget.isHomeCheckup) {

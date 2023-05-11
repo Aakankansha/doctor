@@ -111,15 +111,15 @@ class LoginView extends GetView<LoginController> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               isLoading.value = true;
-                              //   try {
-                              Get.toNamed(Routes.OTPVERIFY,
-                                  arguments: Routes.MAIN);
-                              //   await controller.login(
-                              //     mobileNumber: mobileNumberController.text,
-                              //   );
-                              // } finally {
-                              //   isLoading.value = false;
-                              // }
+                              try {
+                                // Get.toNamed(Routes.OTPVERIFY,
+                                //     arguments: Routes.MAIN);
+                                await controller.login(
+                                  mobileNumber: mobileNumberController.text,
+                                );
+                              } finally {
+                                isLoading.value = false;
+                              }
                             }
                           },
                           title: "Login",

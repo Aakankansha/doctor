@@ -107,12 +107,12 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
                     .make(),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               CarouselSlider.builder(
                 options: CarouselOptions(
                   height: 120,
-                  viewportFraction: 0.8,
+                  viewportFraction: 1,
                   autoPlay: true,
                   enlargeCenterPage: true,
                   autoPlayInterval: const Duration(seconds: 3),
@@ -124,10 +124,12 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
                 itemCount: 4,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) =>
-                        Image.asset('assets/images/Group 11077.png'),
+                        Image.asset('assets/images/offers.png'),
+              ).pSymmetric(
+                h: 20,
               ),
               Image.asset(
-                "assets/images/Group 11089.png",
+                "assets/images/Group 11089 (2).png",
                 fit: BoxFit.cover,
               ).onTap(() {
                 Get.to(() => const HospitalDetailsScreen());

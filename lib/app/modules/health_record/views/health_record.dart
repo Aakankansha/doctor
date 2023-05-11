@@ -473,96 +473,129 @@ class FilterScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Filter'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            "FILTER BY ORDER DATE".text.bold.make(),
-            const Divider(),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: false,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "Last 30 Days".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "Last 3 Months".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2023".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2022".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2021".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2020".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2019".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2018".text.xl.make(),
-            ),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              value: true,
-              groupValue: false,
-              onChanged: (v) {},
-              title: "2017".text.xl.make(),
-            ),
-            "Apply"
-                .text
-                .white
-                .xl
-                .bold
-                .makeCentered()
-                .box
-                .withRounded()
-                .height(50)
-                .width(
-                  double.infinity,
-                )
-                .color(themeColor)
-                .make()
-                .pSymmetric(
-                  h: 20,
-                  v: 20,
-                ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              "FILTER BY FAMILY MEMBERS".text.bold.make(),
+              const Divider(),
+              RadioListTile(
+                groupValue: true,
+                contentPadding: EdgeInsets.zero,
+                value: false,
+                onChanged: (v) {},
+                title: "Self".text.xl.make(),
+              ),
+              RadioListTile(
+                groupValue: true,
+                contentPadding: EdgeInsets.zero,
+                value: false,
+                onChanged: (v) {},
+                title: "Father".text.xl.make(),
+              ),
+              RadioListTile(
+                groupValue: true,
+                contentPadding: EdgeInsets.zero,
+                value: false,
+                onChanged: (v) {},
+                title: "Mother".text.xl.make(),
+              ),
+              RadioListTile(
+                groupValue: true,
+                contentPadding: EdgeInsets.zero,
+                value: false,
+                onChanged: (v) {},
+                title: "Wife".text.xl.make(),
+              ),
+              10.heightBox,
+              "FILTER BY ORDER DATE".text.bold.make(),
+              const Divider(),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: false,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "Last 30 Days".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "Last 3 Months".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2023".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2022".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2021".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2020".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2019".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2018".text.xl.make(),
+              ),
+              RadioListTile(
+                contentPadding: EdgeInsets.zero,
+                value: true,
+                groupValue: false,
+                onChanged: (v) {},
+                title: "2017".text.xl.make(),
+              ),
+              "Apply"
+                  .text
+                  .white
+                  .xl
+                  .bold
+                  .makeCentered()
+                  .box
+                  .withRounded()
+                  .height(50)
+                  .width(
+                    double.infinity,
+                  )
+                  .color(themeColor)
+                  .make()
+                  .pSymmetric(
+                    h: 20,
+                    v: 20,
+                  ),
+            ],
+          ),
         ),
       ),
     );

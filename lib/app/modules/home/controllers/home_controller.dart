@@ -386,7 +386,9 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
-    showLookingForDialog();
+    Future.delayed(const Duration(seconds: 3), () {
+      showLookingForDialog();
+    });
     super.onReady();
   }
 
