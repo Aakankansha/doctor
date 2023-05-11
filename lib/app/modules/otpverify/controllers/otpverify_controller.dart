@@ -14,6 +14,7 @@ import '../../../../util/constant.dart';
 
 class OtpverifyController extends GetxController {
   OtpUserModel? userModel;
+  String userId = '';
   Future verifyOtp({String? mobileNumber, String? otpCode}) async {
     try {
       log("Loading...");
@@ -39,6 +40,7 @@ class OtpverifyController extends GetxController {
           token = userModel!.token.toString();
           Get.to(() => const MainView());
         } else {
+          userId = data["id"];
           Get.to(() => const SignupView());
         }
       } else if (response.statusCode == 400) {
