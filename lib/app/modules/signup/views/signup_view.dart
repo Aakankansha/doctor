@@ -2,7 +2,11 @@ import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:velocity_x/velocity_x.dart';
+
+import '../../../../util/constant.dart';
+import '../../otpverify/controllers/otpverify_controller.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({Key? key}) : super(key: key);
@@ -15,8 +19,41 @@ class _SignupViewState extends State<SignupView> {
   bool isInsured = false;
   final formKey = GlobalKey<FormState>();
   String name = "";
-  String gender = "male";
+  String gender = "Male";
   String birthday = "";
+  bool isLoading = false;
+  getSignUp() async {
+    OtpverifyController c = Get.find();
+    setState(() {
+      isLoading = true;
+    });
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('$baseUrl/Auth/update_account'));
+    request.fields.addAll({
+      'id': c.userId,
+      'name': name,
+      'dob': birthday,
+      'gender': gender,
+      'insured': isInsured ? 'Yes' : 'No',
+      'email': ''
+    });
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      setState(() {
+        isLoading = false;
+      });
+      Get.offAll(() => const MainView());
+      print(await response.stream.bytesToString());
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      print(response.reasonPhrase);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,15 +182,15 @@ class _SignupViewState extends State<SignupView> {
                         onChanged: (value) => setState(() => gender = value!),
                         items: const [
                           DropdownMenuItem(
-                            value: 'male',
+                            value: 'Male',
                             child: Text('Male'),
                           ),
                           DropdownMenuItem(
-                            value: 'female',
+                            value: 'Female',
                             child: Text('Female'),
                           ),
                           DropdownMenuItem(
-                            value: 'other',
+                            value: 'Other',
                             child: Text('Other'),
                           ),
                         ],
@@ -226,12 +263,11 @@ class _SignupViewState extends State<SignupView> {
                     30.heightBox,
                     ElevatedButton(
                       onPressed: () {
-                        // if (formKey.currentState!.validate()) {
-                        //   formKey.currentState!.save();
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
 
-                        Get.offAll(() => const MainView());
-
-                        //   }
+                          getSignUp();
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
@@ -240,18 +276,25 @@ class _SignupViewState extends State<SignupView> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 60),
-                        child: Text(
-                          'Register',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
+                      child: isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation(Colors.white),
+                              ),
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 60),
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
                     ),
                   ],
                 ).p12(),
