@@ -19,10 +19,10 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
           backgroundColor: const Color(0xffF5F5F5),
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Nearby Hospital',
                 style: TextStyle(
                   color: Colors.black,
@@ -31,7 +31,7 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.location_on_outlined,
                     size: 20,
@@ -129,7 +129,7 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
                 h: 20,
               ),
               Image.asset(
-                "assets/images/Group 11089 (2).png",
+                "assets/images/Group 11109.png",
                 fit: BoxFit.cover,
               ).onTap(() {
                 Get.to(() => const HospitalDetailsScreen());

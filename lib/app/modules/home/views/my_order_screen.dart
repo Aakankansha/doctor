@@ -334,15 +334,29 @@ class MyOrderScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                "View Details"
-                    .text
-                    .white
-                    .makeCentered()
-                    .box
-                    .withRounded(value: 8)
-                    .p8
-                    .color(Colors.blue)
-                    .make(),
+                Row(children: [
+                  "View Details"
+                      .text
+                      .white
+                      .makeCentered()
+                      .box
+                      .withRounded(value: 8)
+                      .p8
+                      .color(Colors.blue)
+                      .make()
+                      .expand(),
+                  20.widthBox,
+                  "Reschedule"
+                      .text
+                      .white
+                      .makeCentered()
+                      .box
+                      .withRounded(value: 8)
+                      .p8
+                      .color(themeColor)
+                      .make()
+                      .expand(),
+                ]),
                 const SizedBox(height: 10),
                 Row(
                   children: [

@@ -32,10 +32,6 @@ class ReviewOrderScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                "Service: OPD Consultation ".text.xl.bold.make(),
-                "Dr. Raj Sharma".text.xl.bold.make(),
-                "Spine Surgeon".text.xl.make(),
-                "Nanavati hospital".text.xl.make(),
                 20.heightBox,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,22 +88,134 @@ class ReviewOrderScreen extends StatelessWidget {
                     .make()
                     .pSymmetric(h: 20),
                 10.heightBox,
-                "Add More Services".text.xl.bold.make(),
+                "Add Address"
+                    .text
+                    .white
+                    .makeCentered()
+                    .pSymmetric(h: 40, v: 10)
+                    .box
+                    .width(double.infinity)
+                    .withRounded(value: 6)
+                    .color(themeColor)
+                    .make()
+                    .onTap(() {
+                  Get.back();
+                }),
+                15.heightBox,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        "Service: OPD Consultation ".text.xl.bold.make(),
+                        "Dr. Raj Sharma".text.xl.bold.make(),
+                        "Spine Surgeon".text.xl.make(),
+                        "Nanavati hospital".text.xl.make(),
+                        "Price ₹500".text.xl.bold.make(),
+                      ],
+                    ),
+                    const Spacer(),
+                    Column(
+                      children: [
+                        const Icon(Icons.edit),
+                        20.heightBox,
+                        const Icon(Icons.delete),
+                      ],
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .withRounded(value: 12)
+                    .border(color: Colors.black26)
+                    .make(),
                 10.heightBox,
+                // "Add More Services".text.xl.bold.make(),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.dialog(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Card(
+                                elevation: 0,
+                                color: Colors.white,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(
+                                      "ALLOW US TO GUIDE YOU",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    )
+                                        .centered()
+                                        .pSymmetric(h: 5, v: 10)
+                                        .box
+                                        .withRounded(value: 12)
+                                        .width(double.infinity)
+                                        .color(themeColor2)
+                                        .make(),
+                                    Image.asset("assets/images/step2.jpg"),
+                                    5.heightBox,
+                                    "Close"
+                                        .text
+                                        .white
+                                        .make()
+                                        .pSymmetric(h: 40, v: 5)
+                                        .box
+                                        .withRounded(value: 6)
+                                        .color(themeColor)
+                                        .make()
+                                        .onTap(() {
+                                      Get.back();
+                                    }),
+                                    5.heightBox,
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 40),
+                    backgroundColor: themeColor2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: "How this will work...!!!"
+                      .text
+                      .white
+                      .size(15)
+                      .make()
+                      .pSymmetric(h: 10, v: 8),
+                ),
+
                 Row(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: themeColor2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child:
-                          "Add More".text.white.make().pSymmetric(h: 20, v: 8),
-                    ).expand(),
-                    10.widthBox,
+                    // ElevatedButton(
+                    //   onPressed: () {},
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: themeColor2,
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(8),
+                    //     ),
+                    //   ),
+                    //   child:
+                    //       "Add More".text.white.make().pSymmetric(h: 20, v: 8),
+                    // ).expand(),
+                    // 10.widthBox,
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -128,6 +236,26 @@ class ReviewOrderScreen extends StatelessWidget {
                 "Payment Details:".text.xl2.bold.make(),
                 10.heightBox,
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        "Wallet Balance:".text.bold.make(),
+                        "(Cashback Balance ₹ 300.75)".text.make(),
+                      ],
+                    ),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Checkbox.adaptive(value: false, onChanged: (v) {}),
+                        "Use Wallet".text.bold.make(),
+                      ],
+                    ),
+                  ],
+                ),
+                10.heightBox,
+                Row(
                   children: [
                     "Consultation Fee:".text.xl.make(),
                     const Spacer(),
@@ -145,9 +273,17 @@ class ReviewOrderScreen extends StatelessWidget {
                 10.heightBox,
                 Row(
                   children: [
-                    "Total Amount:".text.xl.make(),
+                    "Cashback:".text.xl.make(),
                     const Spacer(),
-                    "₹ 526".text.xl.make(),
+                    "-₹ 100".text.red400.xl.make(),
+                  ],
+                ),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Total Amount:".text.bold.xl.make(),
+                    const Spacer(),
+                    "₹ 426".text.xl.bold.make(),
                   ],
                 ),
                 20.heightBox,

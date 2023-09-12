@@ -28,7 +28,7 @@ class HealthRecord extends GetView<HealthRecordController> {
             children: [
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: 3,
+                  crossAxisCount: 2,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   children: [
@@ -40,29 +40,29 @@ class HealthRecord extends GetView<HealthRecordController> {
                     ),
                     gridWidget(
                       textColor: const Color.fromARGB(255, 99, 53, 45),
-                      title: "OPD Booking Record",
+                      title: "My Records",
                       image: 'assets/images/opd booking.png',
                       color: const Color.fromARGB(255, 255, 242, 240),
                     ),
                     gridWidget(
                       textColor: const Color.fromARGB(255, 59, 45, 99),
-                      title: "Imaging Center Record",
-                      image: 'assets/images/imaging center.png',
+                      title: "Upload Documents",
+                      image: 'assets/images/presciption 2.png',
                       color: const Color.fromARGB(255, 247, 240, 255),
                     ),
-                    gridWidget(
-                      textColor: const Color.fromARGB(255, 45, 79, 99),
-                      title: "Prescription Details Record",
-                      image: 'assets/images/presciption 2.png',
-                      color: const Color.fromARGB(255, 240, 249, 255),
-                    ),
-                    gridWidget(
-                      textColor: const Color.fromARGB(255, 45, 99, 85),
-                      title: "Health Record",
-                      image:
-                          'assets/images/lady-doctor-checking-patient-2496307-2093272.png',
-                      color: const Color.fromARGB(255, 240, 249, 255),
-                    ),
+                    // gridWidget(
+                    //   textColor: const Color.fromARGB(255, 45, 79, 99),
+                    //   title: "Prescription Details Record",
+                    //   image: 'assets/images/presciption 2.png',
+                    //   color: const Color.fromARGB(255, 240, 249, 255),
+                    // ),
+                    // gridWidget(
+                    //   textColor: const Color.fromARGB(255, 45, 99, 85),
+                    //   title: "Health Record",
+                    //   image:
+                    //       'assets/images/lady-doctor-checking-patient-2496307-2093272.png',
+                    //   color: const Color.fromARGB(255, 240, 249, 255),
+                    // ),
                   ],
                 ),
               ),
@@ -71,7 +71,7 @@ class HealthRecord extends GetView<HealthRecordController> {
               "Subscribe to our Membership Plan to get access to all the features And get 50% off on your first month "
                   .text
                   .make(),
-              20.heightBox,
+              10.heightBox,
               Stack(
                 children: [
                   Image.asset(
@@ -96,7 +96,7 @@ class HealthRecord extends GetView<HealthRecordController> {
                   ),
                 ],
               ),
-              50.heightBox,
+              10.heightBox,
             ],
           ),
         ));
@@ -114,13 +114,9 @@ class HealthRecord extends GetView<HealthRecordController> {
               title: title,
             ));
       },
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
+      child: Card(
+        elevation: 6,
+        color: color,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

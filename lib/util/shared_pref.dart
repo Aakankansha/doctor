@@ -3,14 +3,14 @@ import 'package:get_storage/get_storage.dart';
 class SharedMemory {
   final box = GetStorage();
 
-  setToken(String token) {
-    box.write("token", token);
+  setUserId(String token) {
+    box.write("user_id", token);
   }
 
-  String getToken() {
-    if (box.read("token") == null) {
+  String getUserId() {
+    if (box.read("user_id") == null) {
       return "";
     }
-    return box.read("token");
+    return box.read("user_id");
   }
 }

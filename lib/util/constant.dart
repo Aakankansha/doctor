@@ -1,2 +1,3 @@
-const String baseUrl = "https://clearviklap.digitalnaman.com/api/index.php/";
+const String baseUrl =
+    "https://cosmicwebsolution.in/clearvikalp/api/index.php/";
 String token = "";

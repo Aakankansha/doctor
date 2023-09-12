@@ -33,17 +33,17 @@ class OtpverifyController extends GetxController {
         log(response.body);
         var data = json.decode(response.body);
         if (data["verify_status"] == 1) {
-          userModel = OtpUserModel.fromJson(jsonDecode(response.body));
+          userId = data["user_id"] ?? "";
           Future.delayed(Duration.zero);
 
-          SharedMemory().setToken(userModel!.token.toString());
-          token = userModel!.token.toString();
+          SharedMemory().setUserId(userId.toString());
+
           Get.to(() => const MainView());
         } else {
-          userId = data["id"];
+          userId = data["user_id"] ?? "";
           Get.to(() => const SignupView());
         }
-      } else if (response.statusCode == 400) {
+      } else if (response.statusCode == 401) {
         Get.snackbar(
           "Error",
           "Invalid OTP",

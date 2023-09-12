@@ -2,13 +2,13 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/about_screen.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/home_health_care.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/offer_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/privacy_policy.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/self_checkup_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/subscribtion.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
+import 'package:clear_vikalp_app/app/modules/subscription/subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +21,7 @@ import 'comparative_analysis.dart';
 import 'earned_cashback_screen.dart';
 import 'get_surgery_done.dart';
 import 'help_center_screen.dart';
+import 'home_health_care.dart';
 import 'hospital_nearby_view.dart';
 import 'imaging_nearby_view.dart';
 import 'know_your_diet.dart';
@@ -541,7 +542,7 @@ class HomeView extends GetView<HomeController> {
                 "Hello!".text.make(),
                 Row(
                   children: [
-                    "Raj Kumar"
+                    (homeController.currentProfileData.name ?? "Raj")
                         .text
                         .bold
                         .xl
@@ -617,242 +618,11 @@ class HomeView extends GetView<HomeController> {
                     .color(const Color(0xffF5F5F5))
                     .make(),
                 8.heightBox,
-                SizedBox(
-                  height: 260,
-                  child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.9,
-                        crossAxisSpacing: 5,
-                      ),
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Card(
-                              color: index == 0
-                                  ? const Color.fromARGB(255, 255, 235, 235)
-                                  : index == 1
-                                      ? const Color.fromARGB(255, 223, 243, 255)
-                                      : index == 2
-                                          ? const Color.fromARGB(
-                                              255, 224, 250, 255)
-                                          : index == 3
-                                              ? const Color.fromARGB(
-                                                  255, 239, 255, 243)
-                                              : index == 4
-                                                  ? const Color.fromARGB(
-                                                      255, 235, 231, 255)
-                                                  : index == 5
-                                                      ? const Color.fromARGB(
-                                                          255, 255, 234, 229)
-                                                      : const Color.fromARGB(
-                                                          255, 221, 255, 242),
-                              elevation: 0,
-                              child: Column(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        height: 60,
-                                        width: 60,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Image.asset(
-                                            listOfImages[index],
-                                            fit: BoxFit.fitHeight,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(listOfServies[index],
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 54, 54, 54),
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w500)),
-                                      5.heightBox,
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ).onTap(() {
-                              if (index == 0) {
-                                Get.to(() => const HospitalNearbyScreen());
-                              } else if (index == 1) {
-                                Get.to(() => const LabNearbyScreen());
-                              } else if (index == 4) {
-                                Get.to(
-                                    () => const HomeHealthCareNearbyScreen());
-                              } else if (index == 2) {
-                                Get.to(() => const ImagingNearbyScreen());
-                              } else if (index == 3) {
-                                Get.to(() => const KnowYourDiet());
-                              } else if (index == 5) {
-                                Get.to(() => const SelfCheckUpScreen());
-                              }
-                            }).w(MediaQuery.of(context).size.width),
-                            Flexible(
-                              child: Text(listOfSubstitle[index],
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 54, 54, 54),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold)),
-                            )
-                          ],
-                        );
-                      }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.support_agent_rounded,
-                                color: Colors.white, size: 24),
-                            10.widthBox,
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                "Talk to our team"
-                                    .text
-                                    .white
-                                    .bold
-                                    .size(10)
-                                    .make(),
-                                "for your search"
-                                    .text
-                                    .white
-                                    .bold
-                                    .size(10)
-                                    .make(),
-                                5.heightBox,
-                              ],
-                            ),
-                            5.widthBox,
-                          ],
-                        )
-                            .p4()
-                            .box
-                            .linearGradient([
-                              const Color(0xff0D0940),
-                              const Color.fromARGB(255, 39, 31, 156),
-                            ])
-                            .withRounded()
-                            .make()
-                            .onTap(() {
-                              Get.dialog(Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Material(
-                                        child: Card(
-                                          child: Center(
-                                            child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  20.heightBox,
-                                                  "Thank you for Choosing Clear Vikalp"
-                                                      .text
-                                                      .xl
-                                                      .bold
-                                                      .make(),
-                                                  "Our team will contact on +91 1234567890"
-                                                      .text
-                                                      .make(),
-                                                  20.heightBox,
-                                                  ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                              minimumSize: Size(
-                                                                  MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.6,
-                                                                  40),
-                                                              backgroundColor:
-                                                                  themeColor,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                              )),
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      child: "Okay"
-                                                          .text
-                                                          .white
-                                                          .make()),
-                                                  20.heightBox,
-                                                ]),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ));
-                            }),
-                      ),
-                      10.widthBox,
-                      Flexible(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.upload,
-                              color: Colors.white, size: 24),
-                          5.widthBox,
-                          Column(
-                            children: [
-                              "Upload prescription"
-                                  .text
-                                  .white
-                                  .bold
-                                  .center
-                                  .size(10)
-                                  .make(),
-                              "And we assist you"
-                                  .text
-                                  .white
-                                  .size(10)
-                                  .bold
-                                  .make(),
-                              5.heightBox,
-                            ],
-                          ),
-                          10.widthBox,
-                        ],
-                      )
-                              .p4()
-                              .box
-                              .linearGradient([
-                                const Color.fromARGB(255, 9, 59, 64),
-                                const Color.fromARGB(255, 31, 141, 156),
-                              ])
-                              .withRounded()
-                              .make()
-                              .onTap(() {
-                                controller.showUploadPrescription();
-                              })),
-                    ],
-                  ),
-                ),
+                MainGridFunc(
+                    listOfImages: listOfImages,
+                    listOfServies: listOfServies,
+                    listOfSubstitle: listOfSubstitle),
+                TalkToTeam(controller: controller),
                 CarouselSlider.builder(
                   options: CarouselOptions(
                     height: 120,
@@ -912,7 +682,9 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ],
                   ),
-                ),
+                ).onTap(() {
+                  Get.to(() => const GetPremiumScreen());
+                }),
                 10.heightBox,
                 Row(
                   children: [
@@ -923,7 +695,7 @@ class HomeView extends GetView<HomeController> {
                 10.heightBox,
                 GridView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    primary: false,
                     itemCount: listOfSymtoms.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -953,7 +725,7 @@ class HomeView extends GetView<HomeController> {
                 10.heightBox,
                 GridView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    primary: false,
                     itemCount: listOfOrgan.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -1014,7 +786,7 @@ class HomeView extends GetView<HomeController> {
                 10.heightBox,
                 GridView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    primary: false,
                     itemCount: listOfOrgan.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -1028,15 +800,21 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           Positioned(
                             top: 20,
-                            right: 5,
+                            right: 10,
                             child: listOfDiagTitle[index]
                                 .toString()
                                 .text
                                 .bold
-                                .color(const Color.fromARGB(255, 11, 0, 167))
+                                .color(const Color.fromARGB(255, 8, 0, 124))
                                 .size(10)
                                 .center
                                 .makeCentered(),
+                          ),
+                          Image.asset(
+                            listOfDiagOrgan[index],
+                            width: double.infinity,
+                            colorBlendMode: BlendMode.srcATop,
+                            color: const Color.fromARGB(255, 105, 240, 224),
                           ),
                           Image.asset(
                             listOfDiagOrgan[index],
@@ -1056,7 +834,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 10.heightBox,
                 Image.asset(
-                  'assets/images/Group 11081.png',
+                  'assets/images/Group 11111.png',
                   width: 100.w,
                 ),
                 20.heightBox,
@@ -1080,7 +858,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 10.heightBox,
                 Image.asset(
-                  'assets/images/Group 11103.png',
+                  'assets/images/Group 11110.png',
                   width: 100.w,
                 ).onTap(() {
                   Get.to(() => const HospitalNearbyScreen());
@@ -1099,7 +877,7 @@ class HomeView extends GetView<HomeController> {
                 10.heightBox,
                 GridView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    primary: false,
                     itemCount: listOfOrgan.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -1112,14 +890,13 @@ class HomeView extends GetView<HomeController> {
                       return Stack(
                         children: [
                           Positioned(
-                            top: 15,
+                            top: 5,
                             right: 0,
                             left: 0,
                             child: listOfDoctorTitle[index]
                                 .toString()
                                 .text
                                 .bold
-                                .color(const Color.fromARGB(255, 11, 0, 167))
                                 .size(10)
                                 .center
                                 .makeCentered(),
@@ -1133,11 +910,284 @@ class HomeView extends GetView<HomeController> {
                         Get.to(() => const HospitalNearbyScreen());
                       });
                     }),
-                20.heightBox,
                 80.heightBox,
               ],
             ),
           ),
         ));
+  }
+}
+
+class TalkToTeam extends StatelessWidget {
+  const TalkToTeam({
+    super.key,
+    required this.controller,
+  });
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.support_agent_rounded,
+                    color: Colors.white, size: 24),
+                10.widthBox,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    "Talk to our team".text.white.bold.size(10).make(),
+                    "for your search".text.white.bold.size(10).make(),
+                    5.heightBox,
+                  ],
+                ),
+                5.widthBox,
+              ],
+            )
+                .p4()
+                .box
+                .linearGradient([
+                  const Color(0xff1CB37D),
+                  const Color(0xff021753),
+                ])
+                .withRounded()
+                .make()
+                .onTap(() {
+                  Get.dialog(Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Material(
+                            child: Card(
+                              child: Center(
+                                child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      20.heightBox,
+                                      "Thank you for Choosing Clear Vikalp"
+                                          .text
+                                          .xl
+                                          .bold
+                                          .make(),
+                                      "Our team will contact on +91 1234567890"
+                                          .text
+                                          .make(),
+                                      20.heightBox,
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              minimumSize: Size(
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.6,
+                                                  40),
+                                              backgroundColor: themeColor,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              )),
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: "Okay".text.white.make()),
+                                      20.heightBox,
+                                    ]),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ));
+                }),
+          ),
+          10.widthBox,
+          Flexible(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.upload, color: Colors.white, size: 24),
+              5.widthBox,
+              Column(
+                children: [
+                  "Upload prescription".text.white.bold.center.size(10).make(),
+                  "And we assist you".text.white.size(10).bold.make(),
+                  5.heightBox,
+                ],
+              ),
+              10.widthBox,
+            ],
+          )
+                  .p4()
+                  .box
+                  .linearGradient([
+                    const Color(0xff1CB37D),
+                    const Color(0xff021753),
+                  ])
+                  .withRounded()
+                  .make()
+                  .onTap(() {
+                    controller.showUploadPrescription();
+                  })),
+        ],
+      ),
+    );
+  }
+}
+
+class MainGridFunc extends StatelessWidget {
+  const MainGridFunc({
+    super.key,
+    required this.listOfImages,
+    required this.listOfServies,
+    required this.listOfSubstitle,
+  });
+
+  final List<String> listOfImages;
+  final List<String> listOfServies;
+  final List<String> listOfSubstitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 260,
+      child: GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.9,
+            crossAxisSpacing: 5,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: index == 0
+                            ? [
+                                Colors.white,
+                                const Color.fromARGB(255, 255, 235, 235)
+                              ]
+                            : index == 1
+                                ? [
+                                    Colors.white,
+                                    const Color.fromARGB(255, 223, 243, 255)
+                                  ]
+                                : index == 2
+                                    ? [
+                                        Colors.white,
+                                        const Color.fromARGB(255, 224, 250, 255)
+                                      ]
+                                    : index == 3
+                                        ? [
+                                            Colors.white,
+                                            const Color.fromARGB(
+                                                255, 239, 255, 243)
+                                          ]
+                                        : index == 4
+                                            ? [
+                                                Colors.white,
+                                                const Color.fromARGB(
+                                                    255, 235, 231, 255)
+                                              ]
+                                            : index == 5
+                                                ? [
+                                                    Colors.white,
+                                                    const Color.fromARGB(
+                                                        255, 255, 234, 229)
+                                                  ]
+                                                : [
+                                                    Colors.white,
+                                                    const Color.fromARGB(
+                                                        255, 221, 255, 242)
+                                                  ]),
+                    // color: index == 0
+                    //     ? const Color.fromARGB(255, 255, 235, 235)
+                    //     : index == 1
+                    //         ? const Color.fromARGB(255, 223, 243, 255)
+                    //         : index == 2
+                    //             ? const Color.fromARGB(255, 224, 250, 255)
+                    //             : index == 3
+                    //                 ? const Color.fromARGB(255, 239, 255, 243)
+                    //                 : index == 4
+                    //                     ? const Color.fromARGB(
+                    //                         255, 235, 231, 255)
+                    //                     : index == 5
+                    //                         ? const Color.fromARGB(
+                    //                             255, 255, 234, 229)
+                    //                         : const Color.fromARGB(
+                    //                             255, 221, 255, 242),
+                  ),
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Image.asset(
+                                listOfImages[index],
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                          Text(listOfServies[index],
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 54, 54, 54),
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w500)),
+                          5.heightBox,
+                        ],
+                      ),
+                    ],
+                  ),
+                ).onTap(() {
+                  if (index == 0) {
+                    Get.to(() => const HospitalNearbyScreen());
+                  } else if (index == 1) {
+                    Get.to(() => const LabNearbyScreen());
+                  } else if (index == 4) {
+                    Get.to(() => const HomeHealthCareNearbyScreen());
+                  } else if (index == 2) {
+                    Get.to(() => const ImagingNearbyScreen());
+                  } else if (index == 3) {
+                    Get.to(() => const KnowYourDiet());
+                  } else if (index == 5) {
+                    Get.to(() => const SelfCheckUpScreen());
+                  }
+                }).w(MediaQuery.of(context).size.width),
+                Flexible(
+                  child: Text(listOfSubstitle[index],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 54, 54, 54),
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold)),
+                )
+              ],
+            );
+          }),
+    );
   }
 }

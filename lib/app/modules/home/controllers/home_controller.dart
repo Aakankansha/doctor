@@ -1,14 +1,21 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
+import 'package:clear_vikalp_app/app/modules/edit_profile/models/profile.dart';
+import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../../util/shared_pref.dart';
 import '../../upload_prescription/views/past_prescription_screen.dart';
 import '../../upload_prescription/views/upload_cashback_prescription_screen.dart';
 import '../../upload_prescription/views/upload_prescription_screen.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  ProfileModel currentProfileData = ProfileModel();
 
   final count = 0.obs;
   onTapRadios() {
@@ -34,88 +41,97 @@ class HomeController extends GetxController {
   }
 
   showPaymentDialogSuccess() {
+    double value = 10;
     Get.dialog(Material(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+      child: StatefulBuilder(builder: (context, set) {
+        return Center(
+          child: SingleChildScrollView(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/images/correct (2) 9.png",
-                        height: 70,
-                      ),
-                      10.heightBox,
-                      "Payment Successful".text.bold.xl2.make(),
-                      10.heightBox,
-                      "Thank you for choosing Clear Vikalp.".text.bold.make(),
-                      10.heightBox,
-                      "your ODP has been booked and you would received an confirmation for the same."
-                          .text
-                          .center
-                          .make()
-                          .paddingAll(12),
-                      10.heightBox,
-                      "Order Id: 1231231440000".text.xl2.make(),
-                      10.heightBox,
-                      VxRating(
-                        onRatingUpdate: (v) {},
-                        size: 20,
-                      ),
-                      20.heightBox,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            backgroundColor: themeColor,
-                          ),
-                          onPressed: () {
-                            Get.back();
-                            Get.back();
-                            Get.back();
-                            Get.back();
-                          },
-                          child: "OK".text.white.make(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/correct (2) 9.png",
+                          height: 70,
                         ),
-                      ),
-                      10.heightBox,
-                      "How to get cashback?"
-                          .text
-                          .white
-                          .xl
-                          .color(themeColor)
-                          .bold
-                          .makeCentered()
-                          .onTap(() {
-                        Get.back();
-                        Get.back();
-                        Get.back();
-                        Get.back();
-                        showCashback();
-                      }),
-                      10.heightBox,
-                    ],
+                        10.heightBox,
+                        "Payment Successful".text.bold.xl2.make(),
+                        10.heightBox,
+                        "Thank you for choosing Clear Vikalp.".text.bold.make(),
+                        10.heightBox,
+                        "your ODP has been booked and you would received an confirmation for the same."
+                            .text
+                            .center
+                            .make()
+                            .paddingAll(12),
+                        10.heightBox,
+                        "Order Id: 1231231440000".text.xl2.make(),
+                        10.heightBox,
+                        "Rate Us".text.bold.xl2.make(),
+                        10.heightBox,
+                        VxRating(
+                          stepInt: true,
+                          value: value,
+                          onRatingUpdate: (v) {
+                            value = double.parse(v);
+                          },
+                          size: 30,
+                        ),
+                        10.heightBox,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(double.infinity, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              backgroundColor: themeColor,
+                            ),
+                            onPressed: () {
+                              Get.back();
+                              Get.back();
+                              Get.back();
+                              Get.back();
+                            },
+                            child: "OK".text.white.make(),
+                          ),
+                        ),
+                        10.heightBox,
+                        "How to get cashback?"
+                            .text
+                            .white
+                            .xl
+                            .color(themeColor)
+                            .bold
+                            .makeCentered()
+                            .onTap(() {
+                          Get.back();
+                          Get.back();
+                          Get.back();
+                          Get.back();
+                          showCashback();
+                        }),
+                        10.heightBox,
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ]),
-        ),
-      ),
+            ]),
+          ),
+        );
+      }),
     ));
   }
 
@@ -384,8 +400,27 @@ class HomeController extends GetxController {
     ));
   }
 
+  getProfileData() async {
+    String userId = SharedMemory().getUserId();
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Auth/profile_fetch'));
+    request.fields.addAll({'users_id': userId});
+
+    http.StreamedResponse response = await request.send();
+    String res = await response.stream.bytesToString();
+    log(res);
+    if (response.statusCode == 200) {
+      var data = json.decode(res);
+      currentProfileData = ProfileModel.fromJson(data['profile_details'][0]);
+      log(currentProfileData.name ?? "nasdasd");
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
   @override
   void onReady() {
+    getProfileData();
     Future.delayed(const Duration(seconds: 3), () {
       showLookingForDialog();
     });

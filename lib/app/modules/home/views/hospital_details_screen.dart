@@ -17,10 +17,10 @@ class HospitalDetailsScreen extends StatelessWidget {
     TextEditingController dateController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Nearby Hospital',
               style: TextStyle(
                 color: Colors.black,
@@ -29,7 +29,7 @@ class HospitalDetailsScreen extends StatelessWidget {
               ),
             ),
             Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   size: 20,
@@ -130,8 +130,8 @@ class HospitalDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   color: Colors.black54,
@@ -649,8 +649,33 @@ class HospitalDetailsScreen extends StatelessWidget {
                       backgroundImage: NetworkImage(
                           "https://lucknow.apollohospitals.com/wp-content/uploads/2021/doctors/2.jpg"),
                     ),
-                    title: const Text("Dr.Raj Sharma (MBA)"),
-                    subtitle: const Text("Spine Surgeon  3 year"),
+                    title: Row(
+                      children: [
+                        const Text("Dr.Raj Sharma"),
+                        10.widthBox,
+                        const Tooltip(
+                          triggerMode: TooltipTriggerMode.tap,
+                          message:
+                              "2000+ Happy Customers 10 years of Operation",
+                          child: Icon(Icons.info),
+                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Text("MBBS "),
+                            Image.asset(
+                              "assets/images/verify6.png",
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                        const Text("Spine Surgeon  3 year"),
+                      ],
+                    ),
                     trailing: "Consult"
                         .text
                         .white
@@ -661,6 +686,336 @@ class HospitalDetailsScreen extends StatelessWidget {
                         .withRounded(value: 8)
                         .color(themeColor2)
                         .make(),
+                  ),
+                  ListTile(
+                    leading: const CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage(
+                          "https://lucknow.apollohospitals.com/wp-content/uploads/2021/doctors/2.jpg"),
+                    ),
+                    title: Row(
+                      children: [
+                        const Text("Dr.Raj Sharma"),
+                        10.widthBox,
+                        const Tooltip(
+                          triggerMode: TooltipTriggerMode.tap,
+                          message:
+                              "2000+ Happy Customers 10 years of Operation",
+                          child: Icon(Icons.info),
+                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Text("MBBS "),
+                            Image.asset(
+                              "assets/images/verify6.png",
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                        const Text("Spine Surgeon  3 year"),
+                      ],
+                    ),
+                    trailing: "Consult"
+                        .text
+                        .white
+                        .bold
+                        .make()
+                        .pSymmetric(h: 20, v: 5)
+                        .box
+                        .withRounded(value: 8)
+                        .color(themeColor2)
+                        .make()
+                        .onTap(() {
+                      Get.bottomSheet(
+                        StatefulBuilder(builder: (context, set) {
+                          return isProceed == true
+                              ? Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      "Your booking OPD Consultation for"
+                                          .text
+                                          .xl2
+                                          .bold
+                                          .make(),
+                                      "Dr. Raj Sharma".text.xl.bold.make(),
+                                      "Spine Surgeon".text.xl.make(),
+                                      "Nanavati hospital".text.xl.make(),
+                                      20.heightBox,
+                                      "Date for booking".text.xl.make(),
+                                      10.heightBox,
+                                      TextFormField(
+                                        controller: dateController,
+                                        readOnly: true,
+                                        onTap: () {
+                                          showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(1900),
+                                              lastDate: DateTime.now().add(
+                                                const Duration(days: 60),
+                                              ),
+                                              builder: (context, child) {
+                                                return Theme(
+                                                  data: Theme.of(context)
+                                                      .copyWith(
+                                                    /// use `colorScheme: ` for more
+                                                    // date picker dialogBackground color in simple case
+                                                    dialogBackgroundColor:
+                                                        Colors.white,
+                                                    timePickerTheme:
+                                                        TimePickerTheme.of(
+                                                                context)
+                                                            .copyWith(
+                                                      //background color of time picker
+                                                      backgroundColor: Colors
+                                                          .lightBlueAccent,
+                                                    ),
+                                                  ),
+                                                  child: child!,
+                                                );
+                                              }).then((value) {
+                                            set(() {
+                                              dateController.text =
+                                                  " ${value!.day}/${value.month}/${value.year}";
+                                            });
+                                          });
+                                        },
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          disabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 10, vertical: 5),
+                                          hintText: "Select Date",
+                                        ),
+                                      ),
+                                      20.heightBox,
+                                      "Time for booking".text.xl.make(),
+                                      20.heightBox,
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: "Morning"
+                                                .text
+                                                .xl
+                                                .makeCentered()
+                                                .p12()
+                                                .box
+                                                .white
+                                                .withRounded(value: 6)
+                                                .make(),
+                                          ),
+                                          20.widthBox,
+                                          Expanded(
+                                            child: "Afternoon"
+                                                .text
+                                                .xl
+                                                .makeCentered()
+                                                .p12()
+                                                .box
+                                                .white
+                                                .withRounded(value: 6)
+                                                .make(),
+                                          ),
+                                        ],
+                                      ),
+                                      20.heightBox,
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: "Evening"
+                                                .text
+                                                .xl
+                                                .makeCentered()
+                                                .p12()
+                                                .box
+                                                .white
+                                                .withRounded(value: 6)
+                                                .make(),
+                                          ),
+                                          20.widthBox,
+                                          Expanded(
+                                            child: "Anytime"
+                                                .text
+                                                .xl
+                                                .makeCentered()
+                                                .p12()
+                                                .box
+                                                .white
+                                                .withRounded(value: 6)
+                                                .make(),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: themeColor,
+                                            minimumSize:
+                                                const Size(double.infinity, 50),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            set(() {
+                                              isProceed = false;
+                                            });
+                                            Get.back();
+                                            Get.to(() =>
+                                                const ReviewOrderScreen());
+                                          },
+                                          child: "Proceed".text.white.make()),
+                                      10.heightBox,
+                                    ],
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      "Booking for ?".text.xl2.bold.make(),
+                                      10.heightBox,
+                                      Wrap(
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              const CircleAvatar(
+                                                radius: 26,
+                                                backgroundImage: NetworkImage(
+                                                    "https://t4.ftcdn.net/jpg/01/82/22/03/360_F_182220324_QiTjkB3IPwx1zfNltFA4ww3dKQyYvVWB.jpg"),
+                                              ),
+                                              5.heightBox,
+                                              "(Self)".text.gray500.make(),
+                                              "Richa Tiwari".text.make(),
+                                            ],
+                                          )
+                                              .p8()
+                                              .box
+                                              .withRounded()
+                                              .color(!isSelf
+                                                  ? Colors.transparent
+                                                  : themeColor.withOpacity(0.1))
+                                              .make()
+                                              .onTap(() {
+                                            set(() {
+                                              isSelf = true;
+                                            });
+                                          }),
+                                          20.widthBox,
+                                          Column(
+                                            children: [
+                                              const CircleAvatar(
+                                                radius: 26,
+                                                backgroundImage: NetworkImage(
+                                                    "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2021/03/08/962158-nirmala-sitharaman-5.jpg"),
+                                              ),
+                                              5.heightBox,
+                                              "(Mother)".text.gray500.make(),
+                                              "Anaya Tiwari".text.make(),
+                                            ],
+                                          )
+                                              .p8()
+                                              .box
+                                              .withRounded()
+                                              .color(isSelf
+                                                  ? Colors.transparent
+                                                  : themeColor.withOpacity(0.1))
+                                              .make()
+                                              .onTap(() {
+                                            set(() {
+                                              isSelf = false;
+                                            });
+                                          }),
+                                          20.widthBox,
+                                          const CircleAvatar(
+                                            radius: 26,
+                                            backgroundColor: themeColor,
+                                            child: Icon(
+                                              Icons.add,
+                                              color: Colors.white,
+                                              size: 30,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: themeColor,
+                                            minimumSize:
+                                                const Size(double.infinity, 50),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            set(() {
+                                              isProceed = true;
+                                            });
+                                          },
+                                          child: "Proceed".text.white.make()),
+                                      10.heightBox,
+                                    ],
+                                  ),
+                                );
+                        }),
+                        backgroundColor: Colors.white,
+                      );
+                    }),
                   ),
                   ListTile(
                     onTap: () {
@@ -954,313 +1309,33 @@ class HospitalDetailsScreen extends StatelessWidget {
                       backgroundImage: NetworkImage(
                           "https://lucknow.apollohospitals.com/wp-content/uploads/2021/doctors/2.jpg"),
                     ),
-                    title: const Text("Dr.Raj Sharma (MBA)"),
-                    subtitle: const Text("Brain Specialist  3 year"),
-                    trailing: "Consult"
-                        .text
-                        .white
-                        .bold
-                        .make()
-                        .pSymmetric(h: 20, v: 5)
-                        .box
-                        .withRounded(value: 8)
-                        .color(themeColor2)
-                        .make(),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Get.bottomSheet(
-                        StatefulBuilder(builder: (context, set) {
-                          return isProceed == true
-                              ? Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      "Your booking OPD Consultation for"
-                                          .text
-                                          .xl2
-                                          .bold
-                                          .make(),
-                                      "Dr. Raj Sharma".text.xl.bold.make(),
-                                      "Spine Surgeon".text.xl.make(),
-                                      "Nanavati hospital".text.xl.make(),
-                                      20.heightBox,
-                                      "Date for booking".text.xl.make(),
-                                      10.heightBox,
-                                      TextFormField(
-                                        controller: dateController,
-                                        readOnly: true,
-                                        onTap: () {
-                                          showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime(1900),
-                                              lastDate: DateTime.now().add(
-                                                const Duration(days: 60),
-                                              ),
-                                              builder: (context, child) {
-                                                return Theme(
-                                                  data: Theme.of(context)
-                                                      .copyWith(
-                                                    /// use `colorScheme: ` for more
-                                                    // date picker dialogBackground color in simple case
-                                                    dialogBackgroundColor:
-                                                        Colors.white,
-                                                    timePickerTheme:
-                                                        TimePickerTheme.of(
-                                                                context)
-                                                            .copyWith(
-                                                      //background color of time picker
-                                                      backgroundColor: Colors
-                                                          .lightBlueAccent,
-                                                    ),
-                                                  ),
-                                                  child: child!,
-                                                );
-                                              }).then((value) {
-                                            set(() {
-                                              dateController.text =
-                                                  " ${value!.day}/${value.month}/${value.year}";
-                                            });
-                                          });
-                                        },
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          disabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 10, vertical: 5),
-                                          hintText: "Select Date",
-                                        ),
-                                      ),
-                                      20.heightBox,
-                                      "Time for booking".text.xl.make(),
-                                      20.heightBox,
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: "Morning"
-                                                .text
-                                                .xl
-                                                .makeCentered()
-                                                .p12()
-                                                .box
-                                                .white
-                                                .withRounded(value: 6)
-                                                .make(),
-                                          ),
-                                          20.widthBox,
-                                          Expanded(
-                                            child: "Afternoon"
-                                                .text
-                                                .xl
-                                                .makeCentered()
-                                                .p12()
-                                                .box
-                                                .white
-                                                .withRounded(value: 6)
-                                                .make(),
-                                          ),
-                                        ],
-                                      ),
-                                      20.heightBox,
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: "Evening"
-                                                .text
-                                                .xl
-                                                .makeCentered()
-                                                .p12()
-                                                .box
-                                                .white
-                                                .withRounded(value: 6)
-                                                .make(),
-                                          ),
-                                          20.widthBox,
-                                          Expanded(
-                                            child: "Anytime"
-                                                .text
-                                                .xl
-                                                .makeCentered()
-                                                .p12()
-                                                .box
-                                                .white
-                                                .withRounded(value: 6)
-                                                .make(),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: themeColor,
-                                            minimumSize:
-                                                const Size(double.infinity, 50),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            set(() {
-                                              isProceed = false;
-                                            });
-                                            Get.back();
-                                            Get.to(() =>
-                                                const ReviewOrderScreen());
-                                          },
-                                          child: "Proceed".text.white.make()),
-                                      10.heightBox,
-                                    ],
-                                  ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      "Booking for ?".text.xl2.bold.make(),
-                                      10.heightBox,
-                                      Wrap(
-                                        alignment: WrapAlignment.start,
-                                        crossAxisAlignment:
-                                            WrapCrossAlignment.center,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              const CircleAvatar(
-                                                radius: 26,
-                                                backgroundImage: NetworkImage(
-                                                    "https://t4.ftcdn.net/jpg/01/82/22/03/360_F_182220324_QiTjkB3IPwx1zfNltFA4ww3dKQyYvVWB.jpg"),
-                                              ),
-                                              5.heightBox,
-                                              "(Self)".text.gray500.make(),
-                                              "Richa Tiwari".text.make(),
-                                            ],
-                                          )
-                                              .p8()
-                                              .box
-                                              .withRounded()
-                                              .color(!isSelf
-                                                  ? Colors.transparent
-                                                  : themeColor.withOpacity(0.1))
-                                              .make()
-                                              .onTap(() {
-                                            set(() {
-                                              isSelf = true;
-                                            });
-                                          }),
-                                          20.widthBox,
-                                          Column(
-                                            children: [
-                                              const CircleAvatar(
-                                                radius: 26,
-                                                backgroundImage: NetworkImage(
-                                                    "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2021/03/08/962158-nirmala-sitharaman-5.jpg"),
-                                              ),
-                                              5.heightBox,
-                                              "(Mother)".text.gray500.make(),
-                                              "Anaya Tiwari".text.make(),
-                                            ],
-                                          )
-                                              .p8()
-                                              .box
-                                              .withRounded()
-                                              .color(isSelf
-                                                  ? Colors.transparent
-                                                  : themeColor.withOpacity(0.1))
-                                              .make()
-                                              .onTap(() {
-                                            set(() {
-                                              isSelf = false;
-                                            });
-                                          }),
-                                          20.widthBox,
-                                          const CircleAvatar(
-                                            radius: 26,
-                                            backgroundColor: themeColor,
-                                            child: Icon(
-                                              Icons.add,
-                                              color: Colors.white,
-                                              size: 30,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: themeColor,
-                                            minimumSize:
-                                                const Size(double.infinity, 50),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            set(() {
-                                              isProceed = true;
-                                            });
-                                          },
-                                          child: "Proceed".text.white.make()),
-                                      10.heightBox,
-                                    ],
-                                  ),
-                                );
-                        }),
-                        backgroundColor: Colors.white,
-                      );
-                    },
-                    leading: const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: NetworkImage(
-                          "https://lucknow.apollohospitals.com/wp-content/uploads/2021/doctors/2.jpg"),
+                    title: Row(
+                      children: [
+                        const Text("Dr.Raj Sharma"),
+                        10.widthBox,
+                        const Tooltip(
+                          triggerMode: TooltipTriggerMode.tap,
+                          message:
+                              "2000+ Happy Customers 10 years of Operation",
+                          child: Icon(Icons.info),
+                        ),
+                      ],
                     ),
-                    title: const Text("Dr.Raj Sharma (MBA)"),
-                    subtitle: const Text("Spine Surgeon 3 year"),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Text("MBBS "),
+                            Image.asset(
+                              "assets/images/verify6.png",
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                        const Text("Spine Surgeon  3 year"),
+                      ],
+                    ),
                     trailing: "Consult"
                         .text
                         .white

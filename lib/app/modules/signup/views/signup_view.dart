@@ -1,5 +1,5 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
-import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
+import 'package:clear_vikalp_app/app/modules/login/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -32,7 +32,7 @@ class _SignupViewState extends State<SignupView> {
     request.fields.addAll({
       'id': c.userId,
       'name': name,
-      'dob': birthday,
+      'dob': birthday.characters.take(10).toString(),
       'gender': gender,
       'insured': isInsured ? 'Yes' : 'No',
       'email': ''
@@ -44,7 +44,7 @@ class _SignupViewState extends State<SignupView> {
       setState(() {
         isLoading = false;
       });
-      Get.offAll(() => const MainView());
+      Get.offAll(() => const LoginView());
       print(await response.stream.bytesToString());
     } else {
       setState(() {
@@ -139,7 +139,7 @@ class _SignupViewState extends State<SignupView> {
                               }).then((value) {
                             setState(() {
                               birthday =
-                                  " ${value!.day}/${value.month}/${value.year}  (${DateTime.now().difference(value).inDays ~/ 365} years)";
+                                  " ${value!.day}-${value.month}-${value.year}  (${DateTime.now().difference(value).inDays ~/ 365} years)";
                             });
                           });
                         },

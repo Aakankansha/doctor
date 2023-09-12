@@ -164,7 +164,7 @@ class _MainViewState extends State<MainView> {
         ),
       ),
       body: FutureBuilder(
-        //   future: loadingData(),
+        future: Future.delayed(const Duration(seconds: 0)),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

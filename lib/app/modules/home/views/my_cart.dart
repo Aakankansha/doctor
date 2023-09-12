@@ -13,10 +13,10 @@ class MyCartScreen extends StatelessWidget {
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
           backgroundColor: const Color(0xffF5F5F5),
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'My Cart',
                 style: TextStyle(
                   color: Colors.black,
@@ -25,7 +25,7 @@ class MyCartScreen extends StatelessWidget {
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.location_on_outlined,
                     size: 20,
@@ -78,9 +78,9 @@ class MyCartScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         SizedBox(height: 10),
                         Text(
                           'Dr. Abhay Kumar',
@@ -138,39 +138,20 @@ class MyCartScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            "Proceed"
-                                .text
-                                .white
-                                .make()
-                                .pSymmetric(
-                                  h: 15,
-                                  v: 5,
-                                )
-                                .box
-                                .color(themeColor)
-                                .withRounded()
-                                .make()
-                                .objectBottomRight()
-                                .pOnly(right: 10),
-                            "Remove"
-                                .text
-                                .white
-                                .make()
-                                .pSymmetric(
-                                  h: 15,
-                                  v: 5,
-                                )
-                                .box
-                                .red500
-                                .withRounded()
-                                .make()
-                                .objectBottomRight()
-                                .pOnly(right: 10),
-                          ],
-                        ),
+                        "Remove"
+                            .text
+                            .white
+                            .make()
+                            .pSymmetric(
+                              h: 15,
+                              v: 5,
+                            )
+                            .box
+                            .red500
+                            .withRounded()
+                            .make()
+                            .objectBottomRight()
+                            .pOnly(right: 10),
                       ],
                     ),
                     const SizedBox(width: 10),
@@ -199,9 +180,9 @@ class MyCartScreen extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 10),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   SizedBox(height: 10),
                   Text(
                     'Total Amount',

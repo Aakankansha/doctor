@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../main/views/main_view.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -14,6 +15,7 @@ class LoginView extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    LoginController c = Get.put(LoginController());
     final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
     final mobileNumberController = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -50,12 +52,12 @@ class LoginView extends GetView<LoginController> {
                   decoration: InputDecoration(
                     fillColor: const Color.fromARGB(255, 240, 240, 240),
                     filled: true,
-                    prefixIcon: SizedBox(
+                    prefixIcon: const SizedBox(
                       width: 80,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
+                        padding: EdgeInsets.only(left: 5.0),
                         child: Row(
-                          children: const [
+                          children: [
                             Text("IN +91"),
                             Icon(Icons.keyboard_arrow_down_rounded),
                           ],
@@ -109,35 +111,41 @@ class LoginView extends GetView<LoginController> {
                         )
                       : ButtonPrimary(
                           onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              isLoading.value = true;
-                              try {
-                                // Get.toNamed(Routes.OTPVERIFY,
-                                //     arguments: Routes.MAIN);
-                                await controller.login(
-                                  mobileNumber: mobileNumberController.text,
-                                );
-                              } finally {
-                                isLoading.value = false;
-                              }
-                            }
+                            Get.to(() => const MainView());
+                            // if (formKey.currentState!.validate()) {
+                            //   isLoading.value = true;
+                            //   try {
+                            //     // Get.toNamed(Routes.OTPVERIFY,
+                            //     //     arguments: Routes.MAIN);
+                            //     await controller.login(
+                            //       mobileNumber: mobileNumberController.text,
+                            //     );
+                            //   } finally {
+                            //     isLoading.value = false;
+                            //   }
+                            // }
                           },
                           title: "Login",
                         );
                 },
               ),
               10.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  "By registering you agree to".text.make(),
-                  "Terms & Condition"
-                      .text
-                      .color(themeColor)
-                      .make()
-                      .onInkTap(() {
-                    // Get.toNamed(Routes.SIGNUP);
-                  })
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      "By registering you agree to".text.make(),
+                      "Terms & Condition"
+                          .text
+                          .color(themeColor)
+                          .make()
+                          .onInkTap(() {
+                        // Get.toNamed(Routes.SIGNUP);
+                      }),
+                    ],
+                  ),
+                  "of the Company".text.make(),
                 ],
               ),
             ],

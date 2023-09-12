@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/health_checkup_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,10 +22,10 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
           backgroundColor: const Color(0xffF5F5F5),
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Nearby Lab',
                 style: TextStyle(
                   color: Colors.black,
@@ -33,7 +34,7 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.location_on_outlined,
                     size: 20,
@@ -108,10 +109,30 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
                   .white
                   .make(),
             ),
+            10.heightBox,
+            CarouselSlider.builder(
+              options: CarouselOptions(
+                height: 120,
+                viewportFraction: 1,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                scrollDirection: Axis.horizontal,
+              ),
+              itemCount: 4,
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) =>
+                      Image.asset('assets/images/offers.png'),
+            ).pSymmetric(
+              h: 20,
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Image.asset(
-                  "assets/images/Group 11089 (3).png",
+                  "assets/images/Group 11109 (1).png",
                   fit: BoxFit.cover,
                 ).onTap(() {
                   if (widget.isHomeCheckup) {

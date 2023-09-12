@@ -15,10 +15,10 @@ class LabDetailsScreen extends StatelessWidget {
     TextEditingController dateController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Nearby Lab',
               style: TextStyle(
                 color: Colors.black,
@@ -27,7 +27,7 @@ class LabDetailsScreen extends StatelessWidget {
               ),
             ),
             Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   size: 20,
@@ -191,8 +191,8 @@ class LabDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   color: Colors.black54,
@@ -354,8 +354,8 @@ class LabDetailsScreen extends StatelessWidget {
                           ),
                           15.widthBox,
                           index == 1
-                              ? Row(
-                                  children: const [
+                              ? const Row(
+                                  children: [
                                     Icon(
                                       Icons.add_circle_outline,
                                     ),
