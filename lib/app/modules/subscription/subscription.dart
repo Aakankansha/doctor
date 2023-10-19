@@ -107,7 +107,7 @@ class GetPremiumScreen extends StatelessWidget {
                             child: Card(
                               color: c.currentSelectedSubscription.value.sId ==
                                       c.subscriptionList[index].sId
-                                  ? Colors.green.shade300
+                                  ? Colors.green.shade500
                                   : Colors.white,
                               elevation:
                                   c.currentSelectedSubscription.value.sId ==
@@ -266,7 +266,7 @@ class GetPremiumScreen extends StatelessWidget {
                               : c.currentSelectedSubscription.value
                                           .requestStatus ==
                                       "approved"
-                                  ? Colors.green.shade400
+                                  ? Colors.green.shade500
                                   : Colors.red.shade400,
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -295,14 +295,15 @@ class GetPremiumScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        elevation: 0,
                         minimumSize: const Size(double.infinity, 55),
-                        backgroundColor: Colors.green.shade400,
+                        backgroundColor: Colors.green.shade500,
                       ),
                       onPressed: () {
                         HapticFeedback.lightImpact();
                       },
                       child: const Text(
-                        'Subscribe',
+                        'Coming Soon',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,

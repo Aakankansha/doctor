@@ -6,7 +6,6 @@ import 'package:clear_vikalp_app/app/modules/home/views/offer_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/privacy_policy.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/self_checkup_screen.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/subscribtion.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
 import 'package:clear_vikalp_app/app/modules/subscription/subscription.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class HomeView extends GetView<HomeController> {
   @override
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
-  var listOfServies = [
+  var listOfServices = [
     "Hospital\nNearby you",
     "Lab\nNearby you",
     "Imaging Center\nNearby you",
@@ -255,7 +254,7 @@ class HomeView extends GetView<HomeController> {
                         .withRounded(value: 4)
                         .make()
                         .onTap(() {
-                      Get.to(() => const SubscriptionScreen());
+                      Get.to(() => const GetPremiumScreen());
                     }),
                     10.heightBox,
                     Row(
@@ -566,7 +565,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                5.heightBox,
+                10.heightBox,
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -617,10 +616,10 @@ class HomeView extends GetView<HomeController> {
                     .height(50)
                     .color(const Color(0xffF5F5F5))
                     .make(),
-                8.heightBox,
+                25.heightBox,
                 MainGridFunc(
                     listOfImages: listOfImages,
-                    listOfServies: listOfServies,
+                    listOfServies: listOfServices,
                     listOfSubstitle: listOfSubstitle),
                 TalkToTeam(controller: controller),
                 CarouselSlider.builder(
@@ -667,14 +666,14 @@ class HomeView extends GetView<HomeController> {
                       Positioned(
                         bottom: 10,
                         right: 10,
-                        child: "Subscribe"
+                        child: "  Coming Soon  "
                             .text
                             .color(themeColor)
                             .bold
                             .size(12)
                             .makeCentered()
                             .box
-                            .width(80)
+                            .width(90)
                             .height(25)
                             .color(Colors.white)
                             .withRounded()
@@ -760,9 +759,12 @@ class HomeView extends GetView<HomeController> {
                       });
                     }),
                 10.heightBox,
-                Image.asset(
-                  'assets/images/Group 11099.png',
-                )
+                ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/images/bg10.png',
+                          fit: BoxFit.cover,
+                        ))
                     .pSymmetric(
                   h: 8,
                   v: 10,

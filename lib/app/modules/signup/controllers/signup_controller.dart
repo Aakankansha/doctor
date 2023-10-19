@@ -1,8 +1,7 @@
 import 'dart:developer';
-import 'package:http/http.dart' as http;
 
 import 'package:get/get.dart';
-import 'package:clear_vikalp_app/app/modules/study_preference/views/study_preference_view.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../../util/constant.dart';
 
@@ -32,11 +31,10 @@ class SignupController extends GetxController {
         Uri.parse(baseUrl + pageUrl),
         body: body,
       );
+      log(response.body);
       if (response.statusCode == 200) {
-        log(response.body);
         Future.delayed(Duration.zero);
         Get.snackbar("Done", "Registered successfully");
-        await Get.to(() => const StudyPreferenceView());
       } else {
         log(response.body);
         Get.snackbar("Error", response.body);

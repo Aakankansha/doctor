@@ -28,6 +28,7 @@ class HealthRecord extends GetView<HealthRecordController> {
             children: [
               Expanded(
                 child: GridView.count(
+                  primary: false,
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
@@ -81,14 +82,14 @@ class HealthRecord extends GetView<HealthRecordController> {
                   Positioned(
                     bottom: 10,
                     right: 10,
-                    child: "Subscribe"
+                    child: "  Coming Soon  "
                         .text
                         .color(themeColor)
                         .bold
                         .size(12)
                         .makeCentered()
                         .box
-                        .width(80)
+                        .width(90)
                         .height(25)
                         .color(Colors.white)
                         .withRounded()

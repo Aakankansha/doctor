@@ -117,8 +117,8 @@ class _LabDescriptionScreenState extends State<LabDescriptionScreen> {
                     ),
                   ],
                 ),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     Icon(
                       Icons.location_on_outlined,
                       color: Colors.black54,
@@ -161,10 +161,10 @@ class _LabDescriptionScreenState extends State<LabDescriptionScreen> {
                 20.heightBox,
                 Row(
                   children: [
-                    Row(
+                    const Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.healing_rounded,
                           color: Colors.white,
@@ -195,10 +195,10 @@ class _LabDescriptionScreenState extends State<LabDescriptionScreen> {
                       });
                     }).expand(),
                     10.widthBox,
-                    Row(
+                    const Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.info_outline,
                           color: Colors.white,

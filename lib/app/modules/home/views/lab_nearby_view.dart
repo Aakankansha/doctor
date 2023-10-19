@@ -16,6 +16,20 @@ class LabNearbyScreen extends StatefulWidget {
 }
 
 class _LabNearbyScreenState extends State<LabNearbyScreen> {
+  List listOfData = [
+    {
+      "image": "delivery-man.png",
+      "name": "Free Home sample collection",
+    },
+    {
+      "image": "accuracy.png",
+      "name": "Accurate Reporting..",
+    },
+    {
+      "image": "clock.png",
+      "name": "Timely Reporting..",
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +126,51 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
             10.heightBox,
             CarouselSlider.builder(
               options: CarouselOptions(
+                height: 50,
+                viewportFraction: 1,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                scrollDirection: Axis.horizontal,
+              ),
+              itemCount: 3,
+              itemBuilder:
+                  (BuildContext context, int index, int pageViewIndex) => Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/${listOfData[index]["image"]}",
+                        height: 40,
+                      ),
+                      10.widthBox,
+                      Text(listOfData[index]["name"]).text.bold.make(),
+                    ],
+                  ),
+                ],
+              ).pSymmetric(h: 20),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Image.asset(
+                  "assets/images/Group 11109 (1).png",
+                  fit: BoxFit.cover,
+                ).onTap(() {
+                  if (widget.isHomeCheckup) {
+                    Get.to(() => const HealthCheckupDetails());
+                  } else {
+                    Get.to(() => const LabDetailsScreen());
+                  }
+                }),
+              ),
+            ),
+            CarouselSlider.builder(
+              options: CarouselOptions(
                 height: 120,
                 viewportFraction: 1,
                 autoPlay: true,
@@ -128,20 +187,6 @@ class _LabNearbyScreenState extends State<LabNearbyScreen> {
                       Image.asset('assets/images/offers.png'),
             ).pSymmetric(
               h: 20,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Image.asset(
-                  "assets/images/Group 11109 (1).png",
-                  fit: BoxFit.cover,
-                ).onTap(() {
-                  if (widget.isHomeCheckup) {
-                    Get.to(() => const HealthCheckupDetails());
-                  } else {
-                    Get.to(() => const LabDetailsScreen());
-                  }
-                }),
-              ),
             ),
           ],
         ));

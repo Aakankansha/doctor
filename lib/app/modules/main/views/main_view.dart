@@ -204,7 +204,7 @@ class _MainViewState extends State<MainView> {
                 controller.currentIndex.value = index;
               },
               navBarStyle: NavBarStyle
-                  .style2, // Choose the nav bar style with this property.
+                  .style6, // Choose the nav bar style with this property.
             );
           }
         },
