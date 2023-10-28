@@ -7,8 +7,10 @@ import 'package:clear_vikalp_app/app/modules/home/views/privacy_policy.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/self_checkup_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
+import 'package:clear_vikalp_app/app/modules/login/views/login_view.dart';
 import 'package:clear_vikalp_app/app/modules/subscription/subscription.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
@@ -138,307 +140,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
         backgroundColor: Colors.white,
         key: _scaffoldkey,
-        drawer: Drawer(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    5.heightBox,
-                    Row(
-                      children: [
-                        StatusView(
-                          radius: 26,
-                          spacing: 15,
-                          strokeWidth: 2,
-                          indexOfSeenStatus: 1,
-                          numberOfStatus: 4,
-                          padding: 4,
-                          centerImageUrl:
-                              "https://images.contentstack.io/v3/assets/blt47c9d788546e10c2/blt3d0e316d0ae0c29f/633ecff007fc3813471f0108/AW_image39_1200x600.jpg?format=webply&quality=50",
-                          seenColor: themeColor,
-                          unSeenColor: Colors.black12,
-                        ),
-                        10.widthBox,
-                        "Raj Kumar"
-                            .text
-                            .bold
-                            .xl
-                            .color(const Color(0xff0D0940))
-                            .make(),
-                        const Spacer(),
-                        const Text(
-                          '200',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: themeColor,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.wallet,
-                          size: 30,
-                          color: themeColor,
-                        ),
-                      ],
-                    ),
-                    20.heightBox,
-                    Row(
-                      children: [
-                        "My Orders".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => MyOrderScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Earned Cashback".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const EarnedCashbackScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Subscription".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const GetPremiumScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Transaction History".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const TransactionScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Refund Status".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const RefundStatusScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Comparative Analysis".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const ComparativeAnalysis());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Offers".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const OfferScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Privacy Policy".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const PrivacyPolicy());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "About Us".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const AboutScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Help Center".text.bold.make(),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                        ),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make()
-                        .onTap(() {
-                      Get.to(() => const HelpCenterScreen());
-                    }),
-                    10.heightBox,
-                    Row(
-                      children: [
-                        "Logout".text.red500.bold.make(),
-                        const Spacer(),
-                      ],
-                    )
-                        .p8()
-                        .box
-                        .white
-                        .border(
-                          color: Colors.black12,
-                          width: 1,
-                        )
-                        .withRounded(value: 4)
-                        .make(),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        drawer: MyDrawer(controller: controller),
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         floatingActionButton: Row(
           children: [
@@ -541,18 +243,23 @@ class HomeView extends GetView<HomeController> {
                 "Hello!".text.make(),
                 Row(
                   children: [
-                    (homeController.currentProfileData.name ?? "Raj")
-                        .text
-                        .bold
-                        .xl
-                        .color(const Color(0xff0D0940))
-                        .make(),
+                    Obx(
+                      () => (homeController.currentProfileData.value.name ??
+                              "Raj")
+                          .text
+                          .bold
+                          .xl
+                          .color(const Color(0xff0D0940))
+                          .make(),
+                    ),
                     const Spacer(),
-                    const Text(
-                      '200',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: themeColor,
+                    Obx(
+                      () => Text(
+                        controller.walletBal.value.toString(),
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          color: themeColor,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -920,6 +627,327 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({
+    super.key,
+    required this.controller,
+  });
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                5.heightBox,
+                Row(
+                  children: [
+                    StatusView(
+                      radius: 26,
+                      spacing: 15,
+                      strokeWidth: 2,
+                      indexOfSeenStatus: 1,
+                      numberOfStatus: 4,
+                      padding: 4,
+                      centerImageUrl:
+                          "https://images.contentstack.io/v3/assets/blt47c9d788546e10c2/blt3d0e316d0ae0c29f/633ecff007fc3813471f0108/AW_image39_1200x600.jpg?format=webply&quality=50",
+                      seenColor: themeColor,
+                      unSeenColor: Colors.black12,
+                    ),
+                    10.widthBox,
+                    Obx(
+                      () => (controller.currentProfileData.value.name ?? "Raj")
+                          .text
+                          .bold
+                          .xl
+                          .color(const Color(0xff0D0940))
+                          .make(),
+                    ),
+                    const Spacer(),
+                    Obx(
+                      () => Text(
+                        controller.walletBal.value.toString(),
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          color: themeColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Icon(
+                      Icons.wallet,
+                      size: 30,
+                      color: themeColor,
+                    ),
+                  ],
+                ),
+                20.heightBox,
+                Row(
+                  children: [
+                    "My Orders".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => MyOrderScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Earned Cashback".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const EarnedCashbackScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Subscription".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const GetPremiumScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Transaction History".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const TransactionScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Refund Status".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const RefundStatusScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Comparative Analysis".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const ComparativeAnalysis());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Offers".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const OfferScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Privacy Policy".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const PrivacyPolicy());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "About Us".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const AboutScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Help Center".text.bold.make(),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    ),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onTap(() {
+                  Get.to(() => const HelpCenterScreen());
+                }),
+                10.heightBox,
+                Row(
+                  children: [
+                    "Logout".text.red500.bold.make(),
+                    const Spacer(),
+                  ],
+                )
+                    .p8()
+                    .box
+                    .white
+                    .border(
+                      color: Colors.black12,
+                      width: 1,
+                    )
+                    .withRounded(value: 4)
+                    .make()
+                    .onFeedBackTap(() {
+                  Get.offAll(() => const LoginView());
+                }),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class TalkToTeam extends StatelessWidget {
   const TalkToTeam({
     super.key,
@@ -962,54 +990,9 @@ class TalkToTeam extends StatelessWidget {
                 .withRounded()
                 .make()
                 .onTap(() {
-                  Get.dialog(Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Material(
-                            child: Card(
-                              child: Center(
-                                child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      20.heightBox,
-                                      "Thank you for Choosing Clear Vikalp"
-                                          .text
-                                          .xl
-                                          .bold
-                                          .make(),
-                                      "Our team will contact on +91 1234567890"
-                                          .text
-                                          .make(),
-                                      20.heightBox,
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              minimumSize: Size(
-                                                  MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.6,
-                                                  40),
-                                              backgroundColor: themeColor,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              )),
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: "Okay".text.white.make()),
-                                      20.heightBox,
-                                    ]),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ));
+                  HapticFeedback.mediumImpact();
+                  HomeController homeController = Get.find();
+                  homeController.getFeedbackTeamHome();
                 }),
           ),
           10.widthBox,

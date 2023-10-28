@@ -9,8 +9,8 @@ class SharedMemory {
 
   String getUserId() {
     if (box.read("user_id") == null) {
-      return "";
+      return "1";
     }
-    return box.read("user_id");
+    return box.read("user_id") ?? "1";
   }
 }

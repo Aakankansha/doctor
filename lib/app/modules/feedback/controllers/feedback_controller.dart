@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
 
 import '../../../../util/constant.dart';
 
@@ -11,27 +11,25 @@ class FeedbackController extends GetxController {
     String? feedback,
   }) async {
     try {
-      log("Loading...");
-      const String pageUrl = "api/support/feedback";
-      final header = {"Authorization": "Bearer $token"};
-      final body = {
-        "feedback": "$feedback",
-      };
-      final response = await http.post(
-        Uri.parse(baseUrl + pageUrl),
-        headers: header,
-        body: body,
-      );
+      var request = http.MultipartRequest(
+          'POST', Uri.parse('${baseUrl}Auth/feedback_save'));
+      request.fields.addAll({
+        'user_id': '1',
+        'feedback': feedback ?? "feedback",
+      });
+
+      http.StreamedResponse response = await request.send();
+      print(await response.stream.bytesToString());
       if (response.statusCode == 200) {
-        log(response.body);
+        Get.back();
         Get.snackbar(
-          "Success",
           "Feedback submitted",
+          "Thank you for your feedback",
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
         );
-        Get.off(() => const MainView());
       } else {
-        Get.snackbar("Error", response.body);
-        log(response.body);
+        print(response.reasonPhrase);
       }
     } on Exception catch (e) {
       log("$e");

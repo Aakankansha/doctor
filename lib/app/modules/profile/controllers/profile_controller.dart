@@ -1,23 +1,38 @@
+import 'dart:convert';
+
+import 'package:clear_vikalp_app/app/modules/profile/model/family_member_model.dart';
+import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
+  var familyListModel = <FamilyModel>[].obs;
+  Future<List<dynamic>> getFamilyList() async {
+    List familyList = [];
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Home_health_care/user_member_fetch'));
+    request.fields.addAll({'user_id': '10'});
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+    http.StreamedResponse response = await request.send();
+    var body = await response.stream.bytesToString();
+    print(body);
+    if (response.statusCode == 200) {
+      familyList = jsonDecode(body)['usermembers_list'] as List<dynamic>;
+
+      familyListModel.value =
+          familyList.map((e) => FamilyModel.fromJson(e)).toList();
+      return familyList;
+    } else {
+      print(response.reasonPhrase);
+    }
+    return familyList;
   }
 
   @override
   void onReady() {
+    // TODO: implement onReady
     super.onReady();
+    getFamilyList();
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

@@ -28,113 +28,115 @@ class OtpverifyView extends GetView<OtpverifyController> {
       appBar: buildAppBar("Verification"),
       body: Form(
         key: formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            "A 4 digit code sent to your number".text.gray500.make(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                loginController.mobile.text.gray500.make(),
-                10.widthBox,
-                InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: "edit".text.color(themeColor).make(),
-                )
-              ],
-            ),
-            Center(
-              child: Image.asset(
-                "assets/images/otp.png",
-                height: 25.h,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              "A 4 digit code sent to your number".text.gray500.make(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  loginController.mobile.text.gray500.make(),
+                  10.widthBox,
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: "edit".text.color(themeColor).make(),
+                  )
+                ],
               ),
-            ),
-            20.heightBox,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: PinCodeTextField(
-                appContext: context,
-                length: 4,
-                obscureText: false,
-                keyboardType: TextInputType.number,
-                animationType: AnimationType.fade,
-                onAutoFillDisposeAction: AutofillContextAction.commit,
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.circle,
-                  selectedColor: Colors.red,
-                  inactiveColor: Colors.grey,
-                  fieldWidth: 7.h,
-                  fieldHeight: 10.h,
-                  borderRadius: BorderRadius.circular(10),
-                  activeFillColor: Colors.white,
+              Center(
+                child: Image.asset(
+                  "assets/images/otp.png",
+                  height: 25.h,
                 ),
-                controller: otpPinController,
-                onCompleted: (v) {
-                  log("Completed");
-                  FocusManager.instance.primaryFocus?.unfocus();
-                },
-                onChanged: (value) {
-                  log(value);
-                },
-                beforeTextPaste: (text) {
-                  log("Allowing to paste $text");
-                  return true;
-                },
               ),
-            ),
-            10.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                "Didn't receive the code?".text.black.make(),
-                10.widthBox,
-                OtpTimerButton(
-                  buttonType: ButtonType.text_button,
-                  controller: c,
-                  onPressed: () {
-                    c.startTimer();
-                    controller.resendOtp(loginController.mobile);
+              20.heightBox,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: PinCodeTextField(
+                  appContext: context,
+                  length: 4,
+                  obscureText: false,
+                  keyboardType: TextInputType.number,
+                  animationType: AnimationType.fade,
+                  onAutoFillDisposeAction: AutofillContextAction.commit,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.circle,
+                    selectedColor: Colors.red,
+                    inactiveColor: Colors.grey,
+                    fieldWidth: 7.h,
+                    fieldHeight: 10.h,
+                    borderRadius: BorderRadius.circular(10),
+                    activeFillColor: Colors.white,
+                  ),
+                  controller: otpPinController,
+                  onCompleted: (v) {
+                    log("Completed");
+                    FocusManager.instance.primaryFocus?.unfocus();
                   },
-                  text: const Text('Resend OTP'),
-                  duration: 30,
+                  onChanged: (value) {
+                    log(value);
+                  },
+                  beforeTextPaste: (text) {
+                    log("Allowing to paste $text");
+                    return true;
+                  },
                 ),
-              ],
-            ),
-            30.heightBox,
-            ValueListenableBuilder(
-              valueListenable: isLoading,
-              builder: (BuildContext context, dynamic value, Widget? child) {
-                return isLoading.value == true
-                    ? const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      )
-                    : ButtonPrimary(
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            isLoading.value = true;
-                            try {
-                              // Get.to(() => const MainView());
-                              // Get.to(() => const SignupView());
-                              await controller.verifyOtp(
-                                mobileNumber: loginController.mobile,
-                                otpCode: otpPinController.text,
-                              );
-                            } on Exception catch (e) {
-                              log("$e");
-                            } finally {
-                              isLoading.value = false;
+              ),
+              10.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  "Didn't receive the code?".text.black.make(),
+                  10.widthBox,
+                  OtpTimerButton(
+                    buttonType: ButtonType.text_button,
+                    controller: c,
+                    onPressed: () {
+                      c.startTimer();
+                      controller.resendOtp(loginController.mobile);
+                    },
+                    text: const Text('Resend OTP'),
+                    duration: 30,
+                  ),
+                ],
+              ),
+              30.heightBox,
+              ValueListenableBuilder(
+                valueListenable: isLoading,
+                builder: (BuildContext context, dynamic value, Widget? child) {
+                  return isLoading.value == true
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        )
+                      : ButtonPrimary(
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              isLoading.value = true;
+                              try {
+                                // Get.to(() => const MainView());
+                                // Get.to(() => const SignupView());
+                                await controller.verifyOtp(
+                                  mobileNumber: loginController.mobile,
+                                  otpCode: otpPinController.text,
+                                );
+                              } on Exception catch (e) {
+                                log("$e");
+                              } finally {
+                                isLoading.value = false;
+                              }
                             }
-                          }
-                        },
-                        title: "VERIFY",
-                      );
-              },
-            ),
-          ],
-        ).marginAll(10),
+                          },
+                          title: "VERIFY",
+                        );
+                },
+              ),
+            ],
+          ).marginAll(10),
+        ),
       ),
     );
   }

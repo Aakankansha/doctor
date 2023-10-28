@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
-import '../controllers/upload_prescription_controller.dart';
 
-class UploadPrescriptionScreeen extends GetView<UploadPrescriptionController> {
+class UploadPrescriptionScreeen extends GetView {
   const UploadPrescriptionScreeen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

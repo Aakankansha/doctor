@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/resources/app_resources.dart';
-import '../controllers/upload_prescription_controller.dart';
 
-class UploadPresCashbackScreeen extends GetView<UploadPrescriptionController> {
+class UploadPresCashbackScreeen extends GetView {
   const UploadPresCashbackScreeen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

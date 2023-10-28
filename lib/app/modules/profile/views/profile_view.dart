@@ -76,7 +76,7 @@ class ProfileView extends GetView<ProfileController> {
                 .makeCentered(),
             10.heightBox,
             buildOption(Icons.family_restroom, "Family Members").onInkTap(() {
-              Get.to(() => const FamilyNemberList());
+              Get.to(() => const FamilyMemberList());
             }),
             buildOption(Icons.account_circle_sharp, "Edit Profile")
                 .onInkTap(() {

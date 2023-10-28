@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:clear_vikalp_app/app/modules/home/controllers/home_controller.dart';
 import 'package:clear_vikalp_app/app/modules/login/views/login_view.dart';
 import 'package:clear_vikalp_app/app/modules/main/views/main_view.dart';
 import 'package:clear_vikalp_app/app/modules/otpverify/model/user_model.dart';
@@ -13,7 +14,8 @@ import 'package:http/http.dart' as http;
 import '../../../../util/constant.dart';
 
 class OtpverifyController extends GetxController {
-  OtpUserModel? userModel;
+  UserModel userModel = UserModel();
+  HomeController homeController = Get.put(HomeController());
   String userId = '';
   Future verifyOtp({String? mobileNumber, String? otpCode}) async {
     try {
@@ -33,14 +35,13 @@ class OtpverifyController extends GetxController {
         log(response.body);
         var data = json.decode(response.body);
         if (data["verify_status"] == 1) {
-          userId = data["user_id"] ?? "";
-          Future.delayed(Duration.zero);
-
-          SharedMemory().setUserId(userId.toString());
+          userModel = UserModel.fromJson(data["user"]);
+          homeController.currentUserModel.value = userModel;
+          log(userModel.userId.toString());
+          SharedMemory().setUserId(userModel.id!);
 
           Get.to(() => const MainView());
         } else {
-          userId = data["user_id"] ?? "";
           Get.to(() => const SignupView());
         }
       } else if (response.statusCode == 401) {

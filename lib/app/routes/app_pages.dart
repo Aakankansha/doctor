@@ -23,8 +23,6 @@ import '../modules/otpverify/bindings/otpverify_binding.dart';
 import '../modules/otpverify/views/otpverify_view.dart';
 import '../modules/privacy/bindings/privacy_binding.dart';
 import '../modules/privacy/views/privacy_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -90,11 +88,11 @@ class AppPages {
       page: () => const NotificationView(),
       binding: NotificationBinding(),
     ),
-    GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PROFILE,
+    //   page: () => const ProfileView(),
+    //   binding: ProfileBinding(),
+    // ),
     GetPage(
       name: _Paths.FEEDBACK,
       page: () => const FeedbackView(),

@@ -5,9 +5,11 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
 import 'package:clear_vikalp_app/app/modules/edit_profile/controllers/edit_profile_controller.dart';
+import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -21,7 +23,11 @@ class AddFamilyMemberScreen extends StatefulWidget {
 class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
   bool isInsured = false;
   bool isMedical = false;
+  String blood = "AB+";
+  String insured = "Corporate";
+  String diet = "Veg";
   List<String> tags = [];
+
   List<String> medicalHistory = [
     "Headache",
     "Fever",
@@ -31,45 +37,79 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
     "Diarrhea",
   ];
   int currentIndex = 0;
+  final formKey = GlobalKey<FormState>();
+  var relation = "Mother";
+  var gender = "Female";
+  String medicalHistorySelected = "";
+  final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
+  final controller = Get.put(EditProfileController());
+  final nameCOntroller = TextEditingController();
+  final emailCOntroller = TextEditingController();
+  final mobileController = TextEditingController();
+  final dobController = TextEditingController();
+  final areaController = TextEditingController();
+
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+
+  File? profileImage;
+  Future imagePicker(ImageSource imageSource) async {
+    try {
+      final image = await ImagePicker().pickImage(
+        source: imageSource,
+        imageQuality: 40,
+        maxHeight: 150,
+        maxWidth: 150,
+      );
+      if (image == null) return;
+      final galleryImage = File(image.path);
+      setState(() {
+        profileImage = galleryImage;
+        log(profileImage!.path);
+      });
+    } on PlatformException catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message!,
+      );
+    }
+  }
+
+  updateProfile() async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Home_health_care/family_member_save'));
+    request.fields.addAll({
+      'user_id': '10',
+      'family_relation': relation,
+      'family_mobile': mobileController.text,
+      'name': nameCOntroller.text,
+      'email': emailCOntroller.text,
+      'gender': gender,
+      'dob': dobController.text,
+      'blood_group': blood,
+      'food_type': diet,
+      'height': heightController.text,
+      'weight': weightController.text,
+      'insured': isInsured.toString(),
+      'insured_type': insured,
+      'medical_history': isMedical.toString(),
+      'medical_type': tags.toString(),
+      'area': areaController.text,
+    });
+    request.files.add(
+        await http.MultipartFile.fromPath('profile_image', profileImage!.path));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      Get.back();
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
-    final controller = Get.put(EditProfileController());
-    final nameCOntroller = TextEditingController();
-    final emailCOntroller = TextEditingController();
-    final mobileController = TextEditingController();
-
-    final educationDetailsController = TextEditingController();
-    final subjectController = TextEditingController();
-    final collegeNameCotroller = TextEditingController();
-    final specializationController = TextEditingController();
-    final expectedScoreController = TextEditingController();
-    final engTestScoreController = TextEditingController();
-    final aptitudeTestScoreController = TextEditingController();
-    File? profileImage;
-    Future imagePicker(ImageSource imageSource) async {
-      try {
-        final image = await ImagePicker().pickImage(
-          source: imageSource,
-          imageQuality: 40,
-          maxHeight: 150,
-          maxWidth: 150,
-        );
-        if (image == null) return;
-        final galleryImage = File(image.path);
-        setState(() {
-          profileImage = galleryImage;
-          log(profileImage!.path);
-        });
-      } on PlatformException catch (e) {
-        Get.snackbar(
-          "Error",
-          e.message!,
-        );
-      }
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar("Add Family profile"),
@@ -120,22 +160,155 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
               hint: "Enter your phone no",
               controller: mobileController,
             ),
+            buildField(
+              title: "Area",
+              hint: "Enter your area",
+              controller: areaController,
+            ),
+            10.heightBox,
+            "Relation".text.black.make().marginOnly(left: 10),
+            Theme(
+              data: ThemeData(
+                canvasColor: Colors.white,
+              ),
+              child: DropdownButton(
+                      value: relation,
+                      items: [
+                        DropdownMenuItem(
+                          value: "Father",
+                          child: "Father".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Mother",
+                          child: "Mother".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Brother",
+                          child: "Brother".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Sister",
+                          child: "Sister".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Son",
+                          child: "Son".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Daughter",
+                          child: "Daughter".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Grandfather",
+                          child: "Grandfather".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Grandmother",
+                          child: "Grandmother".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Uncle",
+                          child: "Uncle".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Aunt",
+                          child: "Aunt".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Cousin",
+                          child: "Cousin".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Nephew",
+                          child: "Nephew".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Niece",
+                          child: "Niece".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Friend",
+                          child: "Friend".text.make(),
+                        ),
+                        DropdownMenuItem(
+                          value: "Other",
+                          child: "Other".text.make(),
+                        ),
+                      ],
+                      underline: Container(),
+                      isExpanded: true,
+                      onChanged: (value) {
+                        setState(() {});
+                        relation = value.toString();
+                      })
+                  .marginOnly(left: 10, right: 10)
+                  .box
+                  .withRounded(value: 8)
+                  .border(
+                    color: Colors.grey,
+                    width: 1,
+                  )
+                  .make()
+                  .marginOnly(left: 10, right: 10),
+            ),
+            10.heightBox,
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
                   child: buildField(
                     title: "Date of Birth",
                     hint: "DD/MM/YYYY",
-                    controller: mobileController,
+                    controller: dobController,
                   ),
                 ),
                 Expanded(
-                  child: buildField(
-                    title: "Gender",
-                    hint: "Male",
-                    controller: mobileController,
-                  ),
-                ),
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    "Gender".text.black.make().marginOnly(left: 10, right: 10),
+                    10.heightBox,
+                    Theme(
+                      data: ThemeData(
+                        canvasColor: Colors.white,
+                      ),
+                      child: DropdownButton(
+                              isDense: true,
+                              value: gender,
+                              items: [
+                                DropdownMenuItem(
+                                  value: "Female",
+                                  child: "Female".text.make(),
+                                ),
+                                DropdownMenuItem(
+                                  value: "Male",
+                                  child: "Male".text.make(),
+                                ),
+                                DropdownMenuItem(
+                                  value: "Other",
+                                  child: "Other".text.make(),
+                                ),
+                              ],
+                              underline: Container(),
+                              isExpanded: true,
+                              onChanged: (value) {
+                                gender = value.toString();
+                                setState(() {});
+                              })
+                          .marginAll(10)
+                          .box
+                          .withRounded(value: 8)
+                          .border(
+                            color: Colors.grey,
+                            width: 1,
+                          )
+                          .make()
+                          .marginOnly(left: 10, right: 10),
+                    ),
+                  ],
+                )),
               ],
             ),
             "Blood group".text.black.make().marginOnly(left: 10),
@@ -144,7 +317,7 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                 canvasColor: Colors.white,
               ),
               child: DropdownButton(
-                      value: "AB+",
+                      value: blood,
                       items: [
                         DropdownMenuItem(
                           value: "AB+",
@@ -181,7 +354,11 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                       ],
                       underline: Container(),
                       isExpanded: true,
-                      onChanged: (value) {})
+                      onChanged: (value) {
+                        setState(() {
+                          blood = value.toString();
+                        });
+                      })
                   .marginOnly(left: 10, right: 10)
                   .box
                   .withRounded(value: 8)
@@ -193,13 +370,13 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                   .marginOnly(left: 10, right: 10),
             ),
             10.heightBox,
-            "Blood group".text.black.make().marginOnly(left: 10),
+            "Diet".text.black.make().marginOnly(left: 10),
             Theme(
               data: ThemeData(
                 canvasColor: Colors.white,
               ),
               child: DropdownButton(
-                      value: "Veg",
+                      value: diet,
                       items: [
                         DropdownMenuItem(
                           value: "Veg",
@@ -216,7 +393,11 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                       ],
                       underline: Container(),
                       isExpanded: true,
-                      onChanged: (value) {})
+                      onChanged: (value) {
+                        setState(() {
+                          diet = value.toString();
+                        });
+                      })
                   .marginOnly(left: 10, right: 10)
                   .box
                   .withRounded(value: 8)
@@ -234,14 +415,14 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                   child: buildField(
                     title: "Height(cm)",
                     hint: "Enter your height",
-                    controller: mobileController,
+                    controller: heightController,
                   ),
                 ),
                 Expanded(
                   child: buildField(
                     title: "Weight(kg)",
                     hint: "Enter your weight",
-                    controller: mobileController,
+                    controller: weightController,
                   ),
                 ),
               ],
@@ -311,7 +492,7 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                   canvasColor: Colors.white,
                 ),
                 child: DropdownButton(
-                        value: "Corporate",
+                        value: insured,
                         items: [
                           DropdownMenuItem(
                             value: "Corporate",
@@ -328,7 +509,11 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                         ],
                         underline: Container(),
                         isExpanded: true,
-                        onChanged: (value) {})
+                        onChanged: (value) {
+                          setState(() {
+                            insured = value.toString();
+                          });
+                        })
                     .marginOnly(left: 10, right: 10)
                     .box
                     .withRounded(value: 8)
@@ -437,19 +622,7 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
               onPressed: () async {
                 isLoading.value = true;
                 try {
-                  await controller.editProfile(
-                    aptitudeTestScore: aptitudeTestScoreController.text,
-                    collegeName: collegeNameCotroller.text,
-                    educationDetails: educationDetailsController.text,
-                    email: emailCOntroller.text,
-                    engTestScore: engTestScoreController.text,
-                    expectedScore: expectedScoreController.text,
-                    mobile: mobileController.text,
-                    name: nameCOntroller.text,
-                    profile: profileImage!,
-                    specialization: specializationController.text,
-                    subject: subjectController.text,
-                  );
+                  updateProfile();
                 } catch (e) {
                   log("$e");
                 } finally {

@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/edit_profile/models/profile.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/geoLocation.dart';
+import 'package:clear_vikalp_app/app/modules/otpverify/model/user_model.dart';
 import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,11 +17,13 @@ import '../../upload_prescription/views/upload_cashback_prescription_screen.dart
 import '../../upload_prescription/views/upload_prescription_screen.dart';
 
 class HomeController extends GetxController {
-  ProfileModel currentProfileData = ProfileModel();
-
+  var currentProfileData = ProfileModel().obs;
+  var currentUserModel = UserModel().obs;
+  var walletBal = 0.0.obs;
   final count = 0.obs;
-  onTapRadios() {
+  onTapRadios(value) {
     Get.back();
+    getDialogFeedback(value);
     Get.snackbar("Welcome To  Clear Vikalp", "Thank You For Choosing Us",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
@@ -354,7 +358,7 @@ class HomeController extends GetxController {
                       value: 1,
                       groupValue: 0,
                       onChanged: (value) {
-                        onTapRadios();
+                        onTapRadios("OPD Booking");
                       },
                       title: "OPD Booking".text.make(),
                     ),
@@ -362,7 +366,7 @@ class HomeController extends GetxController {
                       value: 2,
                       groupValue: 1,
                       onChanged: (value) {
-                        onTapRadios();
+                        onTapRadios("Blood Investigation Booking");
                       },
                       title: "Blood Investigation Booking".text.make(),
                     ),
@@ -370,7 +374,7 @@ class HomeController extends GetxController {
                       value: 3,
                       groupValue: 1,
                       onChanged: (value) {
-                        onTapRadios();
+                        onTapRadios("Imaging (CT/USG etc)");
                       },
                       title: "Imaging (CT/USG etc)".text.make(),
                     ),
@@ -378,7 +382,7 @@ class HomeController extends GetxController {
                       value: 4,
                       groupValue: 1,
                       onChanged: (value) {
-                        onTapRadios();
+                        onTapRadios("Surgery");
                       },
                       title: "Surgery".text.make(),
                     ),
@@ -386,7 +390,7 @@ class HomeController extends GetxController {
                       value: 5,
                       groupValue: 1,
                       onChanged: (value) {
-                        onTapRadios();
+                        onTapRadios("Home Health Service");
                       },
                       title: "Home Health Service".text.make(),
                     ),
@@ -411,8 +415,26 @@ class HomeController extends GetxController {
     log(res);
     if (response.statusCode == 200) {
       var data = json.decode(res);
-      currentProfileData = ProfileModel.fromJson(data['profile_details'][0]);
-      log(currentProfileData.name ?? "nasdasd");
+      currentProfileData.value =
+          ProfileModel.fromJson(data['profile_details'][0]);
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  getWalletData() async {
+    String userId = SharedMemory().getUserId();
+    print("user id is $userId");
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Wallet/wallet_fetch'));
+    request.fields.addAll({'user_id': "1"});
+
+    http.StreamedResponse response = await request.send();
+    String res = await response.stream.bytesToString();
+    log(res);
+    if (response.statusCode == 200) {
+      var data = json.decode(res);
+      walletBal.value = double.parse(data['wallet_details'][0]['amount']);
     } else {
       print(response.reasonPhrase);
     }
@@ -420,7 +442,10 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
+    GeoDistance distance = GeoDistance();
+    distance.getUserLocation();
     getProfileData();
+    getWalletData();
     Future.delayed(const Duration(seconds: 3), () {
       showLookingForDialog();
     });
@@ -428,4 +453,79 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  getFeedbackTeamHome() async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Home_health_care/talk_team_enquiry'));
+    request.fields.addAll({
+      'user_id': currentProfileData.value.id!,
+      'enq_name': currentProfileData.value.name!,
+      'enq_number': currentProfileData.value.mobile!,
+      'enq_mail': currentProfileData.value.email!,
+      'enquiry_from': 'home_team'
+    });
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      Get.dialog(Center(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Material(
+                child: Card(
+                  child: Center(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      20.heightBox,
+                      "Thank you for Choosing Clear Vikalp".text.xl.bold.make(),
+                      "Our team will contact on +91 1234567890".text.make(),
+                      20.heightBox,
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: Size(Get.width * 0.6, 40),
+                              backgroundColor: themeColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              )),
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: "Okay".text.white.make()),
+                      20.heightBox,
+                    ]),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ));
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  getDialogFeedback(value) async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${baseUrl}Home_health_care/home_popup_enquiry'));
+    request.fields.addAll({
+      'user_id': currentProfileData.value.id!,
+      'enq_name': currentProfileData.value.name!,
+      'enq_number': currentProfileData.value.mobile!,
+      'enq_mail': currentProfileData.value.email!,
+      'service_name': value,
+      'enquiry_from': 'home_popup'
+    });
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      log(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
 }

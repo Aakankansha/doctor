@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -19,7 +20,8 @@ class PrivacyController extends GetxController {
       );
       if (response.statusCode == 200) {
         log(response.body);
-        privacyModel = response.body;
+        privacyModel = json.decode(response.body)['privacy_policy'][0]
+            ["privacy_policy_content"];
       } else {
         Get.snackbar("Error", response.body);
         log(response.body);

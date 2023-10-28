@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../main/views/main_view.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -49,17 +48,19 @@ class LoginView extends GetView<LoginController> {
                   },
                   autofillHints: const [AutofillHints.telephoneNumber],
                   keyboardType: TextInputType.phone,
+                  maxLength: 10,
                   decoration: InputDecoration(
+                    counterText: '',
                     fillColor: const Color.fromARGB(255, 240, 240, 240),
                     filled: true,
-                    prefixIcon: const SizedBox(
+                    prefixIcon: SizedBox(
                       width: 80,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 5.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Row(
                           children: [
-                            Text("IN +91"),
-                            Icon(Icons.keyboard_arrow_down_rounded),
+                            14.widthBox,
+                            const Text("IN +91"),
                           ],
                         ),
                       ),
@@ -111,19 +112,19 @@ class LoginView extends GetView<LoginController> {
                         )
                       : ButtonPrimary(
                           onPressed: () async {
-                            Get.to(() => const MainView());
-                            // if (formKey.currentState!.validate()) {
-                            //   isLoading.value = true;
-                            //   try {
-                            //     // Get.toNamed(Routes.OTPVERIFY,
-                            //     //     arguments: Routes.MAIN);
-                            //     await controller.login(
-                            //       mobileNumber: mobileNumberController.text,
-                            //     );
-                            //   } finally {
-                            //     isLoading.value = false;
-                            //   }
-                            // }
+                            // Get.to(() => const MainView());
+                            if (formKey.currentState!.validate()) {
+                              isLoading.value = true;
+                              try {
+                                // Get.toNamed(Routes.OTPVERIFY,
+                                //     arguments: Routes.MAIN);
+                                await controller.login(
+                                  mobileNumber: mobileNumberController.text,
+                                );
+                              } finally {
+                                isLoading.value = false;
+                              }
+                            }
                           },
                           title: "Login",
                         );

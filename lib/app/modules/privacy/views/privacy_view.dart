@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:clear_vikalp_app/app/modules/privacy/controllers/privacy_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 
 import '../../../core/widgets/app_widgets.dart';
 
@@ -27,32 +28,26 @@ class _PrivacyViewState extends State<PrivacyView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar("Privacy Policy"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset("assets/images/Doctor hunt text (1).png"),
+      body: FutureBuilder(
+        future: controller.privacyNote(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              controller.privacyModel == null) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(20),
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: HtmlWidget('''${controller.privacyModel}'''),
+                ),
+              ),
+            );
+          }
+        },
       ),
-      // body: FutureBuilder(
-      //   future: controller.privacyNote(),
-      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting ||
-      //         controller.privacyModel == null) {
-      //       return const Center(
-      //         child: CircularProgressIndicator.adaptive(),
-      //       );
-      //     } else {
-      //       return Padding(
-      //         padding: const EdgeInsets.all(20),
-      //         child: SafeArea(
-      //           child: SingleChildScrollView(
-      //             child: Text(
-      //               "${controller.privacyModel!.content}",
-      //             ),
-      //           ),
-      //         ),
-      //       );
-      //     }
-      //   },
-      // ),
     );
   }
 }

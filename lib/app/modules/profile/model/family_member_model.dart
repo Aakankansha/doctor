@@ -1,4 +1,28 @@
-class UserModel {
+class FamilyModel {
+  List<UsermembersList>? usermembersList;
+
+  FamilyModel({this.usermembersList});
+
+  FamilyModel.fromJson(Map<String, dynamic> json) {
+    if (json['usermembers_list'] != null) {
+      usermembersList = <UsermembersList>[];
+      json['usermembers_list'].forEach((v) {
+        usermembersList!.add(UsermembersList.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (usermembersList != null) {
+      data['usermembers_list'] =
+          usermembersList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class UsermembersList {
   String? id;
   String? mobile;
   String? otp;
@@ -26,7 +50,7 @@ class UserModel {
   String? status;
   String? created;
 
-  UserModel(
+  UsermembersList(
       {this.id,
       this.mobile,
       this.otp,
@@ -54,7 +78,7 @@ class UserModel {
       this.status,
       this.created});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  UsermembersList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     mobile = json['mobile'];
     otp = json['otp'];
