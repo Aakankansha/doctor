@@ -1,4 +1,4 @@
-import 'package:clear_vikalp_app/app/modules/home/views/hospital_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/nearByHospital/view/hospital_nearby_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';

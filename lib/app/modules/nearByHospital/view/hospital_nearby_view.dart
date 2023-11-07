@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/geoLocation.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/hospital_details_screen.dart';
+import 'package:clear_vikalp_app/app/modules/nearByHospital/view/hospital_details_screen.dart';
 import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -273,7 +273,8 @@ class _HospitalNearbyScreenState extends State<HospitalNearbyScreen> {
                                                     : DecorationImage(
                                                         fit: BoxFit.contain,
                                                         image: NetworkImage(
-                                                          "$baseMediaUrl${listOfDoctor[index]["hospital_img"].toString().split(",").first}",
+                                                       //   "$baseMediaUrl${listOfDoctor[index]["hospital_img"].toString().split(",").first}",
+                                                          "${baseMediaUrl+listOfDoctor[index]["hospital_img"].toString().split(",").first}",
                                                         ),
                                                       ),
                                                 borderRadius:

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../main/views/main_view.dart';
+
 class MyCartScreen extends StatelessWidget {
   const MyCartScreen({super.key});
 
@@ -129,7 +131,7 @@ class MyCartScreen extends StatelessWidget {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                        const SizedBox(height: 5),
+                     //   const SizedBox(height: 5),
                         const Text(
                           '50% off',
                           style: TextStyle(
@@ -137,21 +139,44 @@ class MyCartScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        "Remove"
-                            .text
-                            .white
-                            .make()
-                            .pSymmetric(
-                              h: 15,
-                              v: 5,
-                            )
-                            .box
-                            .red500
-                            .withRounded()
-                            .make()
-                            .objectBottomRight()
-                            .pOnly(right: 10),
+                    //    const SizedBox(height: 10),
+              TextButton(onPressed: () {
+
+                Get.off(MainView());
+                              showDialog(
+                                    context: context,
+                                       builder: (BuildContext context)
+                                      {
+                                   return AlertDialog(
+                                   title: Text('Remove',style: TextStyle(color: Colors.blue[900]),),
+                                          content: Text('You Want to Remove Card',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 25),),
+                                         actions: <Widget>[
+                                       TextButton(
+                                     onPressed: () {
+              // Close the dialog when the "OK" button is pressed.
+                                             Navigator.of(context).pop();
+                                        },
+                                   child: Text('OK'),
+                           ),
+                           ],
+                        );
+                            });
+              },
+                child: Text("Remove",style: TextStyle(color: Colors.white),)
+                              .text
+                              .white
+                              .make()
+                              .pSymmetric(
+                                h: 15,
+                                v: 5,
+                              )
+                              .box
+                              .red500
+                              .withRounded()
+                              .make()
+                              .objectBottomRight()
+                              .pOnly(right: 10),
+              ),
                       ],
                     ),
                     const SizedBox(width: 10),

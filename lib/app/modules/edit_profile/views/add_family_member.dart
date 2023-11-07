@@ -5,6 +5,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/core/widgets/app_widgets.dart';
 import 'package:clear_vikalp_app/app/modules/edit_profile/controllers/edit_profile_controller.dart';
+import 'package:clear_vikalp_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,6 +103,8 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
+      ProfileController profileController = Get.find();
+      profileController.getFamilyList();
       Get.back();
     } else {
       print(response.reasonPhrase);
@@ -149,21 +152,25 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
               title: "Name",
               hint: "Enter your name",
               controller: nameCOntroller,
+              keyboardType: TextInputType.text
             ),
             buildField(
               title: "Email id",
               hint: "Enter your email",
               controller: emailCOntroller,
+              keyboardType: TextInputType.text
             ),
             buildField(
               title: "Phone no",
               hint: "Enter your phone no",
               controller: mobileController,
+              keyboardType: TextInputType.number
             ),
             buildField(
               title: "Area",
               hint: "Enter your area",
               controller: areaController,
+              keyboardType: TextInputType.text
             ),
             10.heightBox,
             "Relation".text.black.make().marginOnly(left: 10),
@@ -416,6 +423,7 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                     title: "Height(cm)",
                     hint: "Enter your height",
                     controller: heightController,
+                    keyboardType: TextInputType.text
                   ),
                 ),
                 Expanded(
@@ -423,6 +431,7 @@ class _AddFamilyMemberScreenState extends State<AddFamilyMemberScreen> {
                     title: "Weight(kg)",
                     hint: "Enter your weight",
                     controller: weightController,
+                    keyboardType: TextInputType.text
                   ),
                 ),
               ],

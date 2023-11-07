@@ -20,10 +20,10 @@ class _HomeHealthCareNearbyScreenState
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
           backgroundColor: const Color(0xffF5F5F5),
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Nearby Home Health Care',
                 style: TextStyle(
                   color: Colors.black,
@@ -32,7 +32,7 @@ class _HomeHealthCareNearbyScreenState
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.location_on_outlined,
                     size: 20,

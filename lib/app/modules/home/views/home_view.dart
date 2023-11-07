@@ -1,13 +1,25 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/about_screen.dart';
+import 'package:clear_vikalp_app/app/modules/home/controllers/home_controller.dart';
+import 'package:clear_vikalp_app/draweraboutus/about_screen.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/comparative_analysis.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/earned_cashback_screen.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/get_surgery_done.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/help_center_screen.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/home_health_care.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/imaging_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/know_your_diet.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/my_cart.dart';
+import 'package:clear_vikalp_app/app/modules/home/views/my_order_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/offer_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/privacy_policy.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/refund_status_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/self_checkup_screen.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/transaction_screen.dart';
 import 'package:clear_vikalp_app/app/modules/login/views/login_view.dart';
+import 'package:clear_vikalp_app/app/modules/nearByLab/lab_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:clear_vikalp_app/app/modules/subscription/subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,18 +29,7 @@ import 'package:sizer/sizer.dart';
 import 'package:status_view/status_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../controllers/home_controller.dart';
-import 'comparative_analysis.dart';
-import 'earned_cashback_screen.dart';
-import 'get_surgery_done.dart';
-import 'help_center_screen.dart';
-import 'home_health_care.dart';
-import 'hospital_nearby_view.dart';
-import 'imaging_nearby_view.dart';
-import 'know_your_diet.dart';
-import 'lab_nearby_view.dart';
-import 'my_cart.dart';
-import 'my_order_screen.dart';
+import '../../nearByHospital/view/hospital_nearby_view.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -136,7 +137,14 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController profileController = Get.put(ProfileController());
     HomeController homeController = Get.put(HomeController());
+    if (!homeController.isLookingDialog) {
+      Future.delayed(const Duration(seconds: 3), () {
+        homeController.showLookingForDialog();
+      });
+    }
+    profileController.getFamilyList();
     return Scaffold(
         backgroundColor: Colors.white,
         key: _scaffoldkey,
@@ -232,8 +240,9 @@ class HomeView extends GetView<HomeController> {
                       indexOfSeenStatus: 1,
                       numberOfStatus: 4,
                       padding: 4,
-                      centerImageUrl:
-                          "https://images.contentstack.io/v3/assets/blt47c9d788546e10c2/blt3d0e316d0ae0c29f/633ecff007fc3813471f0108/AW_image39_1200x600.jpg?format=webply&quality=50",
+                      centerImageUrl: homeController
+                              .currentUserModel.value.profileImage ??
+                          "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
                       seenColor: themeColor,
                       unSeenColor: Colors.black12,
                     ),
@@ -394,7 +403,7 @@ class HomeView extends GetView<HomeController> {
                 10.heightBox,
                 Row(
                   children: [
-                    "Search By Symptoms".text.bold.size(14).make(),
+                  Text( "Search By Symptoms",style: TextStyle(color: Colors.blue[900]),).text.bold.size(14).make(),
                     const Spacer(),
                   ],
                 ),
@@ -424,7 +433,7 @@ class HomeView extends GetView<HomeController> {
                 30.heightBox,
                 Row(
                   children: [
-                    "Screen Your Organ Function".text.bold.size(14).make(),
+                   Text("Screen Your Organ Function",style: TextStyle(color: Colors.blue[900]),).text.bold.size(14).make(),
                     const Spacer(),
                   ],
                 ),
@@ -484,7 +493,7 @@ class HomeView extends GetView<HomeController> {
                 20.heightBox,
                 Row(
                   children: [
-                    "Search Diagnostic Center by\ncommon Procedure"
+                  Text("Search Diagnostic Center by\ncommon Procedure",style: TextStyle(color: Colors.blue[900]),)
                         .text
                         .bold
                         .size(14)
@@ -537,7 +546,7 @@ class HomeView extends GetView<HomeController> {
                 20.heightBox,
                 Row(
                   children: [
-                    "Get Screening for your Eyes".text.bold.size(14).make(),
+                Text("Get Screening for your Eyes",style: TextStyle(color: Colors.blue[900]),).text.bold.size(14).make(),
                     const Spacer(),
                   ],
                 ),
@@ -549,7 +558,7 @@ class HomeView extends GetView<HomeController> {
                 20.heightBox,
                 Row(
                   children: [
-                    "Get Your Dental Screened".text.bold.size(14).make(),
+                Text("Get Your Dental Screened",style: TextStyle(color: Colors.blue[900]),).text.bold.size(14).make(),
                     const Spacer(),
                     // "View More"
                     //     .text
@@ -575,7 +584,7 @@ class HomeView extends GetView<HomeController> {
                 20.heightBox,
                 Row(
                   children: [
-                    "Search Nearby Doctor by Speciality"
+                  Text( "Search Nearby Doctor by Speciality",style: TextStyle(color: Colors.blue[900]),)
                         .text
                         .bold
                         .size(14)
@@ -895,7 +904,7 @@ class MyDrawer extends StatelessWidget {
                     .withRounded(value: 4)
                     .make()
                     .onTap(() {
-                  Get.to(() => const AboutScreen());
+                  Get.to(() => AboutScreen());
                 }),
                 10.heightBox,
                 Row(

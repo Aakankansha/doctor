@@ -42,6 +42,11 @@ class _EditProfileViewState extends State<EditProfileView> {
     final nameCOntroller = TextEditingController();
     final emailCOntroller = TextEditingController();
     final mobileController = TextEditingController();
+    final mobileController1 = TextEditingController();
+    final mobileController2 = TextEditingController();
+    final mobileController3 = TextEditingController();
+    final mobileController4 = TextEditingController();
+    final mobileController5 = TextEditingController();
 
     final educationDetailsController = TextEditingController();
     final subjectController = TextEditingController();
@@ -112,16 +117,20 @@ class _EditProfileViewState extends State<EditProfileView> {
               title: "Name",
               hint: "Enter your name",
               controller: nameCOntroller,
+              keyboardType: TextInputType.text
+
             ),
             buildField(
               title: "Email id",
               hint: "Enter your email",
               controller: emailCOntroller,
+              keyboardType: TextInputType.text
             ),
             buildField(
               title: "Phone no",
               hint: "+91 97101224553",
               controller: mobileController,
+              keyboardType: TextInputType.number
             ),
             Row(
               children: [
@@ -129,14 +138,16 @@ class _EditProfileViewState extends State<EditProfileView> {
                   child: buildField(
                     title: "Date of Birth",
                     hint: "DD/MM/YYYY",
-                    controller: mobileController,
+                    controller: mobileController1,
+                    keyboardType: TextInputType.number
                   ),
                 ),
                 Expanded(
                   child: buildField(
                     title: "Gender",
                     hint: "Male",
-                    controller: mobileController,
+                    controller: mobileController2,
+                    keyboardType: TextInputType.text
                   ),
                 ),
               ],
@@ -237,14 +248,16 @@ class _EditProfileViewState extends State<EditProfileView> {
                   child: buildField(
                     title: "Height(cm)",
                     hint: "58",
-                    controller: mobileController,
+                    controller: mobileController3,
+                    keyboardType: TextInputType.text
                   ),
                 ),
                 Expanded(
                   child: buildField(
                     title: "Weight(kg)",
                     hint: "68",
-                    controller: mobileController,
+                    controller: mobileController4,
+                    keyboardType: TextInputType.text
                   ),
                 ),
               ],

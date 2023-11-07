@@ -6,16 +6,20 @@ import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HealthRecord extends GetView<HealthRecordController> {
+
   const HealthRecord({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(CommunityController());
+
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title:  Text(
             'Health Record',
             style: TextStyle(
-              color: themeColor,
+              color: Colors.blue[900],
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -67,9 +71,9 @@ class HealthRecord extends GetView<HealthRecordController> {
                   ],
                 ),
               ),
-              "Subscribe Membership Plan".text.bold.xl2.make(),
+              Text("Subscribe Membership Plan",style: TextStyle(color: Colors.blue[900]),).text.bold.xl2.make(),
               10.heightBox,
-              "Subscribe to our Membership Plan to get access to all the features And get 50% off on your first month "
+            Text("Subscribe to our Membership Plan to get access to all the features And get 50% off on your first month",style: TextStyle(color: Colors.blue[900]),)
                   .text
                   .make(),
               10.heightBox,
@@ -201,20 +205,79 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+               ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Health Checkup',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                ),
+                trailing: TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child:
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),),
                 subtitle: Text(
                   '12/12/2020',
                   style: TextStyle(
@@ -222,19 +285,79 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Test',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -243,40 +366,160 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Donation',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                ),
-                subtitle: Text(
+                trailing: TextButton(
+                  onPressed: () {
+            // Check your condition here
+            bool shouldShowDialog = true; // Replace with your condition
+
+            if (shouldShowDialog) {
+
+                showDialog(
+                       context: context,
+                           builder: (BuildContext context) {
+                            return AlertDialog(
+                               title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                                  content: Text(
+                                     'You Want to Upload and View',
+                                 style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                                  ),
+                              actions: <Widget>[
+                                     TextButton(
+                                          onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                         Navigator.of(context).pop();
+                                   },
+                                    style: ButtonStyle(
+                                        side: MaterialStateProperty.all(
+                                          BorderSide(
+                                             color: Colors.red, // Change this color to your desired border color
+                                                width: 2.0,         // Adjust the border width as needed
+                                         ),
+                                     ),
+                                  ),
+                              child: Text('Upload'),
+                                 ),
+                              TextButton(
+                                 onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                    Navigator.of(context).pop();
+                              },
+                       style: ButtonStyle(
+                                                  side: MaterialStateProperty.all(
+                                        BorderSide(
+                                         color: Colors.green, // Change this color to your desired border color
+                                             width: 2.0,         // Adjust the border width as needed
+                                       ),
+                                   ),
+                                ),
+                          child: Text('View'),
+                        ),
+                         ],
+                          );
+                     },
+                      );
+                       } else {
+      // Your code to execute when the condition is not met
+      // For example, navigate to a different screen or perform a different action.
+      }
+                     },
+
+
+        child:
+        Icon(
+          Icons.arrow_forward_ios,
+          size: 15,
+        ),),
+
+      subtitle: Text(
                   '12/12/2020',
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Health Checkup',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -285,19 +528,78 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Test',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -306,19 +608,80 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Donation',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -327,40 +690,160 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Health Checkup',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                ),
-                subtitle: Text(
+                              trailing: TextButton(
+                                          onPressed: () {
+            // Check your condition here
+                                          bool shouldShowDialog = true; // Replace with your condition
+
+                                      if (shouldShowDialog) {
+
+                                 showDialog(
+                                     context: context,
+                                     builder: (BuildContext context) {
+                                           return AlertDialog(
+                          title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                             content: Text(
+                              'You Want to Upload and View',
+                       style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                           ),
+                       actions: <Widget>[
+                              TextButton(
+                                   onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                     Navigator.of(context).pop();
+                                     },
+                                   style: ButtonStyle(
+                                               side: MaterialStateProperty.all(
+                                         BorderSide(
+                                          color: Colors.red, // Change this color to your desired border color
+                                   width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                     ),
+                                  ),
+                      child: Text('Upload'),
+                         ),
+                               TextButton(
+                                  onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                     Navigator.of(context).pop();
+                                    },
+                                 style: ButtonStyle(
+                                       side: MaterialStateProperty.all(
+                                            BorderSide(
+                                        color: Colors.green, // Change this color to your desired border color
+                                          width: 2.0,         // Adjust the border width as needed
+                                     ),
+                                    ),
+                                   ),
+                                child: Text('View'),
+                                  ),
+                               ],
+                           );
+                               },
+                      );
+                                 } else {
+      // Your code to execute when the condition is not met
+      // For example, navigate to a different screen or perform a different action.
+      }
+                               },
+
+
+                                        child:
+                                            Icon(
+                                               Icons.arrow_forward_ios,
+                                                 size: 15,
+                                             ),),
+
+      subtitle: Text(
                   '12/12/2020',
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Test',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -369,20 +852,80 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Donation',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
+                trailing:
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child:
+                Icon(
                   Icons.arrow_forward_ios,
                   size: 15,
-                ),
+                ),),
                 subtitle: Text(
                   '12/12/2020',
                   style: TextStyle(
@@ -390,20 +933,82 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Health Checkup',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
+
+
                 subtitle: Text(
                   '12/12/2020',
                   style: TextStyle(
@@ -411,40 +1016,154 @@ class HealthListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Test',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                ),
-                subtitle: Text(
-                  '12/12/2020',
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
+                trailing:TextButton(
+                  onPressed: () {
+            // Check your condition here
+            bool shouldShowDialog = true; // Replace with your condition
+
+            if (shouldShowDialog) {
+
+                         showDialog(
+                                  context: context,
+                                builder: (BuildContext context) {
+                                return AlertDialog(
+                                     title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                                      content: Text(
+                                       'You Want to Upload and View',
+                                       style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                                    ),
+                       actions: <Widget>[
+                          TextButton(
+                              onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                Navigator.of(context).pop();
+                                    },
+                    style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                             BorderSide(
+                                     color: Colors.red, // Change this color to your desired border color
+                                     width: 2.0,         // Adjust the border width as needed
+                                   ),
+                               ),
+                               ),
+                                  child: Text('Upload'),
+                                      ),
+                                    TextButton(
+                                        onPressed: () {
+      // Close the dialog when the "OK" button is pressed.
+                                                  Navigator.of(context).pop();
+                                                   },
+                                            style: ButtonStyle(
+                                               side: MaterialStateProperty.all(
+                                             BorderSide(
+                                                 color: Colors.green, // Change this color to your desired border color
+                                                 width: 2.0,         // Adjust the border width as needed
+                                              ),
+                                        ),
+                                    ),
+                                child: Text('View'),
+                                 ),
+                                   ],
+                                       );
+                             },
+                          );
+                        } else {
+      // Your code to execute when the condition is not met
+      // For example, navigate to a different screen or perform a different action.
+      }
+                         },
+
+
+        child: Icon(
+          Icons.arrow_forward_ios,
+          size: 15,
+        ),
+      ),
               ),
-              const ListTile(
+              ListTile(
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                 title: Text(
                   'Last Blood Donation',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[900],
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                trailing:
+
+                TextButton(
+                  onPressed: () {
+                    // Check your condition here
+                    bool shouldShowDialog = true; // Replace with your condition
+
+                    if (shouldShowDialog) {
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Choose Option', style: TextStyle(color: Colors.blue[900])),
+                            content: Text(
+                              'You Want to Upload and View',
+                              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.red, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Upload'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Close the dialog when the "OK" button is pressed.
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.green, // Change this color to your desired border color
+                                      width: 2.0,         // Adjust the border width as needed
+                                    ),
+                                  ),
+                                ),
+                                child: Text('View'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Your code to execute when the condition is not met
+                      // For example, navigate to a different screen or perform a different action.
+                    }
+                  },
+
+
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 ),
                 subtitle: Text(
                   '12/12/2020',
@@ -477,7 +1196,7 @@ class FilterScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              "FILTER BY FAMILY MEMBERS".text.bold.make(),
+            Text("FILTER BY FAMILY MEMBERS",style: TextStyle(color: Colors.blue[900]),).text.bold.make(),
               const Divider(),
               RadioListTile(
                 groupValue: true,
@@ -508,7 +1227,7 @@ class FilterScreen extends StatelessWidget {
                 title: "Wife".text.xl.make(),
               ),
               10.heightBox,
-              "FILTER BY ORDER DATE".text.bold.make(),
+          Text("FILTER BY ORDER DATE",style: TextStyle(color: Colors.blue[900]),).text.bold.make(),
               const Divider(),
               RadioListTile(
                 contentPadding: EdgeInsets.zero,
@@ -573,24 +1292,28 @@ class FilterScreen extends StatelessWidget {
                 onChanged: (v) {},
                 title: "2017".text.xl.make(),
               ),
-              "Apply"
-                  .text
-                  .white
-                  .xl
-                  .bold
-                  .makeCentered()
-                  .box
-                  .withRounded()
-                  .height(50)
-                  .width(
-                    double.infinity,
-                  )
-                  .color(themeColor)
-                  .make()
-                  .pSymmetric(
-                    h: 20,
-                    v: 20,
-                  ),
+           TextButton(onPressed: () {
+
+           },
+             child: Text("Apply",style: TextStyle(color: Colors.white),)
+                    .text
+                    .white
+                    .xl
+                    .bold
+                    .makeCentered()
+                    .box
+                    .withRounded()
+                    .height(50)
+                    .width(
+                      double.infinity,
+                    )
+                    .color(themeColor)
+                    .make()
+                    .pSymmetric(
+                      h: 20,
+                      v: 20,
+                    ),
+           ),
             ],
           ),
         ),

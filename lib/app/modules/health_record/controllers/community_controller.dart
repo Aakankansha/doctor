@@ -9,6 +9,12 @@ import '../model/communities_model.dart';
 import '../model/messages_model.dart';
 
 class HealthRecordController extends GetxController {
+  var isLoading = false.obs;
+
+  void setLoading(bool value) {
+    isLoading.value = value;
+  }
+
   CommunitesModel? communitesModel;
   CommunityMessagesModel? communityMessagesModel;
   Future addMessage({String? message, String? communityId}) async {

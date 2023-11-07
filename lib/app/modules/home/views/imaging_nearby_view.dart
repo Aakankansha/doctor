@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/geoLocation.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/hospital_nearby_view.dart';
+import 'package:clear_vikalp_app/app/modules/nearByHospital/view/hospital_nearby_view.dart';
 import 'package:clear_vikalp_app/util/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +23,7 @@ class ImagingNearbyScreen extends StatefulWidget {
 class _ImagingNearbyScreenState extends State<ImagingNearbyScreen> {
   var listOfLabs = [];
   var isLoading = false;
-  getLabData(search) async {
+  getImagingData(search) async {
     listOfLabs = [];
     setState(() {
       isLoading = true;
@@ -62,7 +62,7 @@ class _ImagingNearbyScreenState extends State<ImagingNearbyScreen> {
   late Timer timer;
   @override
   void initState() {
-    getLabData(widget.search);
+    getImagingData(widget.search);
     timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       setState(() {
         hint = listOfHint[Random().nextInt(listOfHint.length)];
@@ -125,7 +125,7 @@ class _ImagingNearbyScreenState extends State<ImagingNearbyScreen> {
                 child: TextFormField(
                   controller: searchController,
                   onChanged: (value) {
-                    getLabData(value);
+                    getImagingData(value);
                   },
                   decoration: InputDecoration(
                     hintStyle: const TextStyle(

@@ -51,8 +51,8 @@ class CompareDataScreen extends StatelessWidget {
               color: Colors.black12,
             ),
             5.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'MBBS, MD',
                   style: TextStyle(
@@ -73,8 +73,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Experience',
                   style: TextStyle(
@@ -95,8 +95,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   '10 years',
                   style: TextStyle(
@@ -117,8 +117,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Brain Surgeon',
                   style: TextStyle(
@@ -139,8 +139,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   '5.0+',
                   style: TextStyle(
@@ -161,8 +161,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'available',
                   style: TextStyle(
@@ -183,8 +183,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Rs. 500',
                   style: TextStyle(
@@ -205,8 +205,8 @@ class CompareDataScreen extends StatelessWidget {
               ],
             ),
             10.heightBox,
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   '5-6 days',
                   style: TextStyle(
@@ -226,7 +226,7 @@ class CompareDataScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Image.asset(
               'assets/images/offer.png',
               height: 200,

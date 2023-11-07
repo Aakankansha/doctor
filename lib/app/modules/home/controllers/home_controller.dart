@@ -20,6 +20,7 @@ class HomeController extends GetxController {
   var currentProfileData = ProfileModel().obs;
   var currentUserModel = UserModel().obs;
   var walletBal = 0.0.obs;
+  var isLookingDialog = false;
   final count = 0.obs;
   onTapRadios(value) {
     Get.back();
@@ -299,6 +300,7 @@ class HomeController extends GetxController {
   }
 
   showLookingForDialog() {
+    isLookingDialog = true;
     Get.dialog(Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -446,9 +448,7 @@ class HomeController extends GetxController {
     distance.getUserLocation();
     getProfileData();
     getWalletData();
-    Future.delayed(const Duration(seconds: 3), () {
-      showLookingForDialog();
-    });
+
     super.onReady();
   }
 
@@ -514,8 +514,8 @@ class HomeController extends GetxController {
     request.fields.addAll({
       'user_id': currentProfileData.value.id!,
       'enq_name': currentProfileData.value.name!,
-      'enq_number': currentProfileData.value.mobile!,
-      'enq_mail': currentProfileData.value.email!,
+      'enq_number': currentProfileData.value.mobile ?? "1234567890",
+      'enq_mail': currentProfileData.value.email ?? "",
       'service_name': value,
       'enquiry_from': 'home_popup'
     });

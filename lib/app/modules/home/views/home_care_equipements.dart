@@ -155,8 +155,8 @@ class HomeCareEquipment extends StatelessWidget {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Row(
-                                          children: const [
+                                        const Row(
+                                          children: [
                                             Text(
                                               'Rs. 5000',
                                               style: TextStyle(

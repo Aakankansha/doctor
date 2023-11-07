@@ -316,19 +316,19 @@ class MyOrderScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    "Health Checkup".text.bold.make(),
+                  Text("Health Checkup",style: TextStyle(color: Colors.blue[900]),).text.bold.make(),
                     const Spacer(),
                     "₹ 500".text.bold.make(),
                   ],
                 ),
                 const SizedBox(height: 5),
-                "Order ID: 123456789".text.make(),
+           Text("Order ID: 123456789",style: TextStyle(color: Colors.blue[900]),).text.make(),
                 const SizedBox(height: 5),
-                "Order Date: 12/12/2021".text.make(),
+              Text("Order Date: 12/12/2021",style: TextStyle(color: Colors.blue[900]),).text.make(),
                 const SizedBox(height: 5),
                 Row(
                   children: [
-                    "Order Status:".text.make(),
+                 Text("Order Status:",style: TextStyle(color: Colors.blue[900]),).text.make(),
                     5.widthBox,
                     "In Progress".text.yellow600.make(),
                   ],
@@ -386,14 +386,25 @@ class MyOrderScreen extends StatelessWidget {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                child: const Text("No"),
-                              ),
+
+                                child: const Text("No",style: TextStyle(color: Colors.red),),
+                          style: ButtonStyle(
+                            side: MaterialStateProperty.all(BorderSide(
+                              color: Colors.red, // Set the desired border color
+                              width: 2.0, // Set the desired border width
+                            )),
+                              ),),
                               TextButton(
                                 onPressed: () {
                                   getDialog();
                                 },
-                                child: const Text("Yes"),
-                              ),
+                                child: const Text("Yes",style: TextStyle(color: Colors.green),),
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(BorderSide(
+                                    color: Colors.green, // Set the desired border color
+                                    width: 2.0, // Set the desired border width
+                                  )),
+                              ),),
                             ],
                           ),
                         ),

@@ -19,7 +19,7 @@ class FeedbackView extends GetView<FeedbackController> {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: buildAppBar("Feedback"),
+      appBar: buildAppBar("Feedback",),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Form(
@@ -28,7 +28,7 @@ class FeedbackView extends GetView<FeedbackController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               20.heightBox,
-              "Send your feedback".text.make(),
+           Text("Send your feedback",style: TextStyle(color: Colors.blue[900],fontWeight:FontWeight.bold),).text.make(),
               10.heightBox,
               "Tell us your honest feedback to help us improve"
                   .text

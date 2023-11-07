@@ -75,10 +75,13 @@ Widget buildTextField({
   String? hint,
   bool isPassword = false,
   TextEditingController? controller,
+  TextInputType? keyboardType
 }) =>
     VxTextField(
       borderType: VxTextFieldBorderType.roundLine,
       controller: controller,
+      keyboardType: keyboardType,
+
       validator: (value) {
         if (value!.trim().isEmpty) {
           return "Field can not be empty";
@@ -139,12 +142,12 @@ Widget buildDropdownField(String hint) {
 }
 
 Column buildField(
-    {String? title, String? hint, TextEditingController? controller}) {
+    {String? title, String? hint, TextEditingController? controller,TextInputType? keyboardType}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       title!.text.make().marginOnly(left: 10),
-      buildTextField(hint: hint, controller: controller),
+      buildTextField(hint: hint, controller: controller,keyboardType: keyboardType),
       10.heightBox
     ],
   );

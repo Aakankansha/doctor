@@ -69,7 +69,7 @@ class ProfileView extends GetView<ProfileController> {
                 ],
               ),
             ),
-            10.heightBox,
+         //   10.heightBox,
             "Complete Profile to avail all benefits"
                 .text
                 .color(themeColor)

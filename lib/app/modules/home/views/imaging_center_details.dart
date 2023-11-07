@@ -1,6 +1,6 @@
 import 'package:clear_vikalp_app/app/core/resources/app_resources.dart';
 import 'package:clear_vikalp_app/app/modules/home/views/all_imaging_center_packages.dart';
-import 'package:clear_vikalp_app/app/modules/home/views/lab_description_screen.dart';
+import 'package:clear_vikalp_app/app/modules/nearByLab/lab_description_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -15,10 +15,10 @@ class ImagingCenterDetailsScreen extends StatelessWidget {
     TextEditingController dateController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Nearby Imaging Center',
               style: TextStyle(
                 color: Colors.black,
@@ -27,7 +27,7 @@ class ImagingCenterDetailsScreen extends StatelessWidget {
               ),
             ),
             Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   size: 20,
@@ -191,8 +191,8 @@ class ImagingCenterDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(
                   Icons.location_on_outlined,
                   color: Colors.black54,
@@ -354,8 +354,8 @@ class ImagingCenterDetailsScreen extends StatelessWidget {
                           ),
                           15.widthBox,
                           index == 1
-                              ? Row(
-                                  children: const [
+                              ? const Row(
+                                  children: [
                                     Icon(
                                       Icons.add_circle_outline,
                                     ),

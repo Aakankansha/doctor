@@ -40,11 +40,11 @@ class RefundStatusScreen extends StatelessWidget {
           shrinkWrap: true,
           itemCount: 10,
           itemBuilder: (context, index) {
-            return const Card(
+            return  Card(
               child: ListTile(
-                title: Text('Order ID: 123456789'),
+                title: Text('Order ID: 123456789',style: TextStyle(color: Colors.blue[900],fontSize: 15,),),
                 subtitle: Text('Refund ID: 123456789'),
-                trailing: Text('Refund Status: Success'),
+                trailing: Text('Refund Status: Success',style: TextStyle(color: Colors.green),),
               ),
             );
           },

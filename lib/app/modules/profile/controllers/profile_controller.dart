@@ -7,9 +7,9 @@ import 'package:http/http.dart' as http;
 
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
-  var familyListModel = <FamilyModel>[].obs;
+  var familyList = <UsermembersList>[].obs;
   Future<List<dynamic>> getFamilyList() async {
-    List familyList = [];
+    List list = [];
     var request = http.MultipartRequest(
         'POST', Uri.parse('${baseUrl}Home_health_care/user_member_fetch'));
     request.fields.addAll({'user_id': '10'});
@@ -18,10 +18,9 @@ class ProfileController extends GetxController {
     var body = await response.stream.bytesToString();
     print(body);
     if (response.statusCode == 200) {
-      familyList = jsonDecode(body)['usermembers_list'] as List<dynamic>;
+      list = jsonDecode(body)['usermembers_list'] as List<dynamic>;
 
-      familyListModel.value =
-          familyList.map((e) => FamilyModel.fromJson(e)).toList();
+      familyList.value = list.map((e) => UsermembersList.fromJson(e)).toList();
       return familyList;
     } else {
       print(response.reasonPhrase);
@@ -33,6 +32,7 @@ class ProfileController extends GetxController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
+
     getFamilyList();
   }
 }
